@@ -1,6 +1,8 @@
+@use 'colors' as *; 
+
 .Wrapper {
     margin: 0 auto;
     max-width: 430px;
     height: 100dvh;
-    background-color: yellow;
+    // background-color: $Gray300;
 }

@@ -1,0 +1,41 @@
+@mixin typography(
+    $letter-spacing, 
+    $font-weight,
+    $font-size,
+    $text-decoration,
+    $line-height
+    ){
+    letter-spacing: $letter-spacing;
+    font-weight: $font-weight;
+    font-size: $font-size;
+    text-decoration: $text-decoration;
+    line-height: $line-height;
+}
+
+.title1 {
+    @include typography(0, bold, 32px, none, 46px); 
+}
+.title2 {   
+    @include typography(0, bold, 24px, none, 34px); 
+}
+.title3 {
+    @include typography(0, bold, 20px, none, 32px);
+}   
+.button1 {
+    @include typography(0, normal, 16px, none, 22px);
+}
+.button2 {
+    @include typography(0, normal, 14px, none, 22px);
+    &.underline {    
+        @include typography(0, normal, 14px, 1px solid black underline, 20px);
+    }
+} 
+.body1 {
+    @include typography(0, normal, 16px, none, 28px);
+}
+.body2 {
+    @include typography(0, normal, 14px, none, 26px);
+}
+.caption1 {
+    @include typography(0, 600, 12px, none, 22px);
+}

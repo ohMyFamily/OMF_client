@@ -1,7 +1,9 @@
+import './App.scss';
+
 function App() {
   return (
     <>
-      <div>샘플 페이지</div>
+      <div className='Wrapper'>샘플 페이지</div>
     </>
   );
 }

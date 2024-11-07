@@ -1,8 +1,8 @@
-@use 'colors' as *; 
-
 .Wrapper {
     margin: 0 auto;
     max-width: 430px;
-    height: 100dvh;
-    // background-color: $Gray300;
+    height: 100dvh; 
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }

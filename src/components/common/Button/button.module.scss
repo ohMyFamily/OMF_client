@@ -1,0 +1,44 @@
+@use '../../../colors' as *;
+
+.size {
+    width: calc(100% - 40px);
+    margin: 0 20px;
+    height: 56px;
+    border-radius: 28px;
+    border: none;
+    cursor: pointer; 
+
+    &.b { 
+
+    }
+
+    &.s { 
+
+    }
+
+    &.primary {
+        background-color: $main50;
+        color: $main300;
+        &:hover {
+            background-color: $main100;
+        }
+    }   
+    &.secondary {
+        background-color: $Gray500;
+        color: $Gray000;
+        &:hover {
+            background-color: $Gray400;
+        }
+    }
+    &.tertiary {
+        background-color: $Gray50;
+        &:hover {
+            background-color: $Gray75;
+        }
+        
+    }
+    &.disabled {
+       background-color: $Gray50;
+       color: $Gray100;  
+    }
+}

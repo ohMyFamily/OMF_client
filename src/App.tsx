@@ -35,25 +35,16 @@ function App() {
         <Body2> The quick brown fox jumps over the lazy dog.</Body2>
         <Caption1> The quick brown fox jumps over the lazy dog.</Caption1>
         <h1>Buton</h1>
-        <Button size='b' variant='primary' onClick={() => ''}>
+        <Button variant='primary' onClick={() => ''}>
           Primary-button1
         </Button>
-        <Button size='b' variant='secondary' onClick={() => ''}>
+        <Button variant='secondary' onClick={() => ''}>
           Secondary-button1
         </Button>
-        <Button size='b' variant='tertiary' onClick={() => ''}>
+        <Button variant='tertiary' onClick={() => ''}>
           tertiary-button1
         </Button>
-        <Button size='s' variant='primary' onClick={() => ''}>
-          Primary-button2
-        </Button>
-        <Button size='s' variant='secondary' onClick={() => ''}>
-          Secondary-button2
-        </Button>
-        <Button size='s' variant='tertiary' onClick={() => ''}>
-          tertiary-button1
-        </Button>
-        <Button size='b' variant='tertiary' disabled={true} onClick={() => ''}>
+        <Button variant='tertiary' disabled={true} onClick={() => ''}>
           disabled-button1
         </Button>
       </div>

@@ -8,14 +8,16 @@ import {
   Title1,
   Title2,
   Title3,
-} from './components/common/Typography';
-import './App.scss';
+} from '@components/common/Typography';
+import AppBar from '@components/common/AppBar';
+import $ from './App.module.scss';
+import classNames from 'classnames';
 
 function App() {
   return (
     <>
-      <div className='Wrapper'>
-        <h1>Typography</h1>
+      <div className={$.Wrapper}>
+        <AppBar leftRole='back' rightRole='close' className={classNames($.appbar)} />
         <Title1>The quick brown fox jumps over the lazy dog. </Title1>
         <Title2>The quick brown fox jumps over the lazy dog.</Title2>
         <Title3>The quick brown fox jumps over the lazy dog.</Title3>
@@ -34,19 +36,6 @@ function App() {
         <Body1>The quick brown fox jumps over the lazy dog.</Body1>
         <Body2> The quick brown fox jumps over the lazy dog.</Body2>
         <Caption1> The quick brown fox jumps over the lazy dog.</Caption1>
-        <h1>Buton</h1>
-        <Button variant='primary' onClick={() => ''}>
-          Primary-button1
-        </Button>
-        <Button variant='secondary' onClick={() => ''}>
-          Secondary-button1
-        </Button>
-        <Button variant='tertiary' onClick={() => ''}>
-          tertiary-button1
-        </Button>
-        <Button variant='tertiary' disabled={true} onClick={() => ''}>
-          disabled-button1
-        </Button>
       </div>
     </>
   );

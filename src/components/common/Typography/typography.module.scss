@@ -22,7 +22,7 @@
     @include typography(0, bold, 20px, none, 32px);
 }   
 .button1 {
-    @include typography(0, normal, 16px, none, 22px);
+    @include typography(0, 600, 16px, none, 22px);
 }
 .button2 {
     @include typography(0, normal, 14px, none, 22px);

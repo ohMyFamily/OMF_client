@@ -9,7 +9,7 @@ import {
   Title2,
   Title3,
 } from '@components/common/Typography';
-import Input from '@components/common/Input/Input';
+import Input from '@/components/common/Input';
 import AppBar from '@components/common/AppBar';
 import $ from './App.module.scss';
 import classNames from 'classnames';

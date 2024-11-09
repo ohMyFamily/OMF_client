@@ -1,4 +1,3 @@
-import Button from './components/common/Button';
 import {
   Body1,
   Body2,
@@ -10,6 +9,7 @@ import {
   Title3,
 } from '@components/common/Typography';
 import Input from '@/components/common/Input';
+import Inputfield from '@components/common/Input/Inputfield';
 import AppBar from '@components/common/AppBar';
 import $ from './App.module.scss';
 import classNames from 'classnames';
@@ -38,6 +38,7 @@ function App() {
         <Body2> The quick brown fox jumps over the lazy dog.</Body2>
         <Caption1> The quick brown fox jumps over the lazy dog.</Caption1>
         <Input/>
+        <Inputfield/>
       </div>
     </>
   );

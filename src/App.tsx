@@ -39,6 +39,8 @@ function App() {
         <Caption1> The quick brown fox jumps over the lazy dog.</Caption1>
         <Input/>
         <Inputfield/>
+        <Inputfield label="원빈 닮았다고 하세요."/>
+
       </div>
     </>
   );

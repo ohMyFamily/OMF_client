@@ -1,18 +1,18 @@
 import classNames from "classnames"
 import $ from './Input.module.scss';
 import Input from "."
-import { Body1 } from "../Typography"
+import { Body2 } from "../Typography"
 
 interface InputFieldProps {
-    label: string;
+    label?: string;
     }
 
 function Inputfield({label}: InputFieldProps) {
     return (
         <div className={classNames($.fieldWrapper)}>
             <div>
-                <Body1>{label}</Body1>
-                <Input/>
+            {label && <Body2>{label}</Body2>}
+            <Input/>
             </div>
         </div>
     )

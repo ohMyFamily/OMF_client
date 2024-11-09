@@ -2,7 +2,6 @@
 
 .inputWrapper {
     width: 100%;
-    height: 56px;
     display: flex;
     gap: 8px;
     background-color: $Gray50;
@@ -37,7 +36,6 @@
 
 .fieldWrapper {
     width: calc(100% - 40px);
-    height: 138px;
     padding: 24px 16px;
     justify-content: center;
     text-align: start;

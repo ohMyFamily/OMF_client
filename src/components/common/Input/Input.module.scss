@@ -1,0 +1,29 @@
+@use '@/colors' as *;
+
+.inputWrapper {
+    width: calc(100% - 32px);
+    height: 56px;
+    display: flex;
+    gap: 8px;
+    background-color: $Gray50;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 16px;
+}
+.input {
+    width: 100%;
+    font-family: 'Pretendard';
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0%;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.inputClose {
+    width: 15px;
+    color: $Gray200;
+}

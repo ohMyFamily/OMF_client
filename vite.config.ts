@@ -1,10 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path' 
-import withReactRouter from 'vite-plugin-next-react-router';
+import path from 'path'  
 
 export default defineConfig({
-  plugins: [react(),  withReactRouter()],
+  plugins: [react(),],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

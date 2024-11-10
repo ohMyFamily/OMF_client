@@ -1,0 +1,46 @@
+@use '../../../colors' as *;
+
+.scoreButtonContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.scoreButtonItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    .icon {
+        fill: $Gray200;
+    }
+
+    .textWrapper {
+        color: $Gray200;
+
+        &.textClicked {
+            color: $Gray500;
+        }
+    }
+}
+
+.scoreButtonItemcorrect {
+    padding: 8px 30.5px;
+
+    &.scoreButtonItemClicked {
+        .icon {
+            fill: $main300;
+        }
+    }
+}
+
+.scoreButtonItemincorrect {
+    padding: 8px 37.5px;
+    
+    &.scoreButtonItemClicked {
+        .icon {
+            fill: $Red500;
+        }
+    }
+}

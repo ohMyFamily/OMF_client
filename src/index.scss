@@ -1,5 +1,9 @@
 * {
     box-sizing: border-box;
+    //터치 영역 표시 제거
+    -webkit-tap-highlight-color: transparent;
+    //텍스트 선택 방지
+    user-select: none;
 }
 
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, label {

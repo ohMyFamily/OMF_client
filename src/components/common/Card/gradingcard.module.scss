@@ -1,0 +1,62 @@
+@use '../../../colors' as *;
+
+.gradingcard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: start;
+    width: calc(100% - 40px);
+    padding: 24px 16px;
+    border-radius: 12px;
+    box-shadow: inset 0 0 4px 0 #AEECFF;
+    background-color: $Gray000;
+    gap: 32px;
+}
+
+.itemWrapper {
+    gap: 32px;
+}
+
+.number {
+    width: 43px;
+    background-color: $main50;
+    border: none;
+    border-radius: 13px;
+    justify-content: center;
+    text-align: center;
+    color: $main300;
+    padding: 2px auto;
+}
+
+.questionWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: start;
+    text-align: start;
+    align-items: center;
+    img{
+        width: 52px;
+        height: 52px;
+    }
+}
+
+
+.answerWrapper {
+    display: flex;
+    background-color: $Gray50;
+    width: 100%;
+    height: 56px;
+    justify-content: flex-start; 
+    align-items: center; 
+    font-weight: medium;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 16px;
+}
+
+.ScoreButton {
+    margin: 0 auto;
+}

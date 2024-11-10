@@ -1,7 +1,7 @@
 import Body2 from "../Typography/Body2";
 import Title2 from "../Typography/Title2";
 import classNames from 'classnames';
-import $ from './card.module.scss';
+import $ from './resultcard.module.scss';
 import P20 from '@/assets/svg/Tossface/P20.svg';
 import P40 from '@/assets/svg/Tossface/P40.svg';
 import P60 from '@/assets/svg/Tossface/P60.svg';
@@ -44,18 +44,16 @@ const ResultCard = ({ score }: ResultCardProps) => {
   const [scoreText, scoreImg, titleText, description] = getScoreInfo();
 
   return (
-    <div className={classNames($.card)}>
-      <span className={classNames($.score)}>
+    <div className={classNames($.resultcard)}>
+      <div className={classNames($.score)}>
         {scoreText}
-      </span>
+      </div>
 
-      <div className={classNames($.imageWrapper)}>
         <img 
           src={scoreImages[scoreImg as keyof typeof scoreImages]}
           alt={`Score ${scoreText}`} 
           className={classNames($.image)}
         />
-      </div>
 
       <div className={classNames($.content)}>
         <Title2>

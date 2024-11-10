@@ -1,0 +1,45 @@
+@use '../../../colors' as *;
+
+.answerContainer {
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    padding: 16px;
+    background-color: $main50;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: start;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &.openState {
+        background-color: $Gray50;
+    }
+
+    img {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        background-color: #D9D9D9;
+    }
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    
+    span {
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 22px;
+        color: $Gray500;
+    }
+    
+    .message {
+        color: $Gray300;
+    }
+}

@@ -1,27 +1,32 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import $ from './radio.module.scss';
 import Button1 from '../Typography/Button1';
 
 interface RadioProps {
     options: string[];
+    isSelectedIndex: number;
+    setIsSelectedIndex: Dispatch<SetStateAction<number>>;
 }
 
-function Radio({ options }: RadioProps) {
-    const [isSelected, setIsSelected] = useState(false);
-
+function Radio({ options, isSelectedIndex, setIsSelectedIndex }: RadioProps) {
     return (
-        <div 
-        className={classNames($.radioContainer, {
-            [$.selectedState]: isSelected
-        })}
-        onClick={() => setIsSelected(!isSelected)}
-        >
-            <div className={classNames($.options)}>
-                <Button1>{options} 오늘</Button1>
+        <div className={$.layout}>
+        {options.map((item, index) => {
+            return (
+            <div
+                className={classNames($.radioContainer, {
+                [$.selectedState]: isSelectedIndex === index,
+                })}
+                onClick={() => setIsSelectedIndex(index)}
+            >
+                <Button1>{item} </Button1>
             </div>
+            );
+        })}
         </div>
     );
 }
 
 export default Radio;
+

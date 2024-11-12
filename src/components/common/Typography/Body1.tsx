@@ -7,5 +7,5 @@ interface TitleProps {
 }
 
 export default function Body1({ children, emphasis }: TitleProps) {
-  return <p className={classNames($.body1, emphasis && $.underline)}>{children}</p>;
+  return <p className={classNames($.body1, emphasis && $.emphasis)}>{children}</p>;
 }

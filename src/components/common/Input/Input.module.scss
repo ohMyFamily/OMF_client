@@ -25,6 +25,10 @@
 .inputClose {
     width: 15px;
     fill: $Gray200;
+    
+    &:active {
+        color: $Gray50; 
+    }
 }
 
 .inputCloseWrapper {

@@ -1,10 +1,13 @@
 import classNames from 'classnames';
-import { ChangeEvent, useEffect, useState, useRef } from 'react';
-import $ from './Input.module.scss';
-import X from '@/assets/svg/X.svg';
+import { ChangeEvent, useEffect, useState, useRef, SetStateAction, Dispatch } from 'react';
+import $ from '@/components/common/Input/Input.module.scss';
+import X from '@/assets/svg/X.svg?react';
+interface InputProps {
+    text: string;
+    setText: Dispatch<SetStateAction<string>>;
+}
 
-export default function Input() {
-    const [text, setText] = useState<string>('');
+export default function Input({ text, setText }: InputProps) {
     const [isTyping, setIsTyping] = useState<boolean>(false);
     //input을 focus하기 위해 useRef 사용(handleClear 실행 이후에도 포커스가 유지되도록)
     const inputRef = useRef<HTMLInputElement>(null);
@@ -12,7 +15,7 @@ export default function Input() {
     const inputWrapperRef = useRef<HTMLDivElement>(null);
 
     const onChangeText = (e: ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
+        setText(e.target.value);
     };
 
     const handleClear = () => {
@@ -20,32 +23,29 @@ export default function Input() {
         inputRef.current?.focus();
     };
 
-    //focus를 잃을 경우
-    const handleBlur = () => {
-        setIsTyping(false);
-    };
 
     useEffect(() => {
         if (text == '') {
-        setIsTyping(false);
+            setIsTyping(false);
         } else {
-        setIsTyping(true);
+            setIsTyping(true);
         }
     }, [text]);
 
-    //input div 밖의 영역 터치 시 istyping = false, input 포커스 해제
+  //input div 밖의 영역 터치 시 istyping = false, input 포커스 해제
     useEffect(() => {
         const handleInputDivOutside = (event: MouseEvent | TouchEvent) => {
+
         if (inputWrapperRef.current && !inputWrapperRef.current.contains(event.target as Node)) {
             setIsTyping(false);
             inputRef.current?.blur();
         }
-        };
+    };
 
-        document.addEventListener('mousedown', handleInputDivOutside);
-        document.addEventListener('touchstart', handleInputDivOutside);
+    document.addEventListener('mousedown', handleInputDivOutside);
+    document.addEventListener('touchstart', handleInputDivOutside);
 
-        return () => {
+    return () => {
         document.removeEventListener('mousedown', handleInputDivOutside);
         document.removeEventListener('touchstart', handleInputDivOutside);
         };
@@ -58,11 +58,10 @@ export default function Input() {
             value={text}
             className={classNames($.input)}
             onChange={onChangeText}
-            onBlur={handleBlur}
         />
         {isTyping && (
             <div className={classNames($.inputCloseWrapper)}>
-            <img src={X} className={classNames($.inputClose)} onClick={handleClear} />
+            <X className={classNames($.inputClose)} onClick={handleClear} />
             </div>
         )}
         </div>

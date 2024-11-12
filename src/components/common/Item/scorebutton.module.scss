@@ -1,27 +1,20 @@
-@use '../../../colors' as *;
+@use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
 
 .scoreButtonContainer {
-    display: flex;
-    gap: 20px;
+    display: flex; 
+    justify-content: space-between;
 }
 
 .scoreButtonItem {
-    display: flex;
-    align-items: center;
+    @include center(); 
     gap: 6px;
     border-radius: 8px;
     cursor: pointer;
-
-    .icon {
-        fill: $Gray200;
-    }
-
-    .textWrapper {
-        color: $Gray200;
-
-        &.textClicked {
-            color: $Gray500;
-        }
+    flex-shrink: 0; 
+    color: $Gray200; 
+    &.textClicked {
+        color: $Gray500;
     }
 }
 

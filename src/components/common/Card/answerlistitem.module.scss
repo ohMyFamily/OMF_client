@@ -1,16 +1,13 @@
-@use '../../../colors' as *;
+@use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
 
 .answerContainer {
     width: calc(100% - 40px);
-    display: flex;
-    flex-direction: row;
+    display: flex; 
     gap: 8px;
     padding: 16px;
-    background-color: $main50;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: start;
-    border: none;
+    background-color: $main50; 
+    align-items: center;  
     border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -20,8 +17,7 @@
     }
 
     img {
-        width: 60px;
-        height: 60px;
+        @include size(60px, 60px); 
         border-radius: 12px;
         background-color: #D9D9D9;
     }
@@ -32,10 +28,7 @@
     flex-direction: column;
     gap: 4px;
     
-    span {
-        font-size: 16px;
-        font-weight: bold;
-        line-height: 22px;
+    span { 
         color: $Gray500;
     }
     

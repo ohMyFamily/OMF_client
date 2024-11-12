@@ -1,5 +1,5 @@
 import Toast from './Toast';
-import Portal from '@/components/common/Protal.tsx';
+import Portal from '@/components/common/Portal';
 import $ from './toast.module.scss';
 import { useToastContext } from './context';
 

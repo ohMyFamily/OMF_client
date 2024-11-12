@@ -14,7 +14,6 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
-    "vite-plugin-next-react-router": "^0.7.1",
     "vite-plugin-svgr": "^4.3.0"
   },
   "devDependencies": {

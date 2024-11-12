@@ -16,8 +16,8 @@
       "@hooks/*": ["src/hooks/*"],
       "@services/*": ["src/services/*"],
       "@types/*": ["src/types/*"]
-    }
+    },
+     "jsx": "react-jsx"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx", "src/routes.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["src"], 
 }

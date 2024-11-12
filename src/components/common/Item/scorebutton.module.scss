@@ -1,0 +1,39 @@
+@use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
+
+.scoreButtonContainer {
+    display: flex; 
+    justify-content: space-between;
+}
+
+.scoreButtonItem {
+    @include center(); 
+    gap: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0; 
+    color: $Gray200; 
+    &.textClicked {
+        color: $Gray500;
+    }
+}
+
+.scoreButtonItemcorrect {
+    padding: 8px 30.5px;
+
+    &.scoreButtonItemClicked {
+        .icon {
+            fill: $main300;
+        }
+    }
+}
+
+.scoreButtonItemincorrect {
+    padding: 8px 37.5px;
+    
+    &.scoreButtonItemClicked {
+        .icon {
+            fill: $Red500;
+        }
+    }
+}

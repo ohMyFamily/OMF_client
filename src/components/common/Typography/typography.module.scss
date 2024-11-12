@@ -12,6 +12,9 @@
     line-height: $line-height;
 }
 
+.headlin1 {
+    @include typography(0, bold, 48px, none, 56px);  
+}
 .title1 {
     @include typography(0, bold, 32px, none, 46px); 
 }
@@ -32,6 +35,9 @@
 } 
 .body1 {
     @include typography(0, normal, 16px, none, 28px);
+    &.emphasis {    
+        @include typography(0, bold, 16px, none, 28px);
+    }
 }
 .body2 {
     @include typography(0, normal, 14px, none, 26px);

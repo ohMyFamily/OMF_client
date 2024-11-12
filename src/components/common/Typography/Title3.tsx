@@ -5,5 +5,5 @@ interface TitleProps {
 }
 
 export default function Title3({ children }: TitleProps) {
-  return <h1 className={$.title3}>{children}</h1>;
+  return <h2 className={$.title3}>{children}</h2>;
 }

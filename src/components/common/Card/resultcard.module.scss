@@ -1,0 +1,46 @@
+@use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
+
+.resultcard { 
+    @include center;
+    @include block-padding;
+    flex-direction: column; 
+    text-align: center;
+    height: 454px;
+    padding: 48px 24px;
+    gap: 24px;
+    border-radius: 16px;
+    box-shadow: inset 0 0 1px 0 #AEECFF, 12px 12px 28px 0 rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+    &.animate {
+      @include size(242px, 227px); 
+      box-shadow:  12px 12px 28px 0 rgba(0, 0, 0, 0.05);
+    } 
+    &.blur {
+       @include blur;
+    }
+   
+}   
+
+.image { 
+    &.animate {
+        @include size(80px, 80px);
+    }
+    &.blur {
+        @include blur;
+    }
+}
+
+.score {
+    font-size: 48px;
+    color: $main300;
+    font-weight: bold;
+    line-height: 56px;
+}
+
+.content { 
+    &.blur {
+        @include blur;
+    }
+}
+

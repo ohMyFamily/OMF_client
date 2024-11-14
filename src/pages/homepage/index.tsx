@@ -1,20 +1,14 @@
-import { useGetSample } from '@/apis/queries/question';
-import { sampleType } from '@/apis/queries/type';
-const HomePage = () => {
-  const { data } = useGetSample();
+import Spinner from '@/components/common/Spinner';
+import Sample from '@/components/sample';
+import { Suspense } from 'react';
 
+const HomePage = () => {
   return (
-    <>
-      {data?.map((item: sampleType) => {
-        return (
-          <>
-            <p>{item.id}</p>
-            <strong> {item.title}</strong>
-            <strong> {item.body}</strong>
-          </>
-        );
-      })}
-    </>
+    <div style={{ height: '300px', overflowY: 'scroll' }}>
+      <Suspense fallback={<Spinner />}>
+        <Sample />
+      </Suspense>
+    </div>
   );
 };
 

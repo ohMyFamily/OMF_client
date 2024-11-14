@@ -1,5 +1,8 @@
+@use '_colors.scss' as *; 
+
 .Wrapper {
     margin: 0 auto;
     max-width: 430px;
     height: 100dvh; 
+    background: linear-gradient($Bi-Bg-Blue, $Bi-Bg-Yellow);
 }

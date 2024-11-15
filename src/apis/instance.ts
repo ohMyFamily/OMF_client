@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { LocalStorage } from '@/localstorage';
+import { Storage } from '@/storage';
 
 const baseURL = process.env.OMF_APP_API;
 
@@ -14,7 +14,7 @@ export const instance = axios.create({
 // 요청 인터셉터 설정
 instance.interceptors.request.use(
     async (config) => {
-        const accessToken = LocalStorage.getItem('accessToken');
+        const accessToken = Storage.getItem('accessToken');
         if (accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`;
         }
@@ -47,7 +47,7 @@ instance.interceptors.response.use(
 
 // 리프레시 토큰 로직
 const refreshToken = async () => {
-    const refreshToken = LocalStorage.getItem('refreshToken');
+    const refreshToken = Storage.getItem('refreshToken');
     const response = await axios.post(`${baseURL}/auth/refresh`, {
         refreshToken,
     });
@@ -56,9 +56,7 @@ const refreshToken = async () => {
 
 // 로그아웃 처리
 const handleLogout = () => {
-    LocalStorage.removeItem('accesstoken');
-    LocalStorage.removeItem('refreshToken');
-    LocalStorage.removeItem('ID'); // 임시, 아이디 제거
+    Storage.clearItems();
     window.location.href = '/login'; // 로그인 페이지로 이동
 };
 
@@ -68,18 +66,10 @@ const handleLogout = () => {
  */
 export const setAuthToken = (accessToken: string | null) => {
     if (accessToken) {
-        LocalStorage.setItem('accessToken', accessToken);
+        Storage.setItem('accessToken', accessToken);
         instance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     } else {
-        LocalStorage.removeItem('accessToken');
+        Storage.removeItem('accessToken');
         delete instance.defaults.headers.common.Authorization;
-    }
-};
-
-// 앱 시작 시 저장된 토큰이 있다면 자동 로그인
-export const initializeAuth = () => {
-    const accessToken = LocalStorage.getItem('accessToken');
-    if (accessToken) {
-        setAuthToken(accessToken as string);
     }
 };

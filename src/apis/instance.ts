@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { Storage } from '@/storage';
 
-const baseURL = process.env.OMF_APP_API;
+const baseURL = import.meta.env.VITE_APP_API;
 
 export const instance = axios.create({
     baseURL,

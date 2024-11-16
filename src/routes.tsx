@@ -10,6 +10,7 @@ import Splash from './pages/splash';
 import Layout from '@/pages/_layout';
 import HomePage from '@/pages/homepage';
 import Index from '@/pages/index';
+import Redirection from '@/pages/redirection'
 
 export const routes = [
   {
@@ -27,6 +28,7 @@ export const routes = [
       },
       { path: 'guide', element: <Guide /> },
       { path: 'login', element: <Login /> },
+      { path: 'kakao/callback', element: <Redirection />},
       { path: 'main', element: <Main /> },
       { path: 'test', element: <Guide /> },
       { path: 'grading', element: <Grading /> },

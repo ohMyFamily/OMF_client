@@ -1,42 +1,30 @@
-import Radio from '@/components/common/Radio';
-import { useToast } from '@/hooks/useToast';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Input from '@/components/common/Input';
-import Inputfield from '@components/common/Input/Inputfield';
-import { ChangeEvent, useState } from 'react';
+import { useFunnel } from '@/hooks/useFunnel';
 
 const HomePage = () => {
-  const navigate = useNavigate();
-  const { addToasts } = useToast();
+  const [text, setText] = useState<string>('zz');
+  const [text1, setText1] = useState<string>('ss');
 
-  const [isSelectedIndex, setIsSelectedIndex] = useState<number>(-1);
-  const [text, setText] = useState<string>('');
-  const [text1, setText1] = useState<string>('');
-  const [text2, setText2] = useState<string>('');
+  const STEPS = ['1', '2', '3', '4'] as const;
 
-  const onChangeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setText2(e.target.value);
+  const funnelData = {
+    step1: [text, setText] as [string, typeof setText],
+    step2: [text1, setText1] as [string, typeof setText1],
   };
+  const { FunnelComponent, handleStep, currentStep } = useFunnel(STEPS, funnelData);
 
   return (
     <>
-      <Radio
-        options={['오늘', '지난주', '지난달', '죄송해요 전화 자주 할게요']}
-        isSelectedIndex={isSelectedIndex}
-        setIsSelectedIndex={setIsSelectedIndex}
-      />
-      <button onClick={() => addToasts('aa')}>토스트 추가</button>
-      <button onClick={() => navigate('/')}>이동</button>
-
-      <Input text={text} setText={setText} />
-        <Inputfield text={text1} setText={setText1} />
-        {text2.length > 10 ? (
-          <textarea value={text2} onChange={onChangeTextArea} />
-        ) : (
-          <Inputfield text={text2} setText={setText2} label='원빈 닮았다고 하세요.' />
-        )}
-
+      <button onClick={() => handleStep('1')}>1</button>
+      <button onClick={() => handleStep('2')}>2</button>
+      <button onClick={() => handleStep('3')}>3</button>
+      <button onClick={() => handleStep('4')}>4</button>
+      <FunnelComponent>
+        <FunnelComponent.Steps name="1">1단계</FunnelComponent.Steps>
+        <FunnelComponent.Steps name="2">2단계</FunnelComponent.Steps>
+        <FunnelComponent.Steps name="3">3단계</FunnelComponent.Steps>
+        <FunnelComponent.Steps name="4">4단계</FunnelComponent.Steps>
+      </FunnelComponent>
     </>
   );
 };

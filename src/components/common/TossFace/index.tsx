@@ -4,5 +4,6 @@ import P60 from '@/assets/svg/Tossface/P60.svg';
 import P80 from '@/assets/svg/Tossface/P80.svg';
 import P90 from '@/assets/svg/Tossface/P90.svg';
 import P100 from '@/assets/svg/Tossface/P100.svg';
+import Angel from '@/assets/svg/Tossface/Angel.svg';
 
-export { P20, P40, P60, P80, P90, P100 };
+export { P20, P40, P60, P80, P90, P100, Angel };

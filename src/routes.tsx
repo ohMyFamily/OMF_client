@@ -1,5 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
-import { lazy } from 'react';
 import CheckScore from './pages/check-score';
 import CheckScoreDetail from './pages/check-score/detail';
 import Guide from './pages/guide';

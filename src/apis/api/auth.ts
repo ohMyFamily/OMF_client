@@ -1,37 +1,27 @@
 import { instance } from '../instance';
-import { setAuthToken } from '../instance';
+import { UseMutationResult } from "@tanstack/react-query";
 
-interface KakaoLoginResponse {
+export interface LoginApiResponseFormat<T> {
     isSuccess: boolean;
     code: string;
     message: string;
-    data: {
-        accessToken: string;
-        refreshToken: string;
-        grantType: string;
-        expiresIn: number;
-    };
+    data: T;
 }
 
-interface KakaoLoginRequest {
-    authorizationCode: string;
+export interface KakaoLoginData {
+    accessToken: string;
+    refreshToken: string;
+    grantType: string;
+    expiresIn: number;
 }
 
+export type KakaoLoginResponse = LoginApiResponseFormat<KakaoLoginData>;
+export type UseKakaoLoginMutation = UseMutationResult<KakaoLoginResponse, Error, string>;
+
+// 카카오 로그인 api
 export const kakaoLogin = async (code: string): Promise<KakaoLoginResponse> => {
-    try {
-        const requestData: KakaoLoginRequest = {
-            authorizationCode: code
-        };
-
-        const response = await instance.post<KakaoLoginResponse>(
-            '/api/v1/member/kakao',
-            requestData 
-        );
-        setAuthToken(response.data.data.accessToken);
-
-        return response.data;
-    } catch (error) {
-        console.error('Kakao login failed:', error);
-        throw error;
-    }
+    const response = await instance.post('/api/v1/member/kakao', {
+        authorizationCode: code
+    });
+    return response.data;
 };

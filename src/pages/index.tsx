@@ -1,6 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import $ from '../App.module.scss';
-import classNames from 'classnames';
+import $ from '../App.module.scss'; 
+import classNames from 'classnames'; 
+import ResultCard from '@/components/common/Card/ResultCard';
+import GradingCard from '@/components/common/Card/GradingCard';
+import AnswerListItem from '@/components/common/Card/AnswerListItem';
+import { useState } from 'react';
+import Call from '@/assets/svg/Tossface/Call.svg';
+import AnimateCardSample from '@/components/domain/CheckScore/AnimateCardSample'; 
 
 const IndexPage = () => {
   const navigate = useNavigate();

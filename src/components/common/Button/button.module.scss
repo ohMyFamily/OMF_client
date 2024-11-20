@@ -1,4 +1,5 @@
 @use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
 
 .size {
     width: calc(100% - 40px);
@@ -8,9 +9,7 @@
     border: none;
     cursor: pointer; 
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include center;
 
     &.primary {
         background-color: $main50;
@@ -35,9 +34,6 @@
     &.kakaoLogin {
         background-color: $Bi-kakao;
         color: black;
-        &:hover {
-            opacity: 0.9;
-        }
     }
     &.disabled {
         background-color: $Gray50;

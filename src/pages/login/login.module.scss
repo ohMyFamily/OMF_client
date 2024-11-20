@@ -1,1 +1,12 @@
 @use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
+
+.Container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 80px 0 89px;
+}
+
+

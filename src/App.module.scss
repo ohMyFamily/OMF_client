@@ -1,8 +1,23 @@
 @use '_colors.scss' as *; 
+@use '@/styles/mixin.scss' as *;
 
 .Wrapper {
     margin: 0 auto;
     max-width: 430px;
     height: 100dvh; 
     background: linear-gradient($Bi-Bg-Blue, $Bi-Bg-Yellow);
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    .navigationButton {
+        @include size(100%, 60px);
+        background-color: white;
+        font-weight: bold;
+        &.state {
+            background-color: $main100;
+        }
+    }  
 }

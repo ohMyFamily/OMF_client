@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useKakaoLoginQuery } from '@/apis/queries/user';
+import { useSearchParams } from 'react-router-dom';
 
 
 export default function Redirection() {
-    const code = new URL(window.location.href).searchParams.get('code');
+    const [searchParams] = useSearchParams();
+    const code = searchParams.get('code');
     const { mutate } = useKakaoLoginQuery();
 
     useEffect(() => {

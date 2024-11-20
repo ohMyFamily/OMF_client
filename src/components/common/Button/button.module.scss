@@ -1,4 +1,5 @@
-@use '../../../colors' as *;
+@use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
 
 .size {
     width: calc(100% - 40px);
@@ -7,6 +8,8 @@
     border-radius: 28px;
     border: none;
     cursor: pointer; 
+    position: relative;
+    @include center;
 
     &.primary {
         background-color: $main50;
@@ -27,10 +30,20 @@
         &:hover {
             background-color: $Gray75;
         }
-        
+    }
+    &.kakaoLogin {
+        background-color: $Bi-kakao;
+        color: black;
     }
     &.disabled {
-       background-color: $Gray50;
-       color: $Gray100;  
+        background-color: $Gray50;
+        color: $Gray100;  
     }
+}
+
+.iconWrapper {
+    position: absolute;
+    left: 16px;
+    display: flex;
+    align-items: center;
 }

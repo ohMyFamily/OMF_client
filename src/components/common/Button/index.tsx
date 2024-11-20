@@ -7,7 +7,7 @@ interface ButtonProps {
   variant: 'primary' | 'secondary' | 'tertiary' | 'kakaoLogin';
   disabled?: boolean;
   onClick: () => void;
-  icon: string;
+  icon?: string;
 }
 
 export default function Button({

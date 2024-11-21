@@ -55,7 +55,7 @@ const refreshToken = async () => {
 };
 
 // 로그아웃 처리
-const handleLogout = () => {
+export const handleLogout = () => {
     Storage.clearItems();
     window.location.href = '/login'; // 로그인 페이지로 이동
 };

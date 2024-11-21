@@ -30,7 +30,7 @@
 .button2 {
     @include typography(0, normal, 14px, none, 22px);
     &.underline {    
-        @include typography(0, normal, 14px, 1px solid black underline, 20px);
+        @include typography(0, normal, 14px, 1px solid underline, 20px);
     }
 } 
 .body1 {

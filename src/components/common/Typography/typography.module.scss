@@ -1,3 +1,5 @@
+@use '@/colors' as *;
+
 @mixin typography(
     $letter-spacing, 
     $font-weight,
@@ -30,8 +32,8 @@
 .button2 {
     @include typography(0, normal, 14px, none, 22px);
     &.underline {    
-        @include typography(0, normal, 14px, 1px solid underline, 20px);
-    }
+        border-bottom: 1px solid var(--underline-color, $Gray200);
+        padding-bottom: 1px;    }
 } 
 .body1 {
     @include typography(0, normal, 16px, none, 28px);

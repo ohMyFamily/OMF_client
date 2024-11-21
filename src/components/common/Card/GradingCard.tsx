@@ -6,7 +6,7 @@ import Caption1 from '../Typography/Caption1';
 import Body1 from '../Typography/Body1';
 import { TOTAL_QUESTION } from '@/constants/business.constants';
 import { useState } from 'react';
-import BlueTitleText from '../Item/blueTitleText';
+import BlueTitleText from '../Item/BlueTitleText';
 
 interface GradingCardProps {
   title: string;

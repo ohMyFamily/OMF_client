@@ -1,6 +1,6 @@
 import Button from '@/components/common/Button';
 import KakaoLogo from '@/assets/svg/KakaoLogo.svg'
-import BlueTitleText from '@/components/common/Item/blueTitleText';
+import BlueTitleText from '@/components/common/Item/BlueTitleText';
 import Caption1 from '@/components/common/Typography/Caption1';
 import Title1 from '@/components/common/Typography/Title1';
 import Body2 from '@/components/common/Typography/Body2';

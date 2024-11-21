@@ -22,8 +22,7 @@ export default function Login() {
   <>
     <div className={classNames($.Wrapper)}>
       <div className={classNames($.Container)}>
-        <img src={MainIllust} className={classNames($.BackgroundSvg)} />
-
+        <img src={MainIllust} className={classNames($.BackgroundSvg)} alt='메인 일러스트'/>
         <div className={classNames($.TextContainer)}>
           <BlueTitleText size="md">
             <Caption1>가정의 달 이벤트</Caption1>
@@ -31,7 +30,6 @@ export default function Login() {
           <Title1>당신의 가족<br />어디까지 알고 있나요?</Title1>
           <Body2>그동안 무심한 듯 카네이션만 챙겼다면<br />올해는 단란한 시간을 선물해보세요.</Body2>
         </div>
-
         <div className={classNames($.ButtonContainer)}>
           <Button
               variant="kakaoLogin"

@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { useKakaoLoginQuery } from '@/apis/queries/user';
 import { useSearchParams } from 'react-router-dom';
+import Spinner from '@/components/common/Spinner';
+import classNames from 'classnames';
+import $ from './redirection.module.scss'
 
 
 export default function Redirection() {
@@ -16,5 +19,5 @@ export default function Redirection() {
         };
     }, [code]);
 
-    return <div>로그인 처리중</div>;
+    return <div className={classNames($.Wrapper)}><Spinner/></div>;
 }

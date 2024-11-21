@@ -10,7 +10,7 @@ export const useKakaoLoginQuery = () => {
     return useMutation({
     mutationFn: kakaoLogin,
     onSuccess: (data) => {
-        setAuthToken(data.data.accessToken);
+        setAuthToken(data.data.accessToken, data.data.refreshToken);
         navigate('/');
     },
     onError: () => navigate('/login')

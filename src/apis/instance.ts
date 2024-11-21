@@ -60,16 +60,18 @@ export const handleLogout = () => {
     window.location.href = '/login'; // 로그인 페이지로 이동
 };
 
-/**
- * 액세스 토큰을 설정하거나 제거하는 함수
- * @param accessToken - 설정할 액세스 토큰 (null일 경우 토큰 제거)
- */
-export const setAuthToken = (accessToken: string | null) => {
+// 액세스 토큰, 리프레시 토큰을 설정하거나 제거하는 함수
+export const setAuthToken = (accessToken: string | null, refreshToken?: string | null) => {
     if (accessToken) {
         Storage.setItem('accessToken', accessToken);
         instance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+        
+        if (refreshToken) {
+            Storage.setItem('refreshToken', refreshToken);
+        }
     } else {
         Storage.removeItem('accessToken');
+        Storage.removeItem('refreshToken');
         delete instance.defaults.headers.common.Authorization;
     }
 };

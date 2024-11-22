@@ -30,8 +30,8 @@ export default function Main() {
             <Button variant="primary" onClick={handleTest}>테스트 시작하기</Button>
             <Button variant="tertiary" onClick={handleCheckScore}>내 점수 확인하기</Button>
           </div>
-          <div className={classNames($.LogoutButton)}>
-            <Button2 underline={true} onClick={handleLogout}>로그아웃</Button2>
+          <div className={classNames($.LogoutButton)} onClick={handleLogout}>
+            <Button2 underline={true}>로그아웃</Button2>
           </div>
         </div>
       </div>

@@ -13,16 +13,7 @@
     justify-content: space-between;
     padding: 80px 0 24px;
 }
-
-.BackgroundSvg {
-    position: absolute;
-    left: 50%;
-    bottom: 8dvh; 
-    transform: translateX(-42%);
-    width: auto;
-    z-index: 0; 
-}
-
+  
 .TextContainer {
     @include center;
     flex-direction: column;

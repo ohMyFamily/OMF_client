@@ -34,8 +34,13 @@ instance.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
         try {
-            const newToken = await refreshToken();
-            setAuthToken(newToken.accesstoken);
+            const refreshToken = Storage.getItem('refreshToken');
+            const response = await axios.post(`${baseURL}/api/v1/member/reissue`, {
+                refreshToken,
+            });
+            
+            setAuthToken(response.data.accessToken, response.data.refreshToken);
+            
             return instance(originalRequest);
         } catch (err) {
             handleLogout();
@@ -45,15 +50,6 @@ instance.interceptors.response.use(
     }
 );
 
-// 리프레시 토큰 로직
-const refreshToken = async () => {
-    const refreshToken = Storage.getItem('refreshToken');
-    const response = await axios.post(`${baseURL}/auth/refresh`, {
-        refreshToken,
-    });
-    return response.data;
-};
-
 // 로그아웃 처리
 const handleLogout = () => {
     Storage.clearItems();
@@ -61,7 +57,7 @@ const handleLogout = () => {
 };
 
 // 액세스 토큰, 리프레시 토큰을 설정하거나 제거하는 함수
-export const setAuthToken = (accessToken: string | null, refreshToken?: string | null) => {
+export const setAuthToken = (accessToken: string | null, refreshToken: string | null) => {
     if (accessToken) {
         Storage.setItem('accessToken', accessToken);
         instance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;

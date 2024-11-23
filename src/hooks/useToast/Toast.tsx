@@ -9,7 +9,7 @@ type ToastProps = ToastType & {
   deleteToast: (id: string) => void;
 };
 
-function Toast({ content, id, deleteToast }: ToastProps) {
+function Toast({ content, id, deleteToast, style}: ToastProps) {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function Toast({ content, id, deleteToast }: ToastProps) {
       setTimeout(() => {
         deleteToast(id);
       }, 300);
-    }, 1000);
+    }, 4000);
 
     return () => clearTimeout(deleteTimer);
   }, []);
@@ -29,6 +29,7 @@ function Toast({ content, id, deleteToast }: ToastProps) {
         [$.visible]: isVisible,
         [$.hidden]: !isVisible,
       })}
+      style={style}
     >
       <Body2>{content}</Body2>
     </span>

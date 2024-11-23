@@ -27,6 +27,7 @@
     }
     &.tertiary {
         background-color: $Gray50;
+        color: $Gray500;
         &:hover {
             background-color: $Gray75;
         }

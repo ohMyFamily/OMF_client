@@ -1,0 +1,46 @@
+@use '@/colors' as *;
+
+.Wrapper {
+    overflow: hidden;
+    position: relative;
+    height: 100dvh;
+}
+
+.Container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+    padding-bottom: 24px; 
+}
+
+.BackgroundSvg {
+    position: absolute;
+    left: 50%;
+    top: 5dvh; 
+    transform: translateX(-42%);
+    width: auto;
+    z-index: 0; 
+}
+
+.TextWrapper {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    z-index: 1; 
+    color: $Gray400;
+}
+
+.LogoutButton {
+    color: $Gray200;
+    text-underline-offset: 2px;
+}
+
+.ButtonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+

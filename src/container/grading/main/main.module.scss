@@ -1,0 +1,38 @@
+@use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
+
+.Wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.Container {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 80px 20px 24px 20px;
+}
+
+.TextContainer {
+    @include center;
+    flex-direction: column;
+    text-align: center; 
+    z-index: 1;
+    gap: 8px;
+
+        h2 {
+            color: $Gray400
+        }
+
+        p {
+            color: $Gray300
+        }
+}
+
+.ButtonContainer {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

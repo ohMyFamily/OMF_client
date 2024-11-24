@@ -1,24 +1,19 @@
 import { useNavigate } from 'react-router-dom';
-import $ from '../App.module.scss'; 
-import classNames from 'classnames'; 
-import ResultCard from '@/components/common/Card/ResultCard';
-import GradingCard from '@/components/common/Card/GradingCard';
-import AnswerListItem from '@/components/common/Card/AnswerListItem';
-import { useState } from 'react';
-import Call from '@/assets/svg/Tossface/Call.svg';
-import AnimateCardSample from '@/components/domain/CheckScore/AnimateCardSample'; 
+import $ from '../App.module.scss';
+import classNames from 'classnames';
 
 const IndexPage = () => {
   const navigate = useNavigate();
 
   const navigation = [
-    { route: '/login', name: '로그인', state: true },
-    { route: '/main', name: '자식-메인', state: true },
+    { route: '/login', name: '로그인', state: false },
+    { route: '/main', name: '자식-메인', state: false },
     { route: '/guide', name: '가이드', state: true },
     { route: '/splash', name: '스플래시스크린', state: false },
     { route: '/test', name: '문제풀기', state: true },
     { route: '/type', name: '부모님 선택', state: true },
     { route: '/check-score', name: '점수 확인', state: true },
+    { route: '/grading?userId=1&nickname=낙현', name: '채점하기', state: false },
   ];
 
   return (

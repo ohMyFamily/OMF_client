@@ -7,9 +7,10 @@ import BackgroundSVG from '@/components/common/Item/BackgroundSVG';
 
 type MainLayoutProps = {
   handleStep: (step: string) => void;
+  nickname: string | null;
 };
 
-export default function MainLayout({ handleStep }: MainLayoutProps) {
+export default function MainLayout({ handleStep, nickname }: MainLayoutProps) {
   const onClickNextStep = () => {
     handleStep('가이드');
   };
@@ -22,12 +23,12 @@ export default function MainLayout({ handleStep }: MainLayoutProps) {
             <Caption1>가정의 달 이벤트</Caption1>
           </BlueTitleText>
           <Title1>
-            닉네임이 직접 푼
+            {nickname}이가 직접 푼
             <br />
             애칭 10문 10답
           </Title1>
           <Body2>
-            {'닉네임'}이 나에 대한 간단한 퀴즈 10개를 풀었어요.
+            {nickname}이가 나에 대한 간단한 퀴즈 10개를 풀었어요.
             <br />
             정답은 오로지 나만 알고 있답니다!
             <br />

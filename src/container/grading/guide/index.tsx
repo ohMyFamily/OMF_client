@@ -8,9 +8,10 @@ import { useState } from 'react';
 
 type GuideLayoutProps = {
   handleStep: (step: string) => void;
+  nickname: string | null;
 };
 
-export default function GuideLayout({ handleStep }: GuideLayoutProps) {
+export default function GuideLayout({ handleStep, nickname }: GuideLayoutProps) {
   const [sample, setSample] = useState<(boolean | null)[]>([null]);
   const onClickLeftButton = () => {
     handleStep('메인');
@@ -24,8 +25,8 @@ export default function GuideLayout({ handleStep }: GuideLayoutProps) {
     <div className={$.layout}>
       <AppBar leftRole="back" onClickLeftButton={onClickLeftButton} className={$.appBar} />
       <GradingCard
-        title="아래는 닉네임이
-         나에 대해 답한 내용입니다."
+        title={`아래는 ${nickname}이가
+         나에 대해 답한 내용입니다.`}
         cardImage={Call}
         cardNumber="연습문제"
         answer="맞으면 정답이에요! 오답이면 틀렸어요.
@@ -44,7 +45,7 @@ export default function GuideLayout({ handleStep }: GuideLayoutProps) {
         </Body2>
       </div>
       <div className={$.nextButton}>
-        <Button variant="secondary" onClick={onClickStartCheck}>
+        <Button variant="secondary" onClick={onClickStartCheck} disabled={sample[0] === null}>
           채점 시작하기
         </Button>
       </div>

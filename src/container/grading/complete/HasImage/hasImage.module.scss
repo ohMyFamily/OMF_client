@@ -1,0 +1,36 @@
+@use '@/_colors.scss' as *;
+@use '@/styles/mixin.scss' as *;
+.Wrapper {
+    @include center();
+    height: 100%;
+}
+
+.layout { 
+    text-align: center;
+    padding: 0 20px;
+    flex-grow: 1;
+    p{
+        color: $Gray300;
+    }  
+}
+
+.text {
+    padding: 8px 0 32px 0;
+}
+
+.image {
+    position: relative;
+    height: 0;
+    padding-bottom: 100%;
+    text-align: center;
+    margin-bottom: 72px;
+    img { 
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        object-fit: cover;
+        left: 0;
+        border-radius: 12px;
+    }
+}
+ 

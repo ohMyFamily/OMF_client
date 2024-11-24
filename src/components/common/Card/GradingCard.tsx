@@ -30,6 +30,14 @@ function GradingCard({
   const [correctState, setCorrectState] = useState<boolean | null>(state[index]);
 
   useEffect(() => {
+    if (correctState === null) return;
+    window.scrollBy({
+      top: 328,
+      behavior: 'smooth', // 부드러운 스크롤 효과
+    });
+  }, [correctState]);
+
+  useEffect(() => {
     if (correctState !== state[index]) {
       setState((prev) => [...prev.slice(0, index), correctState, ...prev.slice(index + 1)]);
     }

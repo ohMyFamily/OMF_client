@@ -26,7 +26,7 @@ export default function Button({
         [$.kakaoLogin]: variant === 'kakaoLogin',
         [$.disabled]: disabled,
       })}
-      onClick={onClick}
+      onClick={!disabled ? onClick : () => ''}
     >
       {icon && <img className={$.iconWrapper} src={icon} />}
       <Button1>{children}</Button1>

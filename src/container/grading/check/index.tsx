@@ -14,11 +14,12 @@ import {
   Wish,
 } from '@/components/common/TossFace';
 import Button from '@/components/common/Button';
-import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from 'react';
 import { useFunnelContext } from '@/hooks/useFunnel/context';
 
 type CheckLayoutProps = {
   handleStep: (step: string) => void;
+  setHasImage: Dispatch<SetStateAction<boolean>>;
 };
 
 export type AnswerCardType = {
@@ -41,7 +42,7 @@ const emoje = {
   think: Think,
 };
 
-export default function CheckLayout({ handleStep }: CheckLayoutProps) {
+export default function CheckLayout({ handleStep, setHasImage }: CheckLayoutProps) {
   const [mockData, setMockData] = useState([
     {
       id: 1,
@@ -103,6 +104,9 @@ export default function CheckLayout({ handleStep }: CheckLayoutProps) {
 
   const { data } = useFunnelContext();
   const [answerState, setAnswerState] = data['answer'];
+
+  //데이터 패칭
+  // setHasImage()
 
   const onClickLeftButton = () => {
     handleStep('가이드');

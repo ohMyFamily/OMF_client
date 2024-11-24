@@ -1,7 +1,7 @@
 import { Body1 } from '@/components/common/Typography';
 import $ from './noImage.module.scss';
 import ButtonLayout from '@/components/domain/grading/buttonLayout';
-import { ClapComplete } from '@/components/common/TossFace';
+import ClapComplete from '@/components/domain/grading/clapComplete';
 
 type CompleteLayoutProps = {
   handleStep: (step: string) => void;

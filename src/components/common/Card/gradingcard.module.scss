@@ -3,8 +3,7 @@
 
 .gradingcard {
     display: flex;
-    flex-direction: column;  
-    width: calc(100% - 40px);
+    flex-direction: column;   
     padding: 24px 16px;
     border-radius: 12px;
     box-shadow: inset 0 0 4px 0 #AEECFF;
@@ -15,7 +14,6 @@
 .itemWrapper {
     gap: 32px;
 }
-
 
 .questionWrapper {
     display: flex;
@@ -30,11 +28,12 @@
 
 
 .answerWrapper {
-    @include size(100%, 56px); 
+    width: 100%; 
     display: flex;
     background-color: $Gray50; 
     border-radius: 8px;
     padding: 14px 16px;
+    white-space: pre-line;
 }
 
 .ScoreButton { 

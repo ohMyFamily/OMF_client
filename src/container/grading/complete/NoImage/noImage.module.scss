@@ -1,0 +1,21 @@
+@use '@/_colors.scss' as *;
+@use '@/styles/mixin.scss' as *;
+.Wrapper {
+    @include center();
+    height: 100%;
+}
+
+.layout { 
+    text-align: center;
+    padding: 0 20px;
+    flex-grow: 1;
+    p{
+        color: $Gray300;
+    }; 
+}
+
+
+
+.text {
+    padding: 8px 0 48px 0;
+}

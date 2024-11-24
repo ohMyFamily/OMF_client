@@ -1,9 +1,8 @@
 @use '@/colors' as *;
 @use '@/styles/mixin.scss' as *;
 
-.size {
-    width: calc(100% - 40px);
-    margin: 0 20px;
+.size { 
+    width: 100%;
     height: 56px;
     border-radius: 28px;
     border: none;

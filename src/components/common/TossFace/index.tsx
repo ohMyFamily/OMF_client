@@ -14,7 +14,7 @@ import Memory from '@/assets/svg/Tossface/Memory.svg';
 import Music from '@/assets/svg/Tossface/Music.svg';
 import Wish from '@/assets/svg/Tossface/Wish.svg';
 import Think from '@/assets/svg/Tossface/Think.svg';
-import ClapComplete from '@/components/domain/grading/clapComplete.svg';
+import AnimateClap from '@/assets/svg/Tossface/AnimateClap.svg';
 
 export {
   P20,
@@ -33,5 +33,5 @@ export {
   Music,
   Wish,
   Think,
-  ClapComplete,
+  AnimateClap,
 };

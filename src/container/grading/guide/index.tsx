@@ -30,7 +30,7 @@ export default function GuideLayout({ handleStep, nickname }: GuideLayoutProps) 
         cardImage={Call}
         cardNumber="연습문제"
         answer="맞으면 정답이에요! 오답이면 틀렸어요.
-        를 놀러주세요!"
+        를 눌러주세요!"
         state={sample}
         setState={setSample}
         index={0}

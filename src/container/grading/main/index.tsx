@@ -32,7 +32,7 @@ export default function MainLayout({ handleStep, nickname }: MainLayoutProps) {
             <br />
             정답은 오로지 나만 알고 있답니다!
             <br />
-            아래 버튼을 누르고 몇개나 맞췄는지 알아보자고요.
+            아래 버튼을 누르고 몇 개나 맞혔는지 알아보자고요.
           </Body2>
         </div>
         <div className={classNames($.ButtonContainer)}>

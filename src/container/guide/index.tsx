@@ -56,7 +56,7 @@ export default function GuideLayout() {
   };
   return (
     <>
-      <AppBar leftRole="back" onClickLeftButton={onClickLeftButton} />
+      <AppBar leftRole="back" onClickLeftButton={onClickLeftButton} className={$.appbar} />
       <div className={$.Wrapper}>
         <div className={$.title}>
           <Title2>

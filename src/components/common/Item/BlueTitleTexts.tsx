@@ -1,6 +1,6 @@
 import React from 'react'; 
 import classNames from 'classnames';
-import $ from './BlueTitleText.module.scss';
+import $ from './blueTitleText.module.scss';
 
 interface BlueTitleTextProps {
     children: React.ReactNode;

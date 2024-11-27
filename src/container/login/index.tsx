@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import $ from './login.module.scss';
 import { kakaoLoginLink } from '@/constants/develop.constants';
 import BackgroundSVG from '@/components/common/Item/BackgroundSVG';
-import BlueTitleText from '@/components/common/Item/BlueTitleTexts';
+import BlueTitleText from '@/components/common/Item/BlueTitleText';
 
 export default function LoginLayout() {
   const handleKakaoLogin = () => {

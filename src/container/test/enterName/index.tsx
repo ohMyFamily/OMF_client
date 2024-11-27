@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import $ from './enterName.module.scss';
 import AppBar from '@/components/common/AppBar';
@@ -8,24 +7,26 @@ import { Title2 } from '@/components/common/Typography';
 import Inputfield from '@/components/common/Input/Inputfield';
 import Button from '@/components/common/Button';
 
-function EnterName() {
-  const { person } = useParams();
-  const navigate = useNavigate();
-  const [text, setText] = useState('');
+interface EnterNameLayoutProps {
+  person: string;
+  handleStep: (step: string) => void;
+  setNickname: (name: string) => void;
+}
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
+function EnterNameLayout({ person, handleStep }: EnterNameLayoutProps) {
+  const [text, setText] = useState('');
 
   const disabled = useMemo(() => {
     return text.trim().length === 0;
   }, [text]);
 
-  const handleNext = () => {};
+  const handleNext = () => {
+    handleStep('질문');
+  };
 
   return (
     <div className={classNames($.Wrapper)}>
-      <AppBar leftRole="back" onClickLeftButton={handleGoBack} />
+      <AppBar leftRole="back" onClickLeftButton={() => handleStep('선택')} />
       <div className={classNames($.Container)}>
         <div className={classNames($.ContentWrapper)}>
           <img src={Heart} alt="하트" />
@@ -86,4 +87,4 @@ function EnterName() {
   );
 }
 
-export default EnterName;
+export default EnterNameLayout;

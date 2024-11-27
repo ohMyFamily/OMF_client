@@ -1,5 +1,5 @@
-import Question from '@/container/test/question';
 import { useState } from 'react';
+import { useFunnel } from '@/hooks/useFunnel';
 import {
   Actor,
   Angel,
@@ -12,15 +12,17 @@ import {
   Think,
   Wish,
 } from '@/components/common/TossFace';
+import EnterNameLayout from '@/container/test/enterName';
+import QuestionLayout from '@/container/test/question';
+import SelectTypeLayout from '@/container/test/selectType';
 
-export interface QuestionType {
+export interface QuestionLayoutType {
   id: number;
   type: 'input' | 'select';
   content: string[] | string;
   title: string;
   icon: string;
 }
-
 const emoje = {
   call: Call,
   actor: Actor,
@@ -35,8 +37,11 @@ const emoje = {
 };
 
 function Test() {
+  const steps = ['선택', '애칭', '질문'];
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [mockData, setMockData] = useState<QuestionType[]>([
+  const [selectedType, setSelectedType] = useState<string>('');
+  const [nickname, setNickname] = useState<string>('');
+  const [mockData, setMockData] = useState<QuestionLayoutType[]>([
     {
       id: 1,
       type: 'select',
@@ -109,6 +114,17 @@ function Test() {
     },
   ]);
 
+  const funnelData = {
+    selectedType: [selectedType, setSelectedType] as [string, typeof setSelectedType],
+    nickname: [nickname, setNickname] as [string, typeof setNickname],
+    questionIndex: [currentQuestionIndex, setCurrentQuestionIndex] as [
+      number,
+      typeof setCurrentQuestionIndex
+    ],
+  };
+
+  const { FunnelComponent: Funnel, handleStep } = useFunnel(steps, funnelData);
+
   const handleNext = () => {
     if (currentQuestionIndex < mockData.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
@@ -118,22 +134,32 @@ function Test() {
   const handleBack = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex((prev) => prev - 1);
+    } else {
+      handleStep('애칭');
     }
   };
 
-  const currentQuestion = mockData[currentQuestionIndex];
-
   return (
-    <Question
-      key={currentQuestion.id}
-      id={currentQuestion.id}
-      type={currentQuestion.type}
-      title={currentQuestion.title}
-      content={currentQuestion.content}
-      icon={emoje[currentQuestion.icon as keyof typeof emoje]}
-      onNext={handleNext}
-      onBack={handleBack}
-    />
+    <Funnel>
+      <Funnel.Steps name="선택">
+        <SelectTypeLayout handleStep={handleStep} setSelectedType={setSelectedType} />
+      </Funnel.Steps>
+      <Funnel.Steps name="애칭">
+        <EnterNameLayout person={selectedType} handleStep={handleStep} setNickname={setNickname} />
+      </Funnel.Steps>
+      <Funnel.Steps name="질문">
+        <QuestionLayout
+          key={mockData[currentQuestionIndex].id}
+          id={mockData[currentQuestionIndex].id}
+          type={mockData[currentQuestionIndex].type}
+          title={mockData[currentQuestionIndex].title}
+          content={mockData[currentQuestionIndex].content}
+          icon={emoje[mockData[currentQuestionIndex].icon as keyof typeof emoje]}
+          onNext={handleNext}
+          onBack={handleBack}
+        />
+      </Funnel.Steps>
+    </Funnel>
   );
 }
 

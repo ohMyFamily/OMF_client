@@ -5,9 +5,9 @@ import AppBar from '@/components/common/AppBar';
 import { Title2 } from '@/components/common/Typography';
 import Inputfield from '@/components/common/Input/Inputfield';
 import Button from '@/components/common/Button';
-import { QuestionType } from '@/pages/test';
+import { QuestionLayoutType } from '@/pages/test';
 
-function Question({
+function QuestionLayout({
   id,
   type,
   content,
@@ -15,7 +15,7 @@ function Question({
   icon,
   onNext,
   onBack,
-}: QuestionType & {
+}: QuestionLayoutType & {
   onNext: () => void;
   onBack: () => void;
 }) {
@@ -59,4 +59,4 @@ function Question({
   );
 }
 
-export default Question;
+export default QuestionLayout;

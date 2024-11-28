@@ -1,0 +1,26 @@
+@use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
+
+.Wrapper {
+  padding: 0 20px;
+}
+
+.TextContainer {
+  @include center;
+  flex-direction: column;
+  margin-top: 32px;
+  margin-bottom: 48px;
+  gap: 8px;
+
+  h2 {
+    color: $Gray500;
+  }
+  p {
+    color: $Gray300;
+  }
+}
+.ListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

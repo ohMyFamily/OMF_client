@@ -1,0 +1,25 @@
+@use '@/colors' as *;
+
+.appBar {
+    margin-bottom: 24px;
+}
+
+.layout {
+    padding: 0 20px;
+    height: 100%;
+    position: relative; 
+}
+
+.textWrapper {
+    margin-top: 36px;
+    color: $Gray300;
+    text-align: center;
+}
+
+.nextButton {
+    position: fixed;
+    width: calc(100% - 40px);
+    max-width: 390px;
+    bottom: 89px;
+    
+}

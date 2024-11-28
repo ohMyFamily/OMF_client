@@ -1,0 +1,6 @@
+@use '@/styles/mixin.scss' as *;
+
+.Wrapper {
+    @include center;
+    height: 100dvh;
+}

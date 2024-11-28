@@ -1,0 +1,9 @@
+.sample {
+    display: flex; 
+    gap: 24px;  
+    white-space: nowrap;
+    overflow:scroll;
+    &::-webkit-scrollbar { 
+        display: none;
+    }
+}

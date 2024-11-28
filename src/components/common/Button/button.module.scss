@@ -1,0 +1,49 @@
+@use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
+
+.size { 
+    width: 100%;
+    height: 56px;
+    border-radius: 28px;
+    border: none;
+    cursor: pointer; 
+    position: relative;
+    @include center;
+
+    &.primary {
+        background-color: $main50;
+        color: $main300;
+        &:hover {
+            background-color: $main100;
+        }
+    }   
+    &.secondary {
+        background-color: $Gray500;
+        color: $Gray000;
+        &:hover {
+            background-color: $Gray400;
+        }
+    }
+    &.tertiary {
+        background-color: $Gray50;
+        color: $Gray500;
+        &:hover {
+            background-color: $Gray75;
+        }
+    }
+    &.kakaoLogin {
+        background-color: $Bi-kakao;
+        color: black;
+    }
+    &.disabled {
+        background-color: $Gray50;
+        color: $Gray100;  
+    }
+}
+
+.iconWrapper {
+    position: absolute;
+    left: 16px;
+    display: flex;
+    align-items: center;
+}

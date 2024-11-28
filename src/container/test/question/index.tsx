@@ -19,15 +19,15 @@ function QuestionLayout({
   onNext: () => void;
   onBack: () => void;
 }) {
-  const [text, setText] = useState('');
+  const [answer, setAnswer] = useState('');
 
   const disabled = useMemo(() => {
-    return text.trim().length === 0;
-  }, [text]);
+    return answer.trim().length === 0;
+  }, [answer]);
 
   const handleNext = () => {
     onNext();
-    setText('');
+    setAnswer('');
   };
 
   return (
@@ -37,7 +37,7 @@ function QuestionLayout({
         <div className={classNames($.ContentWrapper)}>
           <img src={icon} alt="아이콘" />
           <Title2>{title}</Title2>
-          {type === 'input' && <Inputfield text={text} setText={setText} label={content} />}
+          {type === 'input' && <Inputfield text={answer} setText={setAnswer} label={content} />}
           {type === 'select' && (
             <div className={$.buttonLayout}>
               {typeof content !== 'string' &&

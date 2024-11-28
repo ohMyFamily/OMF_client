@@ -10,8 +10,8 @@ interface SelectTypeLayoutProps {
 }
 
 function SelectTypeLayout({ handleStep, setSelectedType }: SelectTypeLayoutProps) {
-  const handleNavigate = (value: string) => {
-    setSelectedType(value);
+  const handleNavigate = (familyType: string) => {
+    setSelectedType(familyType);
     handleStep('애칭');
   };
 

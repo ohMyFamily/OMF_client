@@ -14,11 +14,11 @@ interface EnterNameLayoutProps {
 }
 
 function EnterNameLayout({ person, handleStep }: EnterNameLayoutProps) {
-  const [text, setText] = useState('');
+  const [name, setName] = useState('');
 
   const disabled = useMemo(() => {
-    return text.trim().length === 0;
-  }, [text]);
+    return name.trim().length === 0;
+  }, [name]);
 
   const handleNext = () => {
     handleStep('질문');
@@ -52,8 +52,8 @@ function EnterNameLayout({ person, handleStep }: EnterNameLayoutProps) {
             )}
           </Title2>
           <Inputfield
-            text={text}
-            setText={setText}
+            text={name}
+            setText={setName}
             label={
               <>
                 {person === 'mom' ? (

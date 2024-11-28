@@ -1,9 +1,11 @@
 .sample {
-    display: flex; 
-    gap: 24px;  
-    white-space: nowrap;
-    overflow:scroll;
-    &::-webkit-scrollbar { 
-        display: none;
-    }
+  //그림자 경계가 부자연스러워 padding 추가함
+  padding: 24px 0;
+  display: flex;
+  gap: 24px;
+  white-space: nowrap;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

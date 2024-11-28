@@ -57,24 +57,13 @@ function EnterNameLayout({ person, handleStep }: EnterNameLayoutProps) {
             label={
               <>
                 {person === 'mom' ? (
-                  <>
-                    어머니, 어마마마 등{' '}
-                    <span className={classNames($.highlight)}>6자 이내(공백 포함)</span>로
-                    적어주세요.
-                  </>
+                  <>어머니, 어마마마 등 </>
                 ) : person === 'dad' ? (
-                  <>
-                    아버지, 아바마마 등{' '}
-                    <span className={classNames($.highlight)}>6자 이내(공백 포함)</span>로
-                    적어주세요.
-                  </>
+                  <>아버지, 아바마마 등 </>
                 ) : (
-                  <>
-                    이름, 호칭 등{' '}
-                    <span className={classNames($.highlight)}>6자 이내(공백 포함)</span>로
-                    적어주세요.
-                  </>
+                  <>이름, 호칭 등 </>
                 )}
+                <span className={classNames($.highlight)}>6자 이내(공백 포함)</span>로 적어주세요.
               </>
             }
           />

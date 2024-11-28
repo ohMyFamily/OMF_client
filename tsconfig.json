@@ -5,6 +5,7 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
+    "target": "es2023" ,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
@@ -17,7 +18,8 @@
       "@services/*": ["src/services/*"],
       "@types/*": ["src/types/*"]
     },
-     "jsx": "react-jsx"
-  },
-  "include": ["src"], 
+    "noUnusedParameters": false,
+    "noUnusedLocals": false, 
+    "jsx": "react-jsx",  
+  }, 
 }

@@ -5,7 +5,7 @@ import { Body2 } from '@/components/common/Typography';
 import { Dispatch, SetStateAction } from 'react';
 
 interface InputFieldProps {
-    label?: string;
+    label?: string | React.ReactNode;
     text: string;
     setText: Dispatch<SetStateAction<string>>;
 }

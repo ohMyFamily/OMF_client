@@ -1,0 +1,31 @@
+@use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
+
+.Wrapper {
+    height: 100%;
+    padding: 0 20px;
+}
+
+.Title {
+    color: $Gray500;
+}
+
+.Body {
+    color: $Gray300;
+}
+
+.TextWrapper {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 32px;
+    margin-bottom: 210px;
+}
+
+.ButtonWrapper {
+    @include center;
+    flex-direction: column;
+    gap: 14px;
+}
+

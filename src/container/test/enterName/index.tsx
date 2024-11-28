@@ -54,6 +54,7 @@ function EnterNameLayout({ person, handleStep }: EnterNameLayoutProps) {
           <Inputfield
             text={name}
             setText={setName}
+            maxLength={6}
             label={
               <>
                 {person === 'mom' ? (

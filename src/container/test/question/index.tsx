@@ -50,7 +50,7 @@ function QuestionLayout({
           )}
         </div>
         {type === 'input' && (
-          <Button variant="tertiary" onClick={handleNext} disabled={disabled}>
+          <Button variant="secondary" onClick={handleNext} disabled={disabled}>
             다음 문제 ({id}/10)
           </Button>
         )}

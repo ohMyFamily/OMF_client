@@ -48,7 +48,7 @@ export default function GuideLayout() {
   const navigate = useNavigate();
 
   const onClickLeftButton = () => {
-    navigate('/login');
+    navigate(-1);
   };
 
   const onClickKakaoLoginButton = () => {

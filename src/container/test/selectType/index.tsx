@@ -3,6 +3,7 @@ import Button from '@/components/common/Button';
 import { Title2, Body1 } from '@/components/common/Typography';
 import classNames from 'classnames';
 import $ from './selectType.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 interface SelectTypeLayoutProps {
   handleStep: (step: string) => void;
@@ -10,14 +11,20 @@ interface SelectTypeLayoutProps {
 }
 
 function SelectTypeLayout({ handleStep, setSelectedType }: SelectTypeLayoutProps) {
+  const naviagte = useNavigate();
+
   const handleNavigate = (familyType: string) => {
     setSelectedType(familyType);
     handleStep('애칭');
   };
 
+  const onClickLeftButton = () => {
+    naviagte(-1);
+  };
+
   return (
     <div className={classNames($.Wrapper)}>
-      <AppBar leftRole="back" />
+      <AppBar leftRole="back" onClickLeftButton={onClickLeftButton} />
       <div className={classNames($.TextWrapper)}>
         <div className={classNames($.Title)}>
           <Title2>누구에 대해 알아볼까요?</Title2>

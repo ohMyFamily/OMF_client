@@ -9,6 +9,7 @@ import AnimateCardSample from '@/components/domain/CheckScore/AnimateCardSample'
 import Button from '@/components/common/Button';
 import KakaoLogo from '@/assets/svg/KakaoLogo.svg';
 import { ResultCardProps } from '@/components/common/Card/ResultCard';
+import KakaoShareButton from '@/components/common/KakaoShareButton';
 
 interface CheckScoreDetailProps extends ResultCardProps {
   nickname: string;
@@ -28,8 +29,6 @@ export default function CheckScoreDetailLayout({
   const onBack = () => {
     navigate(-1);
   };
-
-  const handleShare = () => {};
 
   const handleNewTest = () => {
     navigate('/test');
@@ -61,9 +60,7 @@ export default function CheckScoreDetailLayout({
         </div>
 
         <div className={classNames($.ButtonContainer)}>
-          <Button variant="kakaoLogin" onClick={handleShare} icon={KakaoLogo}>
-            테스트 공유하기
-          </Button>
+          <KakaoShareButton />
           <Button variant="secondary" onClick={handleNewTest}>
             새로운 테스트 시작하기
           </Button>

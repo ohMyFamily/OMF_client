@@ -5,12 +5,14 @@ import { Body2, Title2 } from '@/components/common/Typography';
 import AnswerListItem from '@/components/common/Card/AnswerListItem';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { scoreImages } from '@/constants/business.constants';
 
 interface CheckScoreLayoutType {
   id: number;
   names: string;
   score: number;
-  image: string;
+  image?: string;
+  icon?: string;
   isOpen: boolean;
 }
 
@@ -22,6 +24,7 @@ export default function CheckScoreLayout() {
       names: '다은',
       score: 80,
       image: '',
+      icon: scoreImages.P80,
       isOpen: true,
     },
     {
@@ -29,6 +32,7 @@ export default function CheckScoreLayout() {
       names: '이슬이',
       score: 100,
       image: '',
+      icon: scoreImages.P100,
       isOpen: false,
     },
     {
@@ -36,13 +40,16 @@ export default function CheckScoreLayout() {
       names: '낙현',
       score: 90,
       image: '',
+      icon: scoreImages.P90,
       isOpen: false,
     },
     {
       id: 5,
       names: '먼지',
       score: 60,
-      image: '',
+      image:
+        'https://octapi.lxzin.com/interior/vImgFileSeq/202210/11/8ede80a1-1d0c-4839-bcc3-97bd4f357ecd.jpg',
+      icon: '',
       isOpen: false,
     },
   ]);
@@ -78,6 +85,7 @@ export default function CheckScoreLayout() {
             nickname={item.names}
             score={item.score}
             cardImage={item.image}
+            icon={item.icon}
             isOpen={item.isOpen}
             handleClick={handleItemClick}
           />

@@ -6,7 +6,8 @@ interface AnswerListItemProps {
   id: number;
   nickname: string;
   score: number;
-  cardImage: string;
+  cardImage?: string;
+  icon?: string;
   isOpen: boolean;
   handleClick: (id: number, isOpen: boolean) => void;
 }
@@ -16,6 +17,7 @@ function AnswerListItem({
   nickname,
   score,
   cardImage,
+  icon,
   isOpen,
   handleClick,
 }: AnswerListItemProps) {
@@ -26,7 +28,11 @@ function AnswerListItem({
       })}
       onClick={() => handleClick(id, isOpen)}
     >
-      <img src={cardImage} alt={`${nickname}의 프로필`} />
+      {cardImage ? (
+        <img src={cardImage} alt={`${nickname}의 사진`} />
+      ) : (
+        <img src={icon} alt={`${nickname}의 점수`} />
+      )}
       <div className={classNames($.description)}>
         <span>
           <Button1>{isOpen ? `${score}점!` : nickname}</Button1>

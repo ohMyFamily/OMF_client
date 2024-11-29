@@ -8,13 +8,17 @@ import $ from './login.module.scss';
 import { kakaoLoginLink } from '@/constants/develop.constants';
 import BackgroundSVG from '@/components/common/Item/BackgroundSVG';
 import BlueTitleText from '@/components/common/Item/BlueTitleText';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginLayout() {
+  const navigate = useNavigate();
   const handleKakaoLogin = () => {
     window.location.href = kakaoLoginLink;
   };
 
-  const handleTutorial = () => {};
+  const handleTutorial = () => {
+    navigate('/guide');
+  };
 
   return (
     <>

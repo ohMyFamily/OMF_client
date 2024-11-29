@@ -1,18 +1,12 @@
-import { UseMutationResult } from "@tanstack/react-query";
-
-interface LoginApiResponseFormat<T> {
-    isSuccess: boolean;
-    code: string;
-    message: string;
-    data: T;
-}
+import { UseMutationResult } from '@tanstack/react-query';
+import { ApiResponseFormat } from './api.types';
 
 interface KakaoLoginData {
-    accessToken: string;
-    refreshToken: string;
-    grantType: string;
-    expiresIn: number;
+  accessToken: string;
+  refreshToken: string;
+  grantType: string;
+  expiresIn: number;
 }
 
-export type KakaoLoginResponse = LoginApiResponseFormat<KakaoLoginData>;
+export type KakaoLoginResponse = ApiResponseFormat<KakaoLoginData>;
 export type useKakaoLoginQuery = UseMutationResult<KakaoLoginResponse, Error, string>;

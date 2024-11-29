@@ -1,3 +1,5 @@
+import GuideLayout from '@/container/guide';
+
 export default function Guide() {
-  return <div>임시</div>;
+  return <GuideLayout />;
 }

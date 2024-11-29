@@ -1,0 +1,39 @@
+@use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
+
+.Wrapper {
+  padding: 0 20px;
+  height: 100%;
+}
+
+.Container {
+  height: calc(100% - 48px);
+  padding-top: 24px;
+  padding-bottom: 83px;
+}
+
+.ItemContainer {
+  @include center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 56px;
+  p {
+    color: $Gray300;
+    margin-top: 24px;
+  }
+}
+
+.Title {
+  color: $Gray500;
+  margin-bottom: 40px;
+}
+
+.AnimateCard {
+  margin-bottom: 24px;
+}
+
+.ButtonContainer {
+  @include center;
+  flex-direction: column;
+  gap: 12px;
+}

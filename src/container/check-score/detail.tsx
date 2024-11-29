@@ -40,10 +40,12 @@ export default function CheckScoreDetailLayout({
       <AppBar leftRole="back" onClickLeftButton={onBack} />
       <div className={classNames($.Container)}>
         <div className={classNames($.ItemContainer)}>
-          <Title2>
-            {nickname}가
-            <br /> 채점한 내 점수는?
-          </Title2>
+          <div className={classNames($.Title)}>
+            <Title2>
+              {nickname}가
+              <br /> 채점한 내 점수는?
+            </Title2>
+          </div>
           <ResultCard
             score={score}
             image={image}

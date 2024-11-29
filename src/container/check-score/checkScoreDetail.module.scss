@@ -17,14 +17,15 @@
   flex-direction: column;
   text-align: center;
   margin-bottom: 56px;
-  h2 {
-    color: $Gray500;
-    margin-bottom: 40px;
-  }
   p {
     color: $Gray300;
     margin-top: 24px;
   }
+}
+
+.Title {
+  color: $Gray500;
+  margin-bottom: 40px;
 }
 
 .AnimateCard {

@@ -1,7 +1,9 @@
 .sample {
-  //그림자 경계가 부자연스러워 padding 추가함
-  padding: 24px 0;
+  position: relative;
+  left: -20px;
+  width: calc(100% + 40px);
   display: flex;
+  padding: 24px 0;
   gap: 24px;
   white-space: nowrap;
   overflow: scroll;

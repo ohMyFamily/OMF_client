@@ -6,6 +6,7 @@ import Heart from '@/assets/svg/Tossface/Heart.svg';
 import { Title2 } from '@/components/common/Typography';
 import Inputfield from '@/components/common/Input/Inputfield';
 import Button from '@/components/common/Button';
+import { useNicknameMutation } from '@/apis/queries/question';
 
 interface EnterNameLayoutProps {
   person: string;
@@ -13,15 +14,26 @@ interface EnterNameLayoutProps {
   setNickname: (name: string) => void;
 }
 
-function EnterNameLayout({ person, handleStep }: EnterNameLayoutProps) {
+function EnterNameLayout({ person, handleStep, setNickname }: EnterNameLayoutProps) {
   const [name, setName] = useState('');
+  const { mutate: sendNickname } = useNicknameMutation();
 
   const disabled = useMemo(() => {
     return name.trim().length === 0;
   }, [name]);
 
   const handleNext = () => {
-    handleStep('질문');
+    if (name.trim()) {
+      sendNickname(name, {
+        onSuccess: () => {
+          setNickname(name);
+          handleStep('질문');
+        },
+        onError: (error) => {
+          console.error('Failed to send nickname:', error);
+        },
+      });
+    }
   };
 
   return (
@@ -54,6 +66,7 @@ function EnterNameLayout({ person, handleStep }: EnterNameLayoutProps) {
           <Inputfield
             text={name}
             setText={setName}
+            maxLength={6}
             label={
               <>
                 {person === 'mom' ? (

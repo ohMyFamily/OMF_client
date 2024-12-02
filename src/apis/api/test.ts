@@ -1,6 +1,7 @@
 import { instance } from '../instance';
 import { Storage } from '@/storage';
-import { NicknameData, NicknameResponse } from './test.types';
+import { QuestionResponseData, NicknameData, NicknameResponse } from './test.types';
+import { questionService } from '../service/question';
 
 // 애칭 설정 api
 export const sendNickname = async (nickname: string): Promise<NicknameResponse> => {
@@ -12,4 +13,12 @@ export const sendNickname = async (nickname: string): Promise<NicknameResponse> 
   };
   const response = await instance.post('api/v1/quiz/nickname', requestData);
   return response.data;
+};
+
+// 문제 호출 api
+export const getQuestion = async (nickname: string): Promise<QuestionResponseData[]> => {
+  const { data } = await instance.get('api/question', {
+    params: { name: nickname },
+  });
+  return questionService.getQuestionList(data);
 };

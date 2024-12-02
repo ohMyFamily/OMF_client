@@ -2,29 +2,30 @@
 @use '@/styles/mixin.scss' as *;
 
 .Wrapper {
-    padding: 0 20px;
-    height: 100%;
+  padding: 0 20px;
+  height: 100%;
 }
 
 .Container {
-    height: calc(100% - 48px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    padding-top: 32px;
-    padding-bottom: 89px;
+  height: calc(100% - 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  padding-top: 32px;
+  padding-bottom: 89px;
 }
 
-.ContentWrapper{
-    @include center;
-    flex-direction: column;
-    h2{
-        margin-top: 16px;
-        margin-bottom: 44px;
-    }
+.ContentWrapper {
+  @include center;
+  flex-direction: column;
+  h2 {
+    margin-top: 16px;
+    margin-bottom: 44px;
+    color: $Gray500;
+  }
 }
 
 .highlight {
-    color: $main300;
+  color: $main300;
 }

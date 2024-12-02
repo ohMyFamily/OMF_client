@@ -1,9 +1,13 @@
 .sample {
-    display: flex; 
-    gap: 24px;  
-    white-space: nowrap;
-    overflow:scroll;
-    &::-webkit-scrollbar { 
-        display: none;
-    }
+  position: relative;
+  left: -20px;
+  width: calc(100% + 40px);
+  display: flex;
+  padding: 24px 0;
+  gap: 24px;
+  white-space: nowrap;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

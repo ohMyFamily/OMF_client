@@ -25,6 +25,8 @@ export const routes = [
           { path: ':id', element: <CheckScoreDetail /> },
         ],
       },
+      // 임시
+      { path: 'detail', element: <CheckScoreDetail /> },
       { path: 'guide', element: <Guide /> },
       { path: 'login', element: <Login /> },
       { path: 'kakao/callback', element: <Redirection /> },

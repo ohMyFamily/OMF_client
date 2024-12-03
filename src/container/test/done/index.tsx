@@ -21,13 +21,15 @@ function TestCompletedLayout({ nickname }: TestCompletedProps) {
 
   return (
     <div className={classNames($.Wrapper)}>
-      <img src={AnimateClap} alt="박수 이미지" />
+      <div className={classNames($.Container)}>
+        <img src={AnimateClap} alt="박수 이미지" />
 
-      <Title2>문제를 다 풀었어요!</Title2>
-      <Body1>
-        답안지를 {nickname}에게 보내서
-        <br /> 채점을 받아볼까요?
-      </Body1>
+        <Title2>문제를 다 풀었어요!</Title2>
+        <Body1>
+          답안지를 {nickname}에게 보내서
+          <br /> 채점을 받아볼까요?
+        </Body1>
+      </div>
 
       <div className={classNames($.ButtonContainer)}>
         <KakaoShareButton />

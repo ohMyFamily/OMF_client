@@ -4,12 +4,14 @@ import classNames from 'classnames';
 import KakaoShareButton from '@/components/common/KakaoShareButton';
 import Button from '@/components/common/Button';
 import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 import { AnimateClap } from '@/components/common/TossFace';
 
-function TestCompletedLayout() {
+interface TestCompletedProps {
+  nickname: string;
+}
+
+function TestCompletedLayout({ nickname }: TestCompletedProps) {
   const navigate = useNavigate();
-  const { nickname } = useParams();
 
   const handleCopy = () => {};
 

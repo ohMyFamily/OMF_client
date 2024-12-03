@@ -105,7 +105,7 @@ function Test() {
         ) : null}
       </Funnel.Steps>
       <Funnel.Steps name="완료">
-        <TestCompletedLayout />
+        <TestCompletedLayout nickname={nickname} />
       </Funnel.Steps>
     </Funnel>
   );

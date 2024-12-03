@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { getQuestion, sendNickname } from '../api/test';
 
+// 애칭 설정
 export const useNicknameMutation = () => {
   return useMutation({
     mutationFn: sendNickname,
@@ -13,6 +14,7 @@ export const useNicknameMutation = () => {
   });
 };
 
+// 문제 호출
 export const useGetQuestionMutation = () => {
   return useMutation({
     mutationFn: getQuestion,

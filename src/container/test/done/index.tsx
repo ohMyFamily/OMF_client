@@ -15,7 +15,7 @@ function TestCompletedLayout({ nickname }: TestCompletedProps) {
 
   const handleCopy = () => {};
 
-  const handleRest = () => {
+  const handleReset = () => {
     navigate('/main');
   };
 
@@ -38,7 +38,7 @@ function TestCompletedLayout({ nickname }: TestCompletedProps) {
         </Button>
       </div>
 
-      <Button variant="primary" onClick={handleRest}>
+      <Button variant="primary" onClick={handleReset}>
         처음으로 돌아가기
       </Button>
     </div>

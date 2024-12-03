@@ -16,9 +16,13 @@ function QuestionLayout({
   icon,
   onNext,
   onBack,
+  nickname,
+  handleStep,
 }: QuestionLayoutType & {
   onNext: () => void;
   onBack: () => void;
+  nickname: string;
+  handleStep: (step: string) => void;
 }) {
   const [answer, setAnswer] = useState('');
 
@@ -34,12 +38,10 @@ function QuestionLayout({
   // 이미지 업로드 문제
   if (type === 'upload') {
     return (
-      <>
-        <div className={classNames($.Wrapper)}>
-          <AppBar leftRole="back" onClickLeftButton={onBack} />
-          <BonusStage content={content} title={title} />
-        </div>
-      </>
+      <div className={classNames($.Wrapper)}>
+        <AppBar leftRole="back" onClickLeftButton={onBack} />
+        <BonusStage content={content} title={title} nickname={nickname} handleStep={handleStep} />
+      </div>
     );
   }
 

@@ -6,18 +6,18 @@ import { Body1, Caption1, Title2 } from '@/components/common/Typography';
 import Button from '@/components/common/Button';
 import { QuestionLayoutType } from '@/pages/test';
 
-export const BonusStage = ({ content, title }: QuestionLayoutType) => {
+export const BonusStage = ({
+  content,
+  title,
+  nickname,
+  handleStep,
+}: QuestionLayoutType & {
+  nickname: string;
+  handleStep: (step: string) => void;
+}) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [containerWidth, setContainerWidth] = useState<number>(0);
-  const containerRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      setContainerWidth(containerRef.current.offsetWidth);
-    }
-  }, []);
 
   const handleImageClick = () => {
     fileInputRef.current?.click();
@@ -32,7 +32,9 @@ export const BonusStage = ({ content, title }: QuestionLayoutType) => {
     }
   };
 
-  const handleNext = () => {};
+  const handleComplete = () => {
+    handleStep('완료');
+  };
 
   return (
     <div className={classNames($.Container)}>
@@ -66,10 +68,10 @@ export const BonusStage = ({ content, title }: QuestionLayoutType) => {
         )}
       </div>
       <div className={classNames($.ButtonContainer)}>
-        <Button variant="tertiary" onClick={handleNext} disabled={!!selectedImage}>
+        <Button variant="tertiary" onClick={handleComplete} disabled={!!selectedImage}>
           사진이 없어요 ㅜ
         </Button>
-        <Button variant="secondary" onClick={handleNext} disabled={!selectedImage}>
+        <Button variant="secondary" onClick={handleComplete} disabled={!selectedImage}>
           완료
         </Button>
       </div>

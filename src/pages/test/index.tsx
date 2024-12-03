@@ -16,6 +16,7 @@ import EnterNameLayout from '@/container/test/enterName';
 import QuestionLayout from '@/container/test/question';
 import SelectTypeLayout from '@/container/test/selectType';
 import { useGetQuestionMutation } from '@/apis/queries/question';
+import TestCompletedLayout from '@/container/test/done';
 
 export interface QuestionLayoutType {
   id?: number;
@@ -39,7 +40,7 @@ const emoje = {
 };
 
 function Test() {
-  const steps = ['선택', '애칭', '질문'];
+  const steps = ['선택', '애칭', '질문', '완료'];
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedType, setSelectedType] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
@@ -98,8 +99,13 @@ function Test() {
             icon={emoje[questions[currentQuestionIndex].icon as keyof typeof emoje]}
             onNext={handleNext}
             onBack={handleBack}
+            nickname={nickname}
+            handleStep={handleStep}
           />
         ) : null}
+      </Funnel.Steps>
+      <Funnel.Steps name="완료">
+        <TestCompletedLayout />
       </Funnel.Steps>
     </Funnel>
   );

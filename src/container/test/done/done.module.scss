@@ -1,0 +1,23 @@
+@use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
+
+.Wrapper {
+  @include center;
+  flex-direction: column;
+  padding: 0 20px;
+  img {
+    margin-top: 80px;
+  }
+  h2 {
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+}
+
+.ButtonContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 48px 0;
+}

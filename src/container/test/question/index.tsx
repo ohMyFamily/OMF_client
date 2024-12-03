@@ -8,6 +8,14 @@ import Button from '@/components/common/Button';
 import { QuestionLayoutType } from '@/pages/test';
 import { BonusStage } from '../bonus';
 
+interface QuestionLayoutProps extends QuestionLayoutType {
+  onNext: () => void;
+  onBack: () => void;
+  onSubmitAnswer: (answer: string | number | undefined) => void;
+  nickname: string;
+  handleStep: (step: string) => void;
+}
+
 function QuestionLayout({
   id,
   type,
@@ -16,14 +24,10 @@ function QuestionLayout({
   icon,
   onNext,
   onBack,
+  onSubmitAnswer,
   nickname,
   handleStep,
-}: QuestionLayoutType & {
-  onNext: () => void;
-  onBack: () => void;
-  nickname: string;
-  handleStep: (step: string) => void;
-}) {
+}: QuestionLayoutProps) {
   const [answer, setAnswer] = useState('');
 
   const disabled = useMemo(() => {
@@ -31,8 +35,17 @@ function QuestionLayout({
   }, [answer]);
 
   const handleNext = () => {
-    onNext();
-    setAnswer('');
+    if (type !== 'upload') {
+      onSubmitAnswer(answer);
+      setAnswer('');
+    } else {
+      onNext();
+    }
+  };
+
+  // 선택한 버튼의 문자열을 답으로 보냄
+  const handleSelectAnswer = (selectedAnswer: string) => {
+    onSubmitAnswer(selectedAnswer);
   };
 
   // 이미지 업로드 문제
@@ -40,7 +53,13 @@ function QuestionLayout({
     return (
       <div className={classNames($.Wrapper)}>
         <AppBar leftRole="back" onClickLeftButton={onBack} />
-        <BonusStage content={content} title={title} nickname={nickname} handleStep={handleStep} />
+        <BonusStage
+          content={content}
+          title={title}
+          nickname={nickname}
+          handleStep={handleStep}
+          onSubmit={onSubmitAnswer}
+        />
       </div>
     );
   }
@@ -59,7 +78,7 @@ function QuestionLayout({
             <div className={$.buttonLayout}>
               {typeof content !== 'string' &&
                 content.map((item, index) => (
-                  <Button key={index} variant="primary" onClick={handleNext}>
+                  <Button key={index} variant="primary" onClick={() => handleSelectAnswer(item)}>
                     {item}
                   </Button>
                 ))}

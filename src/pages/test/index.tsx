@@ -15,8 +15,9 @@ import {
 import EnterNameLayout from '@/container/test/enterName';
 import QuestionLayout from '@/container/test/question';
 import SelectTypeLayout from '@/container/test/selectType';
-import { useGetQuestionMutation } from '@/apis/queries/question';
 import TestCompletedLayout from '@/container/test/done';
+import { useGetQuestionMutation } from '@/apis/queries/question';
+import { useSubmitAnswerMutation } from '@/apis/queries/answer';
 
 export interface QuestionLayoutType {
   id?: number;
@@ -45,7 +46,11 @@ function Test() {
   const [selectedType, setSelectedType] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [questions, setQuestions] = useState<QuestionLayoutType[]>([]);
-  const { mutate } = useGetQuestionMutation();
+  const [answers, setAnswers] = useState<(string | number)[]>([]);
+
+  const { mutate: getQuestions } = useGetQuestionMutation();
+  const { mutate: submitAnswer } = useSubmitAnswerMutation();
+
   const funnelData = {
     selectedType: [selectedType, setSelectedType] as [string, typeof setSelectedType],
     nickname: [nickname, setNickname] as [string, typeof setNickname],
@@ -54,17 +59,59 @@ function Test() {
       typeof setCurrentQuestionIndex
     ],
   };
+
   const { FunnelComponent: Funnel, handleStep } = useFunnel(steps, funnelData);
 
   useEffect(() => {
     if (nickname) {
-      mutate(nickname, {
+      getQuestions(nickname, {
         onSuccess: (data) => {
           setQuestions(data);
         },
       });
     }
-  }, [nickname]);
+  }, [nickname, getQuestions]);
+
+  // 가족 타입 선택 시 1,2,3으로 서버에 전송
+  // 어머니: 1
+  // 아버지: 2
+  // 다른 가족: 3
+
+  const getFamilyTypeId = (type: string): number => {
+    const types = {
+      mom: 1,
+      dad: 2,
+      others: 3,
+    };
+    return types[type as keyof typeof types] || 1;
+  };
+
+  const handleAnswerSubmit = (answer: string | number | undefined) => {
+    if (answer !== undefined) {
+      setAnswers((prev) => [...prev, answer]);
+    }
+    handleNext();
+  };
+
+  const handleBonusComplete = (answer: string | number | undefined) => {
+    if (answer !== undefined) {
+      const finalAnswers = [...answers, answer];
+      const payload = {
+        id: getFamilyTypeId(selectedType),
+        name: nickname,
+        answer: finalAnswers,
+      };
+      submitAnswer(payload);
+    } else {
+      const payload = {
+        id: getFamilyTypeId(selectedType),
+        name: nickname,
+        answer: answers,
+      };
+      submitAnswer(payload);
+    }
+    handleStep('완료');
+  };
 
   const handleNext = () => {
     if (currentQuestionIndex < questions.length - 1) {
@@ -99,6 +146,11 @@ function Test() {
             icon={emoje[questions[currentQuestionIndex].icon as keyof typeof emoje]}
             onNext={handleNext}
             onBack={handleBack}
+            onSubmitAnswer={
+              questions[currentQuestionIndex].type === 'upload'
+                ? handleBonusComplete
+                : handleAnswerSubmit
+            }
             nickname={nickname}
             handleStep={handleStep}
           />

@@ -16,3 +16,12 @@ export interface QuestionResponseData {
   content: string | string[];
   icon: string;
 }
+
+// 답변 제출 타입
+export interface SubmitAnswerData {
+  id: number;
+  name: string;
+  answer: (string | number)[];
+}
+
+export type SubmitAnswerResponse = ApiResponseFormat<SubmitAnswerData>;

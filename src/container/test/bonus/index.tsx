@@ -1,20 +1,18 @@
 import classNames from 'classnames';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import $ from './bonus.module.scss';
 import BlueTitleText from '@/components/common/Item/BlueTitleText';
 import { Body1, Caption1, Title2 } from '@/components/common/Typography';
 import Button from '@/components/common/Button';
 import { QuestionLayoutType } from '@/pages/test';
 
-export const BonusStage = ({
-  content,
-  title,
-  nickname,
-  handleStep,
-}: QuestionLayoutType & {
+interface BonusStageProps extends QuestionLayoutType {
   nickname: string;
   handleStep: (step: string) => void;
-}) => {
+  onSubmit: (imageUrl?: string) => void;
+}
+
+export const BonusStage = ({ content, title, nickname, handleStep, onSubmit }: BonusStageProps) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -32,7 +30,13 @@ export const BonusStage = ({
     }
   };
 
-  const handleComplete = () => {
+  // 이미지 첨부를 한 경우, 하지 않은 경우
+  const handleComplete = async () => {
+    if (selectedImage) {
+      onSubmit(previewUrl || undefined);
+    } else {
+      onSubmit();
+    }
     handleStep('완료');
   };
 

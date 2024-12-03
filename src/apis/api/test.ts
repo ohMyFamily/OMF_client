@@ -1,6 +1,12 @@
 import { instance } from '../instance';
 import { Storage } from '@/storage';
-import { QuestionResponseData, NicknameData, NicknameResponse } from './test.types';
+import {
+  QuestionResponseData,
+  NicknameData,
+  NicknameResponse,
+  SubmitAnswerData,
+  SubmitAnswerResponse,
+} from './test.types';
 import { questionService } from '../service/question';
 
 // 애칭 설정 api
@@ -21,4 +27,10 @@ export const getQuestion = async (nickname: string): Promise<QuestionResponseDat
     params: { name: nickname },
   });
   return questionService.getQuestionList(data);
+};
+
+// 답변 제출 api
+export const submitAnswer = async (data: SubmitAnswerData): Promise<SubmitAnswerResponse> => {
+  const response = await instance.post('api/submit', data);
+  return response.data;
 };

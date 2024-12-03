@@ -7,3 +7,12 @@ export interface NicknameData {
 
 export type NicknameResponse = ApiResponseFormat<NicknameData>;
 export type useNicknameMutation = UseMutationResult<NicknameResponse, Error, string>;
+
+//문제 호출 타입
+export interface QuestionResponseData {
+  id: number;
+  type: 'input' | 'select' | 'number' | 'upload';
+  title: string;
+  content: string | string[];
+  icon: string;
+}

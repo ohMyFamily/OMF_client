@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFunnel } from '@/hooks/useFunnel';
 import {
   Actor,
@@ -15,14 +15,18 @@ import {
 import EnterNameLayout from '@/container/test/enterName';
 import QuestionLayout from '@/container/test/question';
 import SelectTypeLayout from '@/container/test/selectType';
+import TestCompletedLayout from '@/container/test/done';
+import { useGetQuestionMutation } from '@/apis/queries/question';
+import { useSubmitAnswerMutation } from '@/apis/queries/answer';
 
 export interface QuestionLayoutType {
-  id: number;
-  type: 'input' | 'select';
+  id?: number;
+  type?: 'input' | 'select' | 'number' | 'upload';
   content: string[] | string;
   title: string;
-  icon: string;
+  icon?: string;
 }
+
 const emoje = {
   call: Call,
   actor: Actor,
@@ -37,82 +41,15 @@ const emoje = {
 };
 
 function Test() {
-  const steps = ['선택', '애칭', '질문'];
+  const steps = ['선택', '애칭', '질문', '완료'];
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedType, setSelectedType] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
-  const [mockData, setMockData] = useState<QuestionLayoutType[]>([
-    {
-      id: 1,
-      type: 'select',
-      title: '어머니와 \n 언제 마지막으로 통화했나요?',
-      content: ['오늘', '지난 주', '지난 달', '전화 자주 할게요 죄송해요 사랑해요❤️'],
-      icon: 'call',
-    },
-    {
-      id: 2,
-      type: 'input',
-      title: '어머니는 \n 언제 태어나셨나요?',
-      content: '이거 모르면 진짜 반성해야 댑니다.',
-      icon: 'angel',
-    },
-    {
-      id: 3,
-      type: 'input',
-      title: '어머니는 \n 올해 몇 번째 생일을 맞이하셨나요?',
-      content: '사과해요 나한테액!',
-      icon: 'birth',
-    },
-    {
-      id: 4,
-      type: 'input',
-      title: '어머니가 \n 최근에 빠진 음악은 무엇인가요?',
-      content: '어머니의 급상승차트',
-      icon: 'music',
-    },
-    {
-      id: 5,
-      type: 'input',
-      title: '어머니가 \n 요즘 빠진 취미는 무엇인가요?',
-      content: '어머니의 급상승차트',
-      icon: 'hobby',
-    },
-    {
-      id: 6,
-      type: 'input',
-      title: '어머니와 \n 닮은 연예인은 누구인가요?',
-      content: '어머니의 급상승차트',
-      icon: 'actor',
-    },
-    {
-      id: 7,
-      type: 'input',
-      title: '어머니가 제일 좋아하는 \n 나와의 기억은 무엇인가요?',
-      content: '어머니의 급상승차트',
-      icon: 'memory',
-    },
-    {
-      id: 8,
-      type: 'input',
-      title: '어머니가 \n 최근에 빠진 음악은 무엇인가요?',
-      content: '어머니의 급상승차트',
-      icon: 'music',
-    },
-    {
-      id: 9,
-      type: 'input',
-      title: '어머니가 \n 가장 이루고 싶은 소원은 무엇일까요?',
-      content: '어머니의 급상승차트',
-      icon: 'wish',
-    },
-    {
-      id: 10,
-      type: 'input',
-      title: '어머니가 생각하는\n현재 나의 모습은 어떨까요?',
-      content: '어머니의 급상승차트',
-      icon: 'think',
-    },
-  ]);
+  const [questions, setQuestions] = useState<QuestionLayoutType[]>([]);
+  const [answers, setAnswers] = useState<(string | number)[]>([]);
+
+  const { mutate: getQuestions } = useGetQuestionMutation();
+  const { mutate: submitAnswer } = useSubmitAnswerMutation();
 
   const funnelData = {
     selectedType: [selectedType, setSelectedType] as [string, typeof setSelectedType],
@@ -125,8 +62,59 @@ function Test() {
 
   const { FunnelComponent: Funnel, handleStep } = useFunnel(steps, funnelData);
 
+  useEffect(() => {
+    if (nickname) {
+      getQuestions(nickname, {
+        onSuccess: (data) => {
+          setQuestions(data);
+        },
+      });
+    }
+  }, [nickname, getQuestions]);
+
+  // 가족 타입 선택 시 1,2,3으로 서버에 전송
+  // 어머니: 1
+  // 아버지: 2
+  // 다른 가족: 3
+
+  const getFamilyTypeId = (type: string): number => {
+    const types = {
+      mom: 1,
+      dad: 2,
+      others: 3,
+    };
+    return types[type as keyof typeof types] || 1;
+  };
+
+  const handleAnswerSubmit = (answer: string | number | undefined) => {
+    if (answer !== undefined) {
+      setAnswers((prev) => [...prev, answer]);
+    }
+    handleNext();
+  };
+
+  const handleBonusComplete = (answer: string | number | undefined) => {
+    if (answer !== undefined) {
+      const finalAnswers = [...answers, answer];
+      const payload = {
+        id: getFamilyTypeId(selectedType),
+        name: nickname,
+        answer: finalAnswers,
+      };
+      submitAnswer(payload);
+    } else {
+      const payload = {
+        id: getFamilyTypeId(selectedType),
+        name: nickname,
+        answer: answers,
+      };
+      submitAnswer(payload);
+    }
+    handleStep('완료');
+  };
+
   const handleNext = () => {
-    if (currentQuestionIndex < mockData.length - 1) {
+    if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
@@ -148,16 +136,28 @@ function Test() {
         <EnterNameLayout person={selectedType} handleStep={handleStep} setNickname={setNickname} />
       </Funnel.Steps>
       <Funnel.Steps name="질문">
-        <QuestionLayout
-          key={mockData[currentQuestionIndex].id}
-          id={mockData[currentQuestionIndex].id}
-          type={mockData[currentQuestionIndex].type}
-          title={mockData[currentQuestionIndex].title}
-          content={mockData[currentQuestionIndex].content}
-          icon={emoje[mockData[currentQuestionIndex].icon as keyof typeof emoje]}
-          onNext={handleNext}
-          onBack={handleBack}
-        />
+        {questions.length > 0 ? (
+          <QuestionLayout
+            key={questions[currentQuestionIndex].id}
+            id={questions[currentQuestionIndex].id}
+            type={questions[currentQuestionIndex].type}
+            title={questions[currentQuestionIndex].title}
+            content={questions[currentQuestionIndex].content}
+            icon={emoje[questions[currentQuestionIndex].icon as keyof typeof emoje]}
+            onNext={handleNext}
+            onBack={handleBack}
+            onSubmitAnswer={
+              questions[currentQuestionIndex].type === 'upload'
+                ? handleBonusComplete
+                : handleAnswerSubmit
+            }
+            nickname={nickname}
+            handleStep={handleStep}
+          />
+        ) : null}
+      </Funnel.Steps>
+      <Funnel.Steps name="완료">
+        <TestCompletedLayout nickname={nickname} />
       </Funnel.Steps>
     </Funnel>
   );

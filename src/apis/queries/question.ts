@@ -1,20 +1,7 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
-import { sendNickname } from '../api/test';
+import { getQuestion, sendNickname } from '../api/test';
 
-export const useGetSample = () => {
-  const fetchFunction = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-    return await response.json();
-  };
-
-  return useSuspenseQuery({
-    queryKey: ['repoData'],
-    queryFn: fetchFunction,
-    staleTime: 1000 * 10,
-  });
-};
-
+// 애칭 설정
 export const useNicknameMutation = () => {
   return useMutation({
     mutationFn: sendNickname,
@@ -23,6 +10,16 @@ export const useNicknameMutation = () => {
     },
     onError: (error) => {
       console.error('Error sending nickname:', error);
+    },
+  });
+};
+
+// 문제 호출
+export const useGetQuestionMutation = () => {
+  return useMutation({
+    mutationFn: getQuestion,
+    onError: (error) => {
+      console.error('Error receiving question:', error);
     },
   });
 };

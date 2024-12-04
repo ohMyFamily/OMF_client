@@ -13,12 +13,8 @@ export default function Grading() {
   const nickname = searchParams.get('nickname');
 
   const step = ['메인', '가이드', '채점', '완료'];
-  const [answerList, setAnswerList] = useState<(boolean | null)[]>(Array(10).fill(null));
 
-  const funnelData = {
-    answer: [answerList, setAnswerList] as [(boolean | null)[], typeof setAnswerList],
-  };
-  const { FunnelComponent: Funnel, handleStep } = useFunnel(step, funnelData);
+  const { FunnelComponent: Funnel, handleStep } = useFunnel(step, {});
   const [hasImage, setHasImage] = useState<boolean>(false);
 
   return (

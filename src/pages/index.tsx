@@ -33,7 +33,8 @@ const IndexPage = () => {
             );
           })}
         </div>
-        <KakaoShareButton />
+        <KakaoShareButton variant="grading" childId={3} name="낙현" />
+        <KakaoShareButton variant="test" />
       </div>
     </>
   );

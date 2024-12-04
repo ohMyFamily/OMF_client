@@ -3,7 +3,13 @@ import kakaoLogo from '@/assets/svg/KakaoLogo.svg';
 import { KAKAO_JS_KEY } from '@/constants/develop.constants';
 import { useEffect } from 'react';
 
-export default function KakaoShareButton() {
+interface KakaoShareButttonProps {
+  variant: 'grading' | 'test';
+  childId?: number;
+  name?: string;
+}
+
+export default function KakaoShareButton({ variant, childId, name }: KakaoShareButttonProps) {
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(KAKAO_JS_KEY);
@@ -11,41 +17,27 @@ export default function KakaoShareButton() {
   }, []);
 
   const onClickShareButton = () => {
-    window.Kakao.Share.sendDefault({
-      objectType: 'commerce',
-      content: {
-        title: 'ㅎㅇ',
-        imageUrl:
-          'https://ootdzip.com/_next/image?url=https%3A%2F%2Footdzip.s3.ap-northeast-2.amazonaws.com%2F1719b103-3475-47df-a8e5-706a94020bec_2024-05-23.jpg&w=1920&q=75',
-        link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          webUrl: 'https://developers.kakao.com',
+    //서비스 공유
+    if (variant === 'test') {
+      window.Kakao.Share.sendCustom({
+        templateId: 114874,
+        templateArgs: {
+          THU: 'https://oh-my-family-bucket.s3.ap-northeast-2.amazonaws.com/children-2.png',
         },
-      },
-      commerce: {
-        productName: '낙지',
-        regularPrice: 100000,
-        discountRate: 10,
-        discountPrice: 90000,
-      },
-      buttons: [
-        {
-          title: '구매하기',
-          link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com',
-          },
+      });
+    } else {
+      //채점 부탁
+      window.Kakao.Share.sendCustom({
+        templateId: 114875,
+        templateArgs: {
+          THU: 'https://oh-my-family-bucket.s3.ap-northeast-2.amazonaws.com/parent-1.png',
+          childId: childId,
+          name: name,
         },
-        {
-          title: '공유하기',
-          link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com',
-          },
-        },
-      ],
-    });
+      });
+    }
   };
+
   return (
     <Button variant="kakaoLogin" icon={kakaoLogo} onClick={onClickShareButton}>
       카카오톡으로 공유하기

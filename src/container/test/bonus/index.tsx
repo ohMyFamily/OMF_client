@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useState, useRef } from 'react';
+import { useState, useRef, Dispatch, SetStateAction } from 'react';
 import $ from './bonus.module.scss';
 import BlueTitleText from '@/components/common/Item/BlueTitleText';
 import { Body1, Caption1, Title2 } from '@/components/common/Typography';
@@ -10,10 +10,19 @@ interface BonusStageProps extends QuestionLayoutType {
   nickname: string;
   handleStep: (step: string) => void;
   onSubmit: (imageUrl?: string) => void;
+  selectedImage: File | null;
+  setSelectedImage: Dispatch<SetStateAction<File | null>>;
 }
 
-export const BonusStage = ({ content, title, nickname, handleStep, onSubmit }: BonusStageProps) => {
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+export const BonusStage = ({
+  content,
+  title,
+  nickname,
+  handleStep,
+  onSubmit,
+  selectedImage,
+  setSelectedImage,
+}: BonusStageProps) => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -23,11 +32,10 @@ export const BonusStage = ({ content, title, nickname, handleStep, onSubmit }: B
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file && file.type.startsWith('image/')) {
-      setSelectedImage(file);
-      const url = URL.createObjectURL(file);
-      setPreviewUrl(url);
-    }
+    const url = URL.createObjectURL(file!);
+    setPreviewUrl(url);
+    if (!event.target.files) return;
+    setSelectedImage(file!);
   };
 
   // 이미지 첨부를 한 경우, 하지 않은 경우

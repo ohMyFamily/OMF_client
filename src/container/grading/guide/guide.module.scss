@@ -8,18 +8,18 @@
     padding: 0 20px;
     height: 100%;
     position: relative; 
+    display: flex;
+    flex-direction: column;
 }
 
 .textWrapper {
     margin-top: 36px;
     color: $Gray300;
     text-align: center;
+    flex-grow: 1;
 }
 
-.nextButton {
-    position: fixed;
-    width: calc(100% - 40px);
-    max-width: 390px;
-    bottom: 89px;
-    
+.nextButton {   
+    max-width: 390px; 
+    margin-bottom: 89px;
 }

@@ -34,7 +34,6 @@ export const BonusStage = ({
     const file = event.target.files?.[0];
     const url = URL.createObjectURL(file!);
     setPreviewUrl(url);
-    if (!event.target.files) return;
     setSelectedImage(file!);
   };
 
@@ -45,7 +44,7 @@ export const BonusStage = ({
     } else {
       onSubmit();
     }
-    handleStep('완료');
+    // handleStep('완료');
   };
 
   return (

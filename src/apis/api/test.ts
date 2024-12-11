@@ -1,5 +1,6 @@
 import { instance } from '../instance'; 
 import {
+  GradingPayloadType,
   QuestionResponseData,  
 } from './test.types'; 
  
@@ -10,16 +11,31 @@ export const getQuestion = async (nickname: string): Promise<QuestionResponseDat
     params: { name: nickname },
   });
 
-  return data;
+  return data.data;
 };
 
 // 답변 제출 api
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const submitAnswer = async (data: any) => {
-  const response = await instance.post('api/submit', data, {
+export const submitAnswer = async (payload: any) => {
+  const {data} = await instance.post('api/submit', payload, {
     headers: {
       'Content-Type': 'multipart/form-data'
     }
   });
-  return response.data;
+  return data;
 };
+
+export const getAnswer = async(name: string, childId: number):  Promise<QuestionResponseData[]> => {
+  const {data} = await instance.get('api/answer', {
+    params: {name, childId}
+  }); 
+
+  return data.data.data;
+} 
+
+ 
+export const submitGrade = async(payload: GradingPayloadType) => {
+  const {data} = await instance.post('api/score', payload);
+
+  return data;
+}

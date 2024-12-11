@@ -19,7 +19,7 @@ export default function MainLayout({ handleStep, nickname }: MainLayoutProps) {
       <div className={classNames($.Container)}>
         <BackgroundSVG />
         <div className={classNames($.TextContainer)}>
-          <BlueTitleText size="md">
+          <BlueTitleText size="lg">
             <Caption1>가정의 달 이벤트</Caption1>
           </BlueTitleText>
           <Title1>

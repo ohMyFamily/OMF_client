@@ -25,9 +25,9 @@
 .inputClose {
     width: 15px;
     fill: $Gray200;
-    
+
     &:active {
-        color: $Gray50; 
+      color: $Gray50;
     }
 }
 
@@ -48,10 +48,9 @@
     border: none;
     border-radius: 16px;
     background-color: White;
-    box-shadow: inset 0 0 1px 0 #AEECFF, 12px 12px 28px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 0 1px 0 #aeecff, 12px 12px 28px 0 rgba(0, 0, 0, 0.05);
 
-    div{
-        justify-content: space-between;
-        gap: 8px;
+    .label {
+      margin-bottom: 8px;
     }
 }

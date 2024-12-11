@@ -7,3 +7,9 @@ export const kakaoLogin = async (code: string): Promise<KakaoLoginResponse> => {
     });
     return response.data;
 };
+
+export const getUserInfo = async() => {
+    const {data} = await instance.get('api/v1/member');
+
+    return data;
+}

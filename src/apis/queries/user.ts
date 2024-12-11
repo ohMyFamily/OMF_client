@@ -1,7 +1,7 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { setAuthToken } from '@/apis/instance';
-import { kakaoLogin } from '../api/auth';
+import { getUserInfo, kakaoLogin } from '../api/auth';
 
 
 export const useKakaoLoginQuery = () => {
@@ -16,3 +16,11 @@ export const useKakaoLoginQuery = () => {
     onError: () => navigate('/login')
     });
 };
+
+export const useGetUserInfo = () => {
+    return useQuery({
+        queryKey: ['userInfo'],
+        queryFn: getUserInfo,
+        select: (response) => response.data
+    })
+}

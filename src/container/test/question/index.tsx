@@ -45,7 +45,12 @@ function QuestionLayout({ handleStep, name }: QuestionLayoutProps) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [result, setResult] = useState<(string | number)[]>([]);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const { mutate: submitAnswer } = useSubmitAnswerMutation();
+
+  const successSubmitAnswer = () => {};
+
+  const failSubmitAnswer = () => {};
+
+  const { mutate: submitAnswer } = useSubmitAnswerMutation(successSubmitAnswer, failSubmitAnswer);
 
   const disabled = useMemo(() => {
     return answer.trim().length === 0;
@@ -70,9 +75,9 @@ function QuestionLayout({ handleStep, name }: QuestionLayoutProps) {
   //답안 제출 버튼
   const onSubmitAnswer = () => {
     const formData = new FormData();
-    formData.append('image', JSON.stringify(selectedImage));
+    formData.append('image', selectedImage as Blob);
     formData.append('name', name);
-    formData.append('answer', JSON.stringify(result));
+    formData.append('answer', result as unknown as Blob);
     submitAnswer(formData);
   };
 

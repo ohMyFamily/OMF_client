@@ -15,13 +15,21 @@ export interface QuestionResponseData {
   title: string;
   content: string | string[];
   icon: string;
+  answer?: string;
 }
 
 // 답변 제출 타입
-export interface SubmitAnswerData {
-  id: number;
+export interface SubmitAnswerData extends FormData{ 
   name: string;
   answer: (string | number)[];
 }
 
 export type SubmitAnswerResponse = ApiResponseFormat<SubmitAnswerData>;
+
+export type GradingPayloadType = {
+  result: {
+    id: number;
+    isCorrect: boolean;
+  }[],
+  nickname: string;
+}

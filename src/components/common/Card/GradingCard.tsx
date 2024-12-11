@@ -13,7 +13,7 @@ interface GradingCardProps {
   title: string;
   cardImage: string;
   cardNumber: string | number;
-  answer: string;
+  answer?: string;
   state: (boolean | null)[];
   setState: Dispatch<SetStateAction<(boolean | null)[]>>;
   index: number;
@@ -28,14 +28,6 @@ function GradingCard({
   index,
 }: GradingCardProps) {
   const [correctState, setCorrectState] = useState<boolean | null>(state[index]);
-
-  useEffect(() => {
-    if (correctState === null) return;
-    window.scrollBy({
-      top: 328,
-      behavior: 'smooth', // 부드러운 스크롤 효과
-    });
-  }, [correctState]);
 
   useEffect(() => {
     if (correctState !== state[index]) {

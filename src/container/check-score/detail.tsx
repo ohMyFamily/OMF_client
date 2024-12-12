@@ -60,7 +60,7 @@ export default function CheckScoreDetailLayout({
         </div>
 
         <div className={classNames($.ButtonContainer)}>
-          <KakaoShareButton />
+          <KakaoShareButton variant="test" />
           <Button variant="secondary" onClick={handleNewTest}>
             새로운 테스트 시작하기
           </Button>

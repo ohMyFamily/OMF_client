@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import $ from './enterName.module.scss';
 import AppBar from '@/components/common/AppBar';
@@ -6,34 +6,23 @@ import Heart from '@/assets/svg/Tossface/Heart.svg';
 import { Title2 } from '@/components/common/Typography';
 import Inputfield from '@/components/common/Input/Inputfield';
 import Button from '@/components/common/Button';
-import { useNicknameMutation } from '@/apis/queries/question';
 
 interface EnterNameLayoutProps {
   person: string;
+  setName: Dispatch<SetStateAction<string>>;
   handleStep: (step: string) => void;
-  setNickname: (name: string) => void;
 }
 
-function EnterNameLayout({ person, handleStep, setNickname }: EnterNameLayoutProps) {
-  const [name, setName] = useState('');
-  const { mutate: sendNickname } = useNicknameMutation();
+function EnterNameLayout({ person, handleStep, setName }: EnterNameLayoutProps) {
+  const [nameInput, setNameInput] = useState('');
 
   const disabled = useMemo(() => {
-    return name.trim().length === 0;
-  }, [name]);
+    return nameInput.trim().length === 0;
+  }, [nameInput]);
 
   const handleNext = () => {
-    if (name.trim()) {
-      sendNickname(name, {
-        onSuccess: () => {
-          setNickname(name);
-          handleStep('질문');
-        },
-        onError: (error) => {
-          console.error('Failed to send nickname:', error);
-        },
-      });
-    }
+    setName(nameInput);
+    handleStep('질문');
   };
 
   return (
@@ -64,11 +53,11 @@ function EnterNameLayout({ person, handleStep, setNickname }: EnterNameLayoutPro
             )}
           </Title2>
           <Inputfield
-            text={name}
-            setText={setName}
+            text={nameInput}
+            setText={setNameInput}
             maxLength={6}
             label={
-              <>
+              <div className={classNames($.NameWrapper)}>
                 {person === 'mom' ? (
                   <>어머니, 어마마마 등 </>
                 ) : person === 'dad' ? (
@@ -77,7 +66,7 @@ function EnterNameLayout({ person, handleStep, setNickname }: EnterNameLayoutPro
                   <>이름, 호칭 등 </>
                 )}
                 <span className={classNames($.highlight)}>6자 이내(공백 포함)</span>로 적어주세요.
-              </>
+              </div>
             }
           />
         </div>

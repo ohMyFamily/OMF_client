@@ -14,3 +14,7 @@
 }
 
 
+.main {
+    overflow-y: scroll;
+    height: calc(100dvh - 48px);
+}

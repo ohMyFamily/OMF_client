@@ -26,6 +26,10 @@
   }
 }
 
-.highlight {
-  color: $main300;
+.NameWrapper {
+  color: $Gray500;
+
+  .highlight {
+    color: $main300;
+  }
 }

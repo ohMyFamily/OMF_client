@@ -1,23 +1,37 @@
 * {
-    box-sizing: border-box;
-    //터치 영역 표시 제거
-    -webkit-tap-highlight-color: transparent;
-    //텍스트 선택 방지
-    user-select: none;
+  box-sizing: border-box;
+  //터치 영역 표시 제거
+  -webkit-tap-highlight-color: transparent;
+  //텍스트 선택 방지
+  user-select: none;
 }
 
-html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, label {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: 'Pretendard';
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+label,
+input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Pretendard';
 }
 
-input, ::placeholder {
-    font-family: 'Pretendard';
+input,
+::placeholder {
+  font-family: 'Pretendard';
 }
 
-a{
-    text-decoration: none;
-    color: inherit;
+a {
+  text-decoration: none;
+  color: inherit;
 }

@@ -15,7 +15,7 @@ function Inputfield({ label, text, setText, maxLength }: InputFieldProps) {
   return (
     <div className={classNames($.fieldWrapper)}>
       <div>
-        {label && <Body2>{label}</Body2>}
+        <div className={classNames($.label)}>{label && <Body2>{label}</Body2>}</div>
         <Input text={text} setText={setText} maxLength={maxLength} />
       </div>
     </div>

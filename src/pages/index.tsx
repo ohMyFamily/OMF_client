@@ -9,11 +9,10 @@ const IndexPage = () => {
   const navigation = [
     { route: '/login', name: '로그인', state: false },
     { route: '/main', name: '자식-메인', state: false },
-    { route: '/guide', name: '가이드', state: true },
+    { route: '/guide', name: '가이드', state: false },
     { route: '/splash', name: '스플래시스크린', state: false },
-    { route: '/test', name: '문제풀기', state: true },
-    { route: '/type', name: '부모님 선택', state: true },
-    { route: '/check-score', name: '점수 확인', state: true },
+    { route: '/test', name: '문제풀기', state: false },
+    { route: '/check-score', name: '점수 확인', state: false },
     { route: '/grading?userId=1&nickname=낙현', name: '채점하기', state: false },
   ];
 
@@ -33,7 +32,8 @@ const IndexPage = () => {
             );
           })}
         </div>
-        <KakaoShareButton />
+        <KakaoShareButton variant="grading" childId={3} name="낙현" />
+        <KakaoShareButton variant="test" />
       </div>
     </>
   );

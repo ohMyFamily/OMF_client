@@ -13,7 +13,7 @@ export default function ButtonLayout() {
       <Button variant="secondary" onClick={onClickTestButton}>
         나도 테스트하러 가기
       </Button>
-      <KakaoShareButton />
+      <KakaoShareButton variant="test" />
     </div>
   );
 }

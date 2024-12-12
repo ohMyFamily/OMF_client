@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import $ from '../App.module.scss';
 import classNames from 'classnames';
-import KakaoShareButton from '@/components/common/KakaoShareButton';
 
 const IndexPage = () => {
   const navigate = useNavigate();
@@ -32,8 +31,6 @@ const IndexPage = () => {
             );
           })}
         </div>
-        <KakaoShareButton variant="grading" childId={3} name="낙현" />
-        <KakaoShareButton variant="test" />
       </div>
     </>
   );

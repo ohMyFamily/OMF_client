@@ -36,7 +36,7 @@ function Test() {
         </Suspense>
       </Funnel.Steps>
       <Funnel.Steps name="완료">
-        <TestCompletedLayout />
+        <TestCompletedLayout nickname="낙현" />
       </Funnel.Steps>
     </Funnel>
   );

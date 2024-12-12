@@ -32,7 +32,7 @@ function TestCompletedLayout({ nickname }: TestCompletedProps) {
       </div>
 
       <div className={classNames($.ButtonContainer)}>
-        <KakaoShareButton />
+        <KakaoShareButton variant="grading" />
         <Button variant="secondary" onClick={handleCopy}>
           링크 복사
         </Button>

@@ -7,9 +7,10 @@ interface InputProps {
   text: string;
   setText: Dispatch<SetStateAction<string>>;
   maxLength?: number;
+  inputMode?: 'text' | 'numeric';
 }
 
-export default function Input({ text, setText, maxLength }: InputProps) {
+export default function Input({ text, setText, maxLength, inputMode }: InputProps) {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   //textarea을 focus하기 위해 useRef 사용(handleClear 실행 이후에도 포커스가 유지되도록)
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -78,6 +79,7 @@ export default function Input({ text, setText, maxLength }: InputProps) {
         value={text}
         maxLength={maxLength}
         onChange={onChangeText}
+        inputMode={inputMode}
       />
       {isTyping && (
         <div className={classNames($.inputCloseWrapper)}>

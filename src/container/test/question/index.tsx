@@ -126,8 +126,11 @@ function QuestionLayout({ handleStep, name, familyType }: QuestionLayoutProps) {
         <div className={classNames($.ContentWrapper)}>
           <img src={emoje[data[currentIndex].icon as keyof typeof emoje]} alt="아이콘" />
           <Title2>{data[currentIndex].title}</Title2>
-          {(data[currentIndex].type === 'input' || data[currentIndex].type === 'number' || data[currentIndex].type === 'date') && (
-            <Inputfield text={answer} setText={setAnswer} label={data[currentIndex].content} />
+          {(data[currentIndex].type === 'input' || data[currentIndex].type === 'date') && (
+            <Inputfield text={answer} setText={setAnswer} label={data[currentIndex].content} inputMode='text'/>
+          )}
+          {(data[currentIndex].type === 'number') && (
+            <Inputfield text={answer} setText={setAnswer} label={data[currentIndex].content} inputMode='numeric'/>
           )}
           {data[currentIndex].type === 'select' && (
             <div className={$.buttonLayout}>

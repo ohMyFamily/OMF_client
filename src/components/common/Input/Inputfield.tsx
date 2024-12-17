@@ -9,14 +9,15 @@ interface InputFieldProps {
   text: string;
   setText: Dispatch<SetStateAction<string>>;
   maxLength?: number;
+  inputMode?: 'text' | 'numeric';
 }
 
-function Inputfield({ label, text, setText, maxLength }: InputFieldProps) {
+function Inputfield({ label, text, setText, maxLength, inputMode}: InputFieldProps) {
   return (
     <div className={classNames($.fieldWrapper)}>
       <div>
         <div className={classNames($.label)}>{label && <Body2>{label}</Body2>}</div>
-        <Input text={text} setText={setText} maxLength={maxLength} />
+        <Input text={text} setText={setText} maxLength={maxLength} inputMode={inputMode}/>
       </div>
     </div>
   );

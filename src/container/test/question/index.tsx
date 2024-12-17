@@ -57,6 +57,15 @@ function QuestionLayout({ handleStep, name, familyType }: QuestionLayoutProps) {
     return answer.trim().length === 0;
   }, [answer]);
 
+  // 인덱스가 바뀔 때 result[currentIndex] 체크해서 답변한 게 있으면 답변한 내용 보여주고, 없으면 ''
+  useEffect(() => {
+    if (result[currentIndex]) {
+      setAnswer(result[currentIndex].toString());
+    } else {
+      setAnswer('');
+    }
+  }, [currentIndex, result]);
+
   //이전 단계로 이동버튼
   const handleBeforeQuestion = () => {
     if (currentIndex === 0) {
@@ -68,7 +77,11 @@ function QuestionLayout({ handleStep, name, familyType }: QuestionLayoutProps) {
 
   //다음 단계로 이동 버튼
   const handleNextQuestion = () => {
-    setResult((prev: (string | number)[]) => [...prev, answer]);
+    setResult((prev: (string | number)[]) => {
+      const newResult = [...prev];
+      newResult[currentIndex] = answer;
+      return newResult;
+    });
     setAnswer('');
     setCurrentIndex(currentIndex + 1);
   };

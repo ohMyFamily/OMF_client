@@ -32,7 +32,7 @@ function Test() {
       </Funnel.Steps>
       <Funnel.Steps name="질문">
         <Suspense fallback={<Spinner />}>
-          <QuestionLayout handleStep={handleStep} name={name} />
+          <QuestionLayout handleStep={handleStep} name={name}  familyType={selectedType} />
         </Suspense>
       </Funnel.Steps>
       <Funnel.Steps name="완료">

@@ -11,7 +11,7 @@ export type useNicknameMutation = UseMutationResult<NicknameResponse, Error, str
 //문제 호출 타입
 export interface QuestionResponseData {
   id: number;
-  type: 'input' | 'select' | 'number' | 'upload';
+  type: 'input' | 'select' | 'number' | 'upload' | 'date';
   title: string;
   content: string | string[];
   icon: string;

@@ -24,6 +24,7 @@ import { useSubmitAnswerMutation } from '@/apis/queries/answer';
 interface QuestionLayoutProps {
   handleStep: (step: string) => void;
   name: string;
+  familyType: string;
 }
 
 const emoje = {
@@ -39,9 +40,9 @@ const emoje = {
   think: Think,
 };
 
-function QuestionLayout({ handleStep, name }: QuestionLayoutProps) {
+function QuestionLayout({ handleStep, name, familyType }: QuestionLayoutProps) {
   const [answer, setAnswer] = useState('');
-  const { data } = useGetQuestion(name);
+  const { data } = useGetQuestion(name, familyType);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [result, setResult] = useState<(string | number)[]>([]);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -112,7 +113,7 @@ function QuestionLayout({ handleStep, name }: QuestionLayoutProps) {
         <div className={classNames($.ContentWrapper)}>
           <img src={emoje[data[currentIndex].icon as keyof typeof emoje]} alt="아이콘" />
           <Title2>{data[currentIndex].title}</Title2>
-          {(data[currentIndex].type === 'input' || data[currentIndex].type === 'number') && (
+          {(data[currentIndex].type === 'input' || data[currentIndex].type === 'number' || data[currentIndex].type === 'date') && (
             <Inputfield text={answer} setText={setAnswer} label={data[currentIndex].content} />
           )}
           {data[currentIndex].type === 'select' && (
@@ -126,7 +127,7 @@ function QuestionLayout({ handleStep, name }: QuestionLayoutProps) {
             </div>
           )}
         </div>
-        {(data[currentIndex].type === 'input' || data[currentIndex].type === 'number') && (
+        {(data[currentIndex].type === 'input' || data[currentIndex].type === 'number' || data[currentIndex].type === 'date') && (
           <Button variant="secondary" onClick={handleNextQuestion} disabled={disabled}>
             다음 문제 ({data[currentIndex].id}/10)
           </Button>

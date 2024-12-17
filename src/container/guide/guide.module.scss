@@ -27,12 +27,4 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    .number {
-        display: inline;
-        background-color: $main50;
-        color: $main300;
-        border-radius: 50%;
-        width: 26px;
-        text-align: center;
-    }  
 }

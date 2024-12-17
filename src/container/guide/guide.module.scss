@@ -1,4 +1,5 @@
 @use '@/colors.scss' as *;
+@use '@/styles/mixin.scss' as *;
 
 .appbar {
     padding: 12px 20px;
@@ -16,6 +17,15 @@
     }
     .title {
         color: $main300;
+    }
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    h2 {
+        color: $Gray500;
     }
 }
 

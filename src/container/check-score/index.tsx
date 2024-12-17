@@ -58,16 +58,9 @@ export default function CheckScoreLayout() {
     navigate(-1);
   };
 
-  const handleItemClick = (id: number, isOpen: boolean) => {
-    if (isOpen) {
-      // isOpen이 true일 때는 바로 페이지 이동
-      navigate(`/check-score/${id}`);
-    } else {
-      // isOpen이 false일 때는 상태 변경 (서버에 업데이트하고 다시 fetch?)
-      setMockData((prevData) =>
-        prevData.map((item) => (item.id === id ? { ...item, isOpen: true } : item))
-      );
-    }
+  // 상세 조회 api 붙이기
+  const handleItemClick = (id: number) => {
+    navigate(`/check-score/${id}`);
   };
 
   return (

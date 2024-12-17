@@ -8,7 +8,10 @@
     border: none;
     border-radius: 8px;
     padding: 14px 16px;
+    overflow: hidden;
+    max-height: 100%; 
 }
+
 .input {
     width: 100%;
     font-family: 'Pretendard';
@@ -20,6 +23,18 @@
     background-color: transparent;
     border: none;
     outline: none;
+    max-height: calc(100dvh - 573px); 
+    resize: none;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 3px; 
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $Gray100; 
+        border-radius: 14px; 
+    }
 }
 
 .inputClose {

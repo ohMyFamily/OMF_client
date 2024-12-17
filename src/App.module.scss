@@ -1,11 +1,23 @@
 @use '_colors.scss' as *; 
 @use '@/styles/mixin.scss' as *;
 
+
 .Wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     margin: 0 auto;
     max-width: 430px;
-    height: 100dvh; 
-    background: linear-gradient($Bi-Bg-Blue, $Bi-Bg-Yellow); 
+    height: 100dvh;
+    background: linear-gradient($Bi-Bg-Blue, $Bi-Bg-Yellow);
+    overflow-y: auto;
+}
+
+.ContentWrapper {
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100dvh;
 }
 
 .navigation {

@@ -86,7 +86,7 @@ export default function GuideLayout() {
           );
         })}
         <Button icon={KakaoLogo} variant="kakaoLogin" onClick={onClickKakaoLoginButton}>
-          로그인 하고 테스트 시작하기
+          로그인하고 테스트 시작하기
         </Button>
       </div>
     </>

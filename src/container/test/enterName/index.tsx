@@ -4,7 +4,7 @@ import $ from './enterName.module.scss';
 import AppBar from '@/components/common/AppBar';
 import Heart from '@/assets/svg/Tossface/Heart.svg';
 import { Title2 } from '@/components/common/Typography';
-import Inputfield from '@/components/common/Input/Inputfield';
+import TextareaField from '@/components/common/Textarea/textareaField';
 import Button from '@/components/common/Button';
 
 interface EnterNameLayoutProps {
@@ -52,7 +52,7 @@ function EnterNameLayout({ person, handleStep, setName }: EnterNameLayoutProps) 
               </>
             )}
           </Title2>
-          <Inputfield
+          <TextareaField
             text={nameInput}
             setText={setNameInput}
             maxLength={6}

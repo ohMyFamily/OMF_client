@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import $ from './question.module.scss';
 import AppBar from '@/components/common/AppBar';
 import { Title2 } from '@/components/common/Typography';
-import Inputfield from '@/components/common/Input/Inputfield';
+import TextareaField from '@/components/common/Textarea/textareaField';
 import Button from '@/components/common/Button';
 import { BonusStage } from '../bonus';
 import { useGetQuestion } from '@/apis/queries/question';
@@ -127,10 +127,10 @@ function QuestionLayout({ handleStep, name, familyType }: QuestionLayoutProps) {
           <img src={emoje[data[currentIndex].icon as keyof typeof emoje]} alt="아이콘" />
           <Title2>{data[currentIndex].title}</Title2>
           {(data[currentIndex].type === 'input' || data[currentIndex].type === 'date') && (
-            <Inputfield text={answer} setText={setAnswer} label={data[currentIndex].content} inputMode='text'/>
+            <TextareaField text={answer} setText={setAnswer} label={data[currentIndex].content} inputMode='text'/>
           )}
           {(data[currentIndex].type === 'number') && (
-            <Inputfield text={answer} setText={setAnswer} label={data[currentIndex].content} inputMode='numeric'/>
+            <TextareaField text={answer} setText={setAnswer} label={data[currentIndex].content} inputMode='numeric'/>
           )}
           {data[currentIndex].type === 'select' && (
             <div className={$.buttonLayout}>

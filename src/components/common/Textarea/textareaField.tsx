@@ -1,10 +1,10 @@
 import classNames from 'classnames';
-import $ from '@/components/common/Input/Input.module.scss';
-import Input from '.';
+import $ from '@/components/common/Textarea/textarea.module.scss';
+import Textarea from '.';
 import { Body2 } from '@/components/common/Typography';
 import { Dispatch, SetStateAction } from 'react';
 
-interface InputFieldProps {
+interface TextareaFieldProps {
   label?: string | React.ReactNode;
   text: string;
   setText: Dispatch<SetStateAction<string>>;
@@ -12,15 +12,15 @@ interface InputFieldProps {
   inputMode?: 'text' | 'numeric';
 }
 
-function Inputfield({ label, text, setText, maxLength, inputMode}: InputFieldProps) {
+function TextareaField({ label, text, setText, maxLength, inputMode}: TextareaFieldProps) {
   return (
     <div className={classNames($.fieldWrapper)}>
       <div>
         <div className={classNames($.label)}>{label && <Body2>{label}</Body2>}</div>
-        <Input text={text} setText={setText} maxLength={maxLength} inputMode={inputMode}/>
+        <Textarea text={text} setText={setText} maxLength={maxLength} inputMode={inputMode}/>
       </div>
     </div>
   );
 }
 
-export default Inputfield;
+export default TextareaField;

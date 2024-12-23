@@ -6,9 +6,14 @@ import {
  
 
 // 문제 호출 api
-export const getQuestion = async (nickname: string): Promise<QuestionResponseData[]> => {
-   const { data } = await instance.get('api/question', {
-    params: { name: nickname },
+export const getQuestion = async (nickname: string, familyType: string): Promise<QuestionResponseData[]> => {
+  const type = familyType === 'mom' ? 1 : familyType === 'dad' ? 2 : 3;
+  
+  const { data } = await instance.get('api/question', {
+    params: { 
+      name: nickname,
+      id: type 
+    },
   });
 
   return data.data;

@@ -9,7 +9,7 @@ interface AnswerListItemProps {
   cardImage?: string;
   icon?: string;
   isOpen: boolean;
-  handleClick: (id: number, isOpen: boolean) => void;
+  handleClick: (id: number) => void;
 }
 
 function AnswerListItem({
@@ -26,7 +26,7 @@ function AnswerListItem({
       className={classNames($.answerContainer, {
         [$.openState]: isOpen,
       })}
-      onClick={() => handleClick(id, isOpen)}
+      onClick={() => handleClick(id)}
     >
       {cardImage ? (
         <img src={cardImage} alt={`${nickname}의 사진`} />

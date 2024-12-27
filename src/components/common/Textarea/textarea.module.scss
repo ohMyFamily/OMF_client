@@ -1,6 +1,6 @@
 @use '@/colors' as *;
 
-.inputWrapper {
+.textareaWrapper {
     width: 100%;
     display: flex;
     gap: 8px;
@@ -8,8 +8,11 @@
     border: none;
     border-radius: 8px;
     padding: 14px 16px;
+    overflow: hidden;
+    max-height: 100%; 
 }
-.input {
+
+.textarea {
     width: 100%;
     font-family: 'Pretendard';
     font-size: 16px;
@@ -20,9 +23,21 @@
     background-color: transparent;
     border: none;
     outline: none;
+    max-height: calc(100dvh - 573px); 
+    resize: none;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 3px; 
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $Gray100; 
+        border-radius: 14px; 
+    }
 }
 
-.inputClose {
+.textareaClose {
     width: 15px;
     fill: $Gray200;
 
@@ -31,7 +46,7 @@
     }
 }
 
-.inputCloseWrapper {
+.textareaCloseWrapper {
     padding: 4.5px;
     justify-content: center;
     text-align: center;

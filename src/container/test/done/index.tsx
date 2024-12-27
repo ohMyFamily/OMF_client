@@ -8,13 +8,26 @@ import { AnimateClap } from '@/components/common/TossFace';
 
 interface TestCompletedProps {
   nickname: string;
+  quizid: number;
+
 }
 
-function TestCompletedLayout({ nickname }: TestCompletedProps) {
+function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
   const navigate = useNavigate();
 
-  const handleCopy = () => {};
+  //링크 복사
+  const handleCopy = async () => {
+    const shareURL = `${window.location.origin}/grading/${quizid}`;    
 
+    try {
+      await navigator.clipboard.writeText(shareURL);
+      // alert('링크가 복사되었습니다');
+    } catch (error) {
+      console.error('클립보드 복사 실패:', error);
+    }
+  };
+
+  //처음으로 돌아가기
   const handleReset = () => {
     navigate('/main');
   };

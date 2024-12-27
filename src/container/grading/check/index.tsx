@@ -20,6 +20,7 @@ import {
   useSubmitAnswerMutation,
   useSubmitGrading,
 } from '@/apis/queries/answer';
+import { useSearchParams } from 'react-router-dom';
 
 type CheckLayoutProps = {
   handleStep: (step: string) => void;
@@ -48,8 +49,9 @@ const emoje = {
 
 export default function CheckLayout({ handleStep, setHasImage }: CheckLayoutProps) {
   const [answerList, setAnswerList] = useState<(boolean | null)[]>(Array(10).fill(null));
-
-  const { data } = useGetChildAnswer('sws', 1);
+  const [searchParams] = useSearchParams();
+  const quizid = Number(searchParams.get('quizid')); 
+  const answers = useGetChildAnswer(quizid);
 
   const mainRef = useRef<HTMLDivElement | null>(null);
 
@@ -68,13 +70,16 @@ export default function CheckLayout({ handleStep, setHasImage }: CheckLayoutProp
     handleStep('가이드');
   };
 
+
   const onClickCompleteButton = () => {
-    const apiResult = [...(answerList as boolean[])].map((item, index) => {
-      return { isCorrect: item, id: index + 1 };
-    });
+    const apiResult = [...(answerList as boolean[])].map((item, index) => ({
+      isCorrect: item,
+      id: index + 1 
+    }));
+    
     submitGrade({
       result: apiResult,
-      nickname: 'qwer',
+      quizid 
     });
   };
 
@@ -97,7 +102,7 @@ export default function CheckLayout({ handleStep, setHasImage }: CheckLayoutProp
       <AppBar leftRole="back" onClickLeftButton={onClickLeftButton} />
       <div className={$.main} ref={mainRef}>
         <div className={$.AnswerList}>
-          {data.map((item, index) => {
+        {answers.map((item, index) => {
             return (
               <GradingCard
                 title={item.title}

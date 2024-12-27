@@ -20,11 +20,13 @@ import {
   Wish,
 } from '@/components/common/TossFace';
 import { useSubmitAnswerMutation } from '@/apis/queries/answer';
+import { SubmitAnswerResponse } from '@/apis/api/test.types';
 
 interface QuestionLayoutProps {
   handleStep: (step: string) => void;
   name: string;
   familyType: string;
+  setQuizid: (quizid: number) => void;
 }
 
 const emoje = {
@@ -40,14 +42,18 @@ const emoje = {
   think: Think,
 };
 
-function QuestionLayout({ handleStep, name, familyType }: QuestionLayoutProps) {
+function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLayoutProps) {
   const [answer, setAnswer] = useState('');
   const { data } = useGetQuestion(name, familyType);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [result, setResult] = useState<(string | number)[]>([]);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
-  const successSubmitAnswer = () => {};
+  const successSubmitAnswer = (response: SubmitAnswerResponse) => {
+    const { quizid } = response.data;
+    handleStep('완료');
+    setQuizid(quizid);
+  };
 
   const failSubmitAnswer = () => {};
 

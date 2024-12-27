@@ -44,7 +44,7 @@ export const BonusStage = ({
     } else {
       onSubmit();
     }
-    // handleStep('완료');
+    handleStep('완료');
   };
 
   return (

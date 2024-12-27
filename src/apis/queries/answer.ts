@@ -1,25 +1,26 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { getAnswer, submitAnswer, submitGrade } from '../api/test';
+import { SubmitAnswerResponse } from '../api/test.types';
 
 // 자식 답변 제출
-export const useSubmitAnswerMutation = (onSuccess: () => void, onError: () => void) => {
+export const useSubmitAnswerMutation = (onSuccess: (data: SubmitAnswerResponse) => void, onError: () => void) => {
   return useMutation({
     mutationFn: submitAnswer,
     onSuccess,
     onError,
   });
-};
+ };
 
+
+ 
 //자식 답변 조회 
-export const useGetChildAnswer = (nickname: string, childId: number) => {
-  
-  const getChildAnswerFn = () => getAnswer(nickname, childId);
-  
-  return useSuspenseQuery({
-    queryKey: ['answer', nickname, childId],
-    queryFn: getChildAnswerFn, 
+export const useGetChildAnswer = (quizid: number) => {
+  const { data } = useSuspenseQuery({
+    queryKey: ['answer', quizid],
+    queryFn: () => getAnswer(quizid),
     staleTime: 5 * 60 * 1000
   });
+  return data;
 };
 
 //부모 채점 

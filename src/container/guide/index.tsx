@@ -8,6 +8,7 @@ import Guide3 from '@/assets/image/guide3.png';
 import Button from '@/components/common/Button';
 import KakaoLogo from '@/assets/svg/KakaoLogo.svg';
 import { kakaoLoginLink } from '@/constants/develop.constants';
+import BlueTitleText from '@/components/common/Item/BlueTitleText';
 
 const guideArray = [
   {
@@ -74,9 +75,9 @@ export default function GuideLayout() {
         {guideArray.map((item) => {
           return (
             <div className={$.card}>
-              <span className={$.number}>
+              <BlueTitleText size='md'>
                 <Caption1>{item.id}</Caption1>
-              </span>
+              </BlueTitleText>
               <div className={$.text}>
                 <Title3>{item.title}</Title3>
                 <Body1>{item.body}</Body1>
@@ -86,7 +87,7 @@ export default function GuideLayout() {
           );
         })}
         <Button icon={KakaoLogo} variant="kakaoLogin" onClick={onClickKakaoLoginButton}>
-          로그인 하고 테스트 시작하기
+          로그인하고 테스트 시작하기
         </Button>
       </div>
     </>

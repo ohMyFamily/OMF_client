@@ -19,11 +19,13 @@ function App() {
 
   return (
     <div className={$.Wrapper}>
-      <QueryClientProvider client={queryClient}>
-        {elem}
-        <ReactQueryDevtools />
-      </QueryClientProvider>
-      <ToastComponent />
+      <div className={$.ContentWrapper}>
+        <QueryClientProvider client={queryClient}>
+          {elem}
+          <ReactQueryDevtools />
+        </QueryClientProvider>
+        <ToastComponent />
+      </div>
     </div>
   );
 }

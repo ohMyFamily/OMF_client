@@ -5,6 +5,7 @@ import KakaoShareButton from '@/components/common/KakaoShareButton';
 import Button from '@/components/common/Button';
 import { useNavigate } from 'react-router-dom';
 import { AnimateClap } from '@/components/common/TossFace';
+import { useToast } from '@/hooks/useToast';
 
 interface TestCompletedProps {
   nickname: string;
@@ -14,6 +15,8 @@ interface TestCompletedProps {
 
 function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
   const navigate = useNavigate();
+  const { addToasts } = useToast();
+
 
   //링크 복사
   const handleCopy = async () => {
@@ -21,7 +24,7 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
 
     try {
       await navigator.clipboard.writeText(shareURL);
-      // alert('링크가 복사되었습니다');
+      addToasts('클립보드에 링크가 복사되었습니다.', { bottom: '220px'});
     } catch (error) {
       console.error('클립보드 복사 실패:', error);
     }
@@ -59,3 +62,4 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
 }
 
 export default TestCompletedLayout;
+

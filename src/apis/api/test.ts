@@ -30,11 +30,10 @@ export const submitAnswer = async (payload: any) => {
   return data;
 };
 
-export const getAnswer = async(name: string, childId: number):  Promise<QuestionResponseData[]> => {
+export const getAnswer = async(quizid: number): Promise<QuestionResponseData[]> => {
   const {data} = await instance.get('api/answer', {
-    params: {name, childId}
+    params: {quizid}
   }); 
-
   return data.data.data;
 } 
 

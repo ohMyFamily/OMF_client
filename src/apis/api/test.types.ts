@@ -24,12 +24,16 @@ export interface SubmitAnswerData extends FormData{
   answer: (string | number)[];
 }
 
-export type SubmitAnswerResponse = ApiResponseFormat<SubmitAnswerData>;
+export interface SubmitAnswerResponse {
+  data: {
+    quizid: number;
+  }
+ }
 
 export type GradingPayloadType = {
   result: {
     id: number;
     isCorrect: boolean;
   }[],
-  nickname: string;
+  quizid: number;
 }

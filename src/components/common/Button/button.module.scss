@@ -9,6 +9,7 @@
     cursor: pointer; 
     position: relative;
     @include center;
+    flex-shrink: 0;
 
     &.primary {
         background-color: $main50;

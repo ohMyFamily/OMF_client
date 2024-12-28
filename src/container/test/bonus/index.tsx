@@ -23,7 +23,7 @@ export const BonusStage = ({
   selectedImage,
   setSelectedImage,
 }: BonusStageProps) => {
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(selectedImage ? URL.createObjectURL(selectedImage) : null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageClick = () => {

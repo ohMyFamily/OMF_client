@@ -110,17 +110,19 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
   // 이미지 업로드 문제
   if (data[currentIndex].type === 'upload') {
     return (
-      <div className={classNames($.Wrapper)}>
+      <div className={classNames($.BonusStageWrapper)}>
         <AppBar leftRole="back" onClickLeftButton={handleBeforeQuestion} />
-        <BonusStage
-          content={data[currentIndex].content}
-          title={data[currentIndex].title}
-          nickname={name}
-          handleStep={handleStep}
-          onSubmit={onSubmitAnswer}
-          selectedImage={selectedImage}
-          setSelectedImage={setSelectedImage}
-        />
+        <div className={classNames($.BonusStageContainer)}>
+          <BonusStage
+            content={data[currentIndex].content}
+            title={data[currentIndex].title}
+            nickname={name}
+            handleStep={handleStep}
+            onSubmit={onSubmitAnswer}
+            selectedImage={selectedImage}
+            setSelectedImage={setSelectedImage}
+          />
+        </div>
       </div>
     );
   }
@@ -133,10 +135,20 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
           <img src={emoje[data[currentIndex].icon as keyof typeof emoje]} alt="아이콘" />
           <Title2>{data[currentIndex].title}</Title2>
           {(data[currentIndex].type === 'input' || data[currentIndex].type === 'date') && (
-            <TextareaField text={answer} setText={setAnswer} label={data[currentIndex].content} inputMode='text'/>
+            <TextareaField
+              text={answer}
+              setText={setAnswer}
+              label={data[currentIndex].content}
+              inputMode="text"
+            />
           )}
-          {(data[currentIndex].type === 'number') && (
-            <TextareaField text={answer} setText={setAnswer} label={data[currentIndex].content} inputMode='numeric'/>
+          {data[currentIndex].type === 'number' && (
+            <TextareaField
+              text={answer}
+              setText={setAnswer}
+              label={data[currentIndex].content}
+              inputMode="numeric"
+            />
           )}
           {data[currentIndex].type === 'select' && (
             <div className={$.buttonLayout}>
@@ -149,7 +161,9 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
             </div>
           )}
         </div>
-        {(data[currentIndex].type === 'input' || data[currentIndex].type === 'number' || data[currentIndex].type === 'date') && (
+        {(data[currentIndex].type === 'input' ||
+          data[currentIndex].type === 'number' ||
+          data[currentIndex].type === 'date') && (
           <Button variant="secondary" onClick={handleNextQuestion} disabled={disabled}>
             다음 문제 ({data[currentIndex].id}/10)
           </Button>

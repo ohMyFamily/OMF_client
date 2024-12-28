@@ -31,7 +31,7 @@ export const submitAnswer = async (payload: any) => {
 };
 
 export const getAnswer = async(quizid: number): Promise<QuestionResponseData[]> => {
-  const {data} = await instance.get('api/answer/${quizid}', {
+  const {data} = await instance.get('api/answer', {
     params: {quizid}
   }); 
   return data.data.data;

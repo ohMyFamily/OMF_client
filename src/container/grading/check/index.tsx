@@ -20,7 +20,7 @@ import {
   useSubmitAnswerMutation,
   useSubmitGrading,
 } from '@/apis/queries/answer';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 type CheckLayoutProps = {
   handleStep: (step: string) => void;
@@ -49,9 +49,9 @@ const emoje = {
 
 export default function CheckLayout({ handleStep, setHasImage }: CheckLayoutProps) {
   const [answerList, setAnswerList] = useState<(boolean | null)[]>(Array(10).fill(null));
-  const [searchParams] = useSearchParams();
-  const quizid = Number(searchParams.get('quizid')); 
-  const answers = useGetChildAnswer(quizid);
+  const {quizid} = useParams();
+
+  const answers = useGetChildAnswer(Number(quizid));
 
   const mainRef = useRef<HTMLDivElement | null>(null);
 
@@ -79,7 +79,7 @@ export default function CheckLayout({ handleStep, setHasImage }: CheckLayoutProp
     
     submitGrade({
       result: apiResult,
-      quizid 
+      quizid: Number(quizid) 
     });
   };
 
@@ -96,6 +96,8 @@ export default function CheckLayout({ handleStep, setHasImage }: CheckLayoutProp
       });
     }
   }, [answerList]);
+
+
 
   return (
     <div className={$.layout}>

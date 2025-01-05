@@ -10,7 +10,6 @@ import { useSearchParams } from 'react-router-dom';
 
 export default function Grading() {
   const [searchParams] = useSearchParams();
-  const userId = searchParams.get('userId');
   const nickname = searchParams.get('nickname');
 
   const step = ['메인', '가이드', '채점', '완료'];
@@ -21,10 +20,18 @@ export default function Grading() {
   return (
     <Funnel>
       <Funnel.Steps name="메인">
-        <MainLayout handleStep={handleStep} nickname={nickname} />
+      <Suspense fallback={<Spinner />}>
+
+        <MainLayout handleStep={handleStep} />
+        </Suspense>
+
       </Funnel.Steps>
       <Funnel.Steps name="가이드">
-        <GuideLayout handleStep={handleStep} nickname={nickname!} />
+      <Suspense fallback={<Spinner />}>
+
+        <GuideLayout handleStep={handleStep} />
+        </Suspense>
+
       </Funnel.Steps>
       <Funnel.Steps name="채점">
         <Suspense fallback={<Spinner />}>

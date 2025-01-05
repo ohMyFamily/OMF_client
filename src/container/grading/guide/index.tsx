@@ -5,13 +5,17 @@ import $ from './guide.module.scss';
 import { Body2 } from '@/components/common/Typography';
 import Button from '@/components/common/Button';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useGetUserNames } from '@/apis/queries/user';
 
 type GuideLayoutProps = {
   handleStep: (step: string) => void;
-  nickname: string | null;
 };
 
-export default function GuideLayout({ handleStep, nickname }: GuideLayoutProps) {
+export default function GuideLayout({ handleStep }: GuideLayoutProps) {
+  const {quizid} = useParams();
+  const names = useGetUserNames(Number(quizid));
+
   const [sample, setSample] = useState<(boolean | null)[]>([null]);
   const onClickLeftButton = () => {
     handleStep('메인');
@@ -25,7 +29,7 @@ export default function GuideLayout({ handleStep, nickname }: GuideLayoutProps) 
     <div className={$.layout}>
       <AppBar leftRole="back" onClickLeftButton={onClickLeftButton} className={$.appBar} />
       <GradingCard
-        title={`아래는 ${nickname}이가
+        title={`아래는 ${names.kakao_nickname}이가
          나에 대해 답한 내용입니다.`}
         cardImage={Call}
         cardNumber="연습문제"

@@ -1,7 +1,7 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { setAuthToken } from '@/apis/instance';
-import { getUserInfo, kakaoLogin } from '../api/auth';
+import { getUserInfo, getUserNames, kakaoLogin } from '../api/auth';
 
 
 export const useKakaoLoginQuery = () => {
@@ -24,3 +24,13 @@ export const useGetUserInfo = () => {
         select: (response) => response.data
     })
 }
+
+export const useGetUserNames = (quizid: number) => {
+    const { data } = useSuspenseQuery({
+      queryKey: ['userNames', quizid],
+      queryFn: () => getUserNames(quizid),
+      staleTime: 5 * 60 * 1000
+    });
+    return data.data;
+  };
+

@@ -19,9 +19,10 @@ export interface QuestionResponseData {
 }
 
 // 답변 제출 타입
-export interface SubmitAnswerData extends FormData{ 
+export interface SubmitAnswerPayload {
   name: string;
   answer: (string | number)[];
+  image?: string; 
 }
 
 export interface SubmitAnswerResponse {

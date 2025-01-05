@@ -21,6 +21,7 @@ import {
 } from '@/components/common/TossFace';
 import { useSubmitAnswerMutation } from '@/apis/queries/answer';
 import { SubmitAnswerResponse } from '@/apis/api/test.types';
+import { uploadImage } from '@/apis/api/test';
 
 interface QuestionLayoutProps {
   handleStep: (step: string) => void;
@@ -93,12 +94,17 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
   };
 
   //답안 제출 버튼
-  const onSubmitAnswer = () => {
-    const formData = new FormData();
-    formData.append('image', selectedImage as Blob);
-    formData.append('name', name);
-    formData.append('answer', result as unknown as Blob);
-    submitAnswer(formData);
+  const onSubmitAnswer = async () => {
+    let image;
+    if (selectedImage) {
+      const imageResponse = await uploadImage(selectedImage);
+      image = imageResponse.data;
+    }
+      submitAnswer({
+      name,
+      answer: result,
+      image 
+    });
   };
 
   //답 입력 버튼

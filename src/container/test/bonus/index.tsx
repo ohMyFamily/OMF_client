@@ -5,6 +5,7 @@ import BlueTitleText from '@/components/common/Item/BlueTitleText';
 import { Body1, Caption1, Title2 } from '@/components/common/Typography';
 import Button from '@/components/common/Button';
 import { QuestionLayoutType } from '@/pages/test';
+import { useUploadImageMutation } from '@/apis/queries/answer';
 
 interface BonusStageProps extends QuestionLayoutType {
   nickname: string;
@@ -23,8 +24,9 @@ export const BonusStage = ({
   selectedImage,
   setSelectedImage,
 }: BonusStageProps) => {
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(selectedImage ? URL.createObjectURL(selectedImage) : null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { mutateAsync: uploadImage } = useUploadImageMutation();
 
   const handleImageClick = () => {
     fileInputRef.current?.click();
@@ -32,19 +34,26 @@ export const BonusStage = ({
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    const url = URL.createObjectURL(file!);
-    setPreviewUrl(url);
-    setSelectedImage(file!);
+    if (file) {
+      const url = URL.createObjectURL(file!);
+      setPreviewUrl(url);
+      setSelectedImage(file!);
+    }
   };
 
-  // 이미지 첨부를 한 경우, 하지 않은 경우
   const handleComplete = async () => {
-    if (selectedImage) {
-      onSubmit(previewUrl || undefined);
-    } else {
-      onSubmit();
+    try {
+      let image;
+      if (selectedImage) {
+        const response = await uploadImage(selectedImage);
+        image = response.data; 
+      }
+      // image가 없으면 image는 undefined인 상태로 onSubmit 호출
+      onSubmit(image);
+      handleStep('완료');
+    } catch (error) {
+      console.error('업로드 실패:', error);
     }
-    handleStep('완료');
   };
 
   return (

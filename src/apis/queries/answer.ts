@@ -1,5 +1,5 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
-import { getAnswer, submitAnswer, submitGrade } from '../api/test';
+import { getAnswer, submitAnswer, submitGrade, uploadImage } from '../api/test';
 import { SubmitAnswerResponse } from '../api/test.types';
 
 // 자식 답변 제출
@@ -11,7 +11,15 @@ export const useSubmitAnswerMutation = (onSuccess: (data: SubmitAnswerResponse) 
   });
  };
 
-
+// 이미지 업로드 
+export const useUploadImageMutation = () => {
+  return useMutation({
+    mutationFn: uploadImage,
+    onError: (error) => {
+      console.log('이미지 업로드 실패');
+    }
+  });
+};
  
 //자식 답변 조회 
 export const useGetChildAnswer = (quizid: number) => {

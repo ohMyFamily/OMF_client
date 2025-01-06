@@ -10,6 +10,7 @@ import HomePage from '@/pages/homepage';
 import Index from '@/pages/index';
 import Redirection from '@/pages/redirection';
 import Test from './pages/test';
+import EmptyScoreLayout from './container/check-score/emptyScore';
 
 export const routes = [
   {
@@ -25,6 +26,7 @@ export const routes = [
           { path: ':id', element: <CheckScoreDetail /> },
         ],
       },
+      { path: 'empty', element: <EmptyScoreLayout /> },
       // 임시
       { path: 'detail', element: <CheckScoreDetail /> },
       { path: 'guide', element: <Guide /> },

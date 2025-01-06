@@ -33,14 +33,17 @@ function Test() {
       </Funnel.Steps>
       <Funnel.Steps name="질문">
         <Suspense fallback={<Spinner />}>
-          <QuestionLayout handleStep={handleStep} name={name}  familyType={selectedType} setQuizid={setQuizid}/>
+          <QuestionLayout
+            handleStep={handleStep}
+            name={name}
+            familyType={selectedType}
+            setQuizid={setQuizid}
+          />
         </Suspense>
       </Funnel.Steps>
       <Funnel.Steps name="완료">
-      <TestCompletedLayout 
-         nickname={name} 
-         quizid={quizid!} 
-       />      </Funnel.Steps>
+        <TestCompletedLayout nickname={name} quizid={quizid!} />{' '}
+      </Funnel.Steps>
     </Funnel>
   );
 }

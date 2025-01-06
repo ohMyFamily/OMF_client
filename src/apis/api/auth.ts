@@ -13,3 +13,13 @@ export const getUserInfo = async() => {
 
     return data;
 }
+
+// 채점 페이지에서 카카오이름, 애칭 정보 가져오기
+export const getUserNames = async (quizid: number) => {
+    const { data } = await instance.get(`/api/user`, {
+        params: {
+            quizid: quizid
+        }
+    });
+    return data;
+};

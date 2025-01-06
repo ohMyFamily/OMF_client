@@ -25,6 +25,7 @@ import { useParams } from 'react-router-dom';
 type CheckLayoutProps = {
   handleStep: (step: string) => void;
   setHasImage: Dispatch<SetStateAction<boolean>>;
+  setImageUrl: Dispatch<SetStateAction<string>>;
 };
 
 export type AnswerCardType = {
@@ -47,11 +48,18 @@ const emoje = {
   think: Think,
 };
 
-export default function CheckLayout({ handleStep, setHasImage }: CheckLayoutProps) {
+export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: CheckLayoutProps) {
   const [answerList, setAnswerList] = useState<(boolean | null)[]>(Array(10).fill(null));
   const {quizid} = useParams();
 
-  const answers = useGetChildAnswer(Number(quizid));
+  const { answers, imageUrl } = useGetChildAnswer(Number(quizid));
+  useEffect(() => {
+    setHasImage(!!imageUrl);
+    if (imageUrl) {
+      setImageUrl(imageUrl);
+      console.log(imageUrl);
+    }
+  }, [imageUrl, setHasImage, setImageUrl]);
 
   const mainRef = useRef<HTMLDivElement | null>(null);
 
@@ -64,8 +72,11 @@ export default function CheckLayout({ handleStep, setHasImage }: CheckLayoutProp
     console.log('채점 실패');
   };
 
-  const { mutate: submitGrade } = useSubmitGrading();
-
+  const { mutate: submitGrade } = useSubmitGrading(
+    onSuccessSubmitGrade,
+    onErrorSubmitGrade
+  );
+  
   const onClickLeftButton = () => {
     handleStep('가이드');
   };

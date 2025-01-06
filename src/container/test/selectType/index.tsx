@@ -1,6 +1,6 @@
 import AppBar from '@/components/common/AppBar';
 import Button from '@/components/common/Button';
-import { Title2, Body1 } from '@/components/common/Typography';
+import { Title2, Body2 } from '@/components/common/Typography';
 import classNames from 'classnames';
 import $ from './selectType.module.scss';
 import { useNavigate } from 'react-router-dom';
@@ -27,11 +27,11 @@ function SelectTypeLayout({ handleStep, setSelectedType }: SelectTypeLayoutProps
       <AppBar leftRole="back" onClickLeftButton={onClickLeftButton} />
       <div className={classNames($.TextWrapper)}>
         <Title2>누구에 대해 알아볼까요?</Title2>
-        <Body1>
+        <Body2>
           선택한 사람에 대해
           <br />
           간단한 퀴즈 10개를 풀어볼 거예요.
-        </Body1>
+        </Body2>
       </div>
       <div className={classNames($.ButtonWrapper)}>
         <Button variant="primary" onClick={() => handleNavigate('mom')}>

@@ -2,7 +2,7 @@ import $ from './checkScoreDetail.module.scss';
 import classNames from 'classnames';
 import AppBar from '@/components/common/AppBar';
 import { useNavigate } from 'react-router-dom';
-import { Body1, Title2 } from '@/components/common/Typography';
+import { Body2, Title2 } from '@/components/common/Typography';
 import GradingCard from '@/components/common/Card/GradingCard';
 import ResultCard from '@/components/common/Card/ResultCard';
 import AnimateCardSample from '@/components/domain/CheckScore/AnimateCardSample';
@@ -52,7 +52,7 @@ export default function CheckScoreDetailLayout({
             description={description}
             variant="score"
           />
-          <Body1>{explanation}</Body1>
+          <Body2>{explanation}</Body2>
         </div>
         <div className={classNames($.AnimateCard)}>
           <Title2>더 많은 카드를 수집해보세요!</Title2>

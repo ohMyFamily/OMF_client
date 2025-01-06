@@ -3,7 +3,7 @@ import $ from './gradingcard.module.scss';
 import ScoreButton from '../Item/ScoreButton';
 import Title3 from '../Typography/Title3';
 import Caption1 from '../Typography/Caption1';
-import Body1 from '../Typography/Body1';
+import Body2 from '../Typography/Body3';
 import { TOTAL_QUESTION } from '@/constants/business.constants';
 import BlueTitleText from '../Item/BlueTitleText';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
@@ -47,7 +47,7 @@ function GradingCard({
         <Title3>{title}</Title3>
       </div>
       <div className={classNames($.answerWrapper)}>
-        <Body1>{answer}</Body1>
+        <Body2>{answer}</Body2>
       </div>
       <div className={classNames($.ScoreButton)}>
         <ScoreButton state={correctState} setState={setCorrectState} />

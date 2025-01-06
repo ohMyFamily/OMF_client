@@ -1,7 +1,7 @@
 import AppBar from '@/components/common/AppBar';
 import $ from './guide.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { Body1, Caption1, Title2, Title3 } from '@/components/common/Typography';
+import { Body2, Caption1, Title2, Title3 } from '@/components/common/Typography';
 import Guide1 from '@/assets/image/guide1.png';
 import Guide2 from '@/assets/image/guide2.png';
 import Guide3 from '@/assets/image/guide3.png';
@@ -64,14 +64,14 @@ export default function GuideLayout() {
             만나서 반가워요! <br /> Oh my family를 소개할게요.
           </Title2>
         </div>
-        <Body1>
+        <Body2>
           부모님 또는 다른 가족에 대한 <br />
           간단한 퀴즈를 풀 수 있는 서비스에요.
           <br />
           학업, 독립등의 이유로 가족과 소원해진 분들을 위해
           <br />
           만들었어요. 자세한 이용 방법을 알려드릴게요!
-        </Body1>
+        </Body2>
         {guideArray.map((item) => {
           return (
             <div className={$.card}>
@@ -80,7 +80,7 @@ export default function GuideLayout() {
               </BlueTitleText>
               <div className={$.text}>
                 <Title3>{item.title}</Title3>
-                <Body1>{item.body}</Body1>
+                <Body2>{item.body}</Body2>
               </div>
               <img src={item.image} alt="가이드 이미지" />
             </div>

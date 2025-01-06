@@ -2,13 +2,13 @@ import Button from '@/components/common/Button';
 import KakaoLogo from '@/assets/svg/KakaoLogo.svg';
 import Caption1 from '@/components/common/Typography/Caption1';
 import Title1 from '@/components/common/Typography/Title1';
-import Body2 from '@/components/common/Typography/Body2';
 import classNames from 'classnames';
 import $ from './login.module.scss';
 import { kakaoLoginLink } from '@/constants/develop.constants';
 import BackgroundSVG from '@/components/common/Item/BackgroundSVG';
 import BlueTitleText from '@/components/common/Item/BlueTitleText';
 import { useNavigate } from 'react-router-dom';
+import { Body3 } from '@/components/common/Typography';
 
 export default function LoginLayout() {
   const navigate = useNavigate();
@@ -34,11 +34,11 @@ export default function LoginLayout() {
               <br />
               어디까지 알고 있나요?
             </Title1>
-            <Body2>
+            <Body3>
               그동안 무심한 듯 카네이션만 챙겼다면
               <br />
               올해는 단란한 시간을 선물해보세요.
-            </Body2>
+            </Body3>
           </div>
           <div className={classNames($.ButtonContainer)}>
             <Button variant="kakaoLogin" onClick={handleKakaoLogin} icon={KakaoLogo}>

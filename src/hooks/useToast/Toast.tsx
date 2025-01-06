@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import $ from './toast.module.scss';
 import { ToastType } from '.';
-import { Body2 } from '@/components/common/Typography';
+import { Body3 } from '@/components/common/Typography';
 import classNames from 'classnames';
 import React from 'react';
 
@@ -31,7 +31,7 @@ function Toast({ content, id, deleteToast, style}: ToastProps) {
       })}
       style={style}
     >
-      <Body2>{content}</Body2>
+      <Body3>{content}</Body3>
     </span>
   );
 }

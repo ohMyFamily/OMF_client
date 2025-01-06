@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import $ from './answerlistitem.module.scss';
-import { Body2, Button1 } from '../Typography';
+import { Body3, Button1 } from '../Typography';
 
 interface AnswerListItemProps {
   id: number;
@@ -38,7 +38,7 @@ function AnswerListItem({
           <Button1>{isOpen ? `${score}점!` : nickname}</Button1>
         </span>
         <div className={classNames($.message)}>
-          <Body2>{isOpen ? `${nickname}님이 채점한 답안지` : `채점한 답안지가 도착했어요!`}</Body2>
+          <Body3>{isOpen ? `${nickname}님이 채점한 답안지` : `채점한 답안지가 도착했어요!`}</Body3>
         </div>
       </div>
     </div>

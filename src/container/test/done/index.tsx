@@ -1,4 +1,4 @@
-import { Body1, Title2 } from '@/components/common/Typography';
+import { Body2, Title2 } from '@/components/common/Typography';
 import $ from './done.module.scss';
 import classNames from 'classnames';
 import KakaoShareButton from '@/components/common/KakaoShareButton';
@@ -41,10 +41,10 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
         <img src={AnimateClap} alt="박수 이미지" />
 
         <Title2>문제를 다 풀었어요!</Title2>
-        <Body1>
+        <Body2>
           답안지를 {nickname}에게 보내서
           <br /> 채점을 받아볼까요?
-        </Body1>
+        </Body2>
       </div>
 
       <div className={classNames($.ButtonContainer)}>

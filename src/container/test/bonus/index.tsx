@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { useState, useRef, Dispatch, SetStateAction } from 'react';
 import $ from './bonus.module.scss';
 import BlueTitleText from '@/components/common/Item/BlueTitleText';
-import { Body1, Caption1, Title2 } from '@/components/common/Typography';
+import { Body2, Caption1, Title2 } from '@/components/common/Typography';
 import Button from '@/components/common/Button';
 import { QuestionLayoutType } from '@/pages/test';
 import { useUploadImageMutation } from '@/apis/queries/answer';
@@ -62,7 +62,7 @@ export const BonusStage = ({
         <Caption1>BONUS STAGE</Caption1>
       </BlueTitleText>
       <Title2>{title}</Title2>
-      <Body1>{content}</Body1>
+      <Body2>{content}</Body2>
 
       <input
         type="file"
@@ -79,11 +79,11 @@ export const BonusStage = ({
       >
         {!previewUrl && (
           <div className={$.textWrapper}>
-            <Body1>
+            <Body2>
               탭하여 업로드하기
               <br />
               이미지만 업로드 가능
-            </Body1>
+            </Body2>
           </div>
         )}
       </div>

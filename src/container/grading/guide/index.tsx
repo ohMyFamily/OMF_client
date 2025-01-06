@@ -2,7 +2,7 @@ import AppBar from '@/components/common/AppBar';
 import GradingCard from '@/components/common/Card/GradingCard';
 import Call from '@/assets/svg/Tossface/Call.svg';
 import $ from './guide.module.scss';
-import { Body2 } from '@/components/common/Typography';
+import { Body3 } from '@/components/common/Typography';
 import Button from '@/components/common/Button';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -40,13 +40,13 @@ export default function GuideLayout({ handleStep }: GuideLayoutProps) {
         index={0}
       />
       <div className={$.textWrapper}>
-        <Body2>
+        <Body3>
           채점할 준비가 되었다면
           <br />
           정답이에요 또는 틀렸어요 중 아무거나 눌러보세요.
           <br />
           아래 버튼이 활성화됩니다!
-        </Body2>
+        </Body3>
       </div>
       <div className={$.nextButton}>
         <Button variant="secondary" onClick={onClickStartCheck} disabled={sample[0] === null}>

@@ -27,12 +27,12 @@ export default function MainLayout({ handleStep }: MainLayoutProps) {
             <Caption1>가정의 달 이벤트</Caption1>
           </BlueTitleText>
           <Title1>
-            {names.kakao_nickname}이가 직접 푼
+            {names.kakao_nickname}이 직접 푼
             <br />
             {names.nickname} 10문 10답
           </Title1>
           <Body2>
-          {names.kakao_nickname}이가 나에 대한 간단한 퀴즈 10개를 풀었어요.
+          {names.kakao_nickname}이 나에 대한 간단한 퀴즈 10개를 풀었어요.
             <br />
             정답은 오로지 나만 알고 있답니다!
             <br />

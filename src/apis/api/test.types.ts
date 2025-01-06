@@ -25,6 +25,13 @@ export interface SubmitAnswerPayload {
   image?: string; 
 }
 
+
+// 자식 답변 호출 타입
+export interface AnswerResponseData {
+  image?: string;
+  data: QuestionResponseData[];
+}
+
 export interface SubmitAnswerResponse {
   data: {
     quizid: number;

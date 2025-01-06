@@ -5,12 +5,18 @@ import { Body1, Title2 } from '@/components/common/Typography';
 import { Angel } from '@/components/common/TossFace';
 import sample from '@/assets/image/splash1.png';
 import ButtonLayout from '@/components/domain/grading/buttonLayout';
+import { useParams } from 'react-router-dom';
+import { useGetUserNames } from '@/apis/queries/user';
 
 type HasImageProps = {
   handleStep: (step: string) => void;
+  imageUrl?: string;
 };
 
-export default function HasImage({ handleStep }: HasImageProps) {
+export default function HasImage({ handleStep, imageUrl }: HasImageProps) {
+  const {quizid} = useParams();
+  const names = useGetUserNames(Number(quizid));
+  
   const [step, setStep] = useState<number>(0);
 
   useEffect(() => {
@@ -28,7 +34,7 @@ export default function HasImage({ handleStep }: HasImageProps) {
         {step === 1 && (
           <div className={$.step2}>
             <Title2>
-              닉네임이 수줍게 <br /> 간직하고 있는 나의 사진입니다.
+              {names.kakao_nickname}이 수줍게 <br /> 간직하고 있는 나의 사진입니다.
             </Title2>
             <div className={$.text}>
               <Body1>
@@ -36,7 +42,7 @@ export default function HasImage({ handleStep }: HasImageProps) {
               </Body1>
             </div>
             <div className={$.image}>
-              <img src={sample} />
+            <img src={imageUrl || sample} alt="자식 업로드 이미지" /> 
             </div>
             <ButtonLayout />
           </div>

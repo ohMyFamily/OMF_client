@@ -11,6 +11,7 @@ export default function Grading() {
   const step = ['메인', '가이드', '채점', '완료'];
   const { FunnelComponent: Funnel, handleStep } = useFunnel(step, {});
   const [hasImage, setHasImage] = useState<boolean>(false);
+  const [imageUrl, setImageUrl] = useState<string>('');
 
   return (
     <Funnel>
@@ -26,11 +27,21 @@ export default function Grading() {
       </Funnel.Steps>
       <Funnel.Steps name="채점">
         <Suspense fallback={<Spinner />}>
-          <CheckLayout handleStep={handleStep} setHasImage={setHasImage} />
+          <CheckLayout
+            handleStep={handleStep}
+            setHasImage={setHasImage}
+            setImageUrl={setImageUrl}
+          />
         </Suspense>
       </Funnel.Steps>
       <Funnel.Steps name="완료">
-        {hasImage ? <HasImage handleStep={handleStep} /> : <NoImage handleStep={handleStep} />}
+        <Suspense fallback={<Spinner />}>
+          {hasImage ? (
+            <HasImage handleStep={handleStep} imageUrl={imageUrl} />
+          ) : (
+            <NoImage handleStep={handleStep} />
+          )}
+        </Suspense>
       </Funnel.Steps>
     </Funnel>
   );

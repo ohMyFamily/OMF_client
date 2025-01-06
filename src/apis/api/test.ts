@@ -1,8 +1,10 @@
 import { instance } from '../instance'; 
+import { ApiResponseFormat } from './api.types';
 import {
   GradingPayloadType,
   QuestionResponseData,
-  SubmitAnswerPayload,  
+  SubmitAnswerPayload,
+  AnswerResponseData  
 } from './test.types'; 
  
 
@@ -41,11 +43,11 @@ export const uploadImage = async (image: File) => {
 };
 
  // 답변 조회
-export const getAnswer = async(quizid: number): Promise<QuestionResponseData[]> => {
+ export const getAnswer = async(quizid: number): Promise<ApiResponseFormat<AnswerResponseData>> => {
   const {data} = await instance.get('api/answer', {
     params: {quizid}
   }); 
-  return data.data.data;
+  return data;
 } 
 
  // 채점하기

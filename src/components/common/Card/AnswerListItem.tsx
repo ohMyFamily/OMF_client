@@ -4,9 +4,8 @@ import { Body3, Button1 } from '../Typography';
 
 interface AnswerListItemProps {
   id: number;
-  nickname: string;
+  name: string;
   score: number;
-  cardImage?: string;
   icon?: string;
   isOpen: boolean;
   handleClick: (id: number) => void;
@@ -14,9 +13,8 @@ interface AnswerListItemProps {
 
 function AnswerListItem({
   id,
-  nickname,
+  name,
   score,
-  cardImage,
   icon,
   isOpen,
   handleClick,
@@ -28,17 +26,13 @@ function AnswerListItem({
       })}
       onClick={() => handleClick(id)}
     >
-      {cardImage ? (
-        <img src={cardImage} alt={`${nickname}의 사진`} />
-      ) : (
-        <img src={icon} alt={`${nickname}의 점수`} />
-      )}
+      <img src={icon} alt={`${name}의 점수`} />
       <div className={classNames($.description)}>
         <span>
-          <Button1>{isOpen ? `${score}점!` : nickname}</Button1>
+          <Button1>{isOpen ? `${score}점!` : name}</Button1>
         </span>
         <div className={classNames($.message)}>
-          <Body3>{isOpen ? `${nickname}님이 채점한 답안지` : `채점한 답안지가 도착했어요!`}</Body3>
+          <Body3>{isOpen ? `${name}님이 채점한 답안지` : `채점한 답안지가 도착했어요!`}</Body3>
         </div>
       </div>
     </div>

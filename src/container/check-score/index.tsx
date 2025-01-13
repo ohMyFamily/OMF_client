@@ -46,7 +46,7 @@ export default function CheckScoreLayout() {
               name={item.name}
               score={Number(item.score)}
               icon={item.icon}
-              isOpen={item.isCheck}
+              ischeck={item.ischeck}
               handleClick={handleItemClick}
             />
           ))}

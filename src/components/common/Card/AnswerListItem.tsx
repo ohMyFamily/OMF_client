@@ -7,7 +7,7 @@ interface AnswerListItemProps {
   name: string;
   score: number;
   icon?: string;
-  isOpen: boolean;
+  ischeck: boolean;
   handleClick: (id: number) => void;
 }
 
@@ -16,23 +16,23 @@ function AnswerListItem({
   name,
   score,
   icon,
-  isOpen,
+  ischeck,
   handleClick,
 }: AnswerListItemProps) {
   return (
     <div
       className={classNames($.answerContainer, {
-        [$.openState]: isOpen,
+        [$.openState]: ischeck,
       })}
       onClick={() => handleClick(id)}
     >
       <img src={icon} alt={`${name}의 점수`} />
       <div className={classNames($.description)}>
         <span>
-          <Button1>{isOpen ? `${score}점!` : name}</Button1>
+          <Button1>{ischeck ? `${score}점!` : name}</Button1>
         </span>
         <div className={classNames($.message)}>
-          <Body3>{isOpen ? `${name}님이 채점한 답안지` : `채점한 답안지가 도착했어요!`}</Body3>
+          <Body3>{ischeck ? `${name}님이 채점한 답안지` : `채점한 답안지가 도착했어요!`}</Body3>
         </div>
       </div>
     </div>

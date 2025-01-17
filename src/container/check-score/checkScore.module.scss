@@ -3,6 +3,15 @@
 
 .Wrapper {
   padding: 0 20px;
+  height: 100dvh;
+}
+
+.Container {
+  overflow: scroll;
+  height: calc(100dvh - 48px);
+  &::-webkit-scrollbar {
+      display: none;
+  }
 }
 
 .TextContainer {
@@ -19,8 +28,10 @@
     color: $Gray300;
   }
 }
+
 .ListContainer {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 100px;
 }

@@ -30,10 +30,10 @@
     @include typography(0, 600, 16px, none, 22px);
 }
 .button2 {
-    @include typography(0, normal, 14px, none, 22px);
+    @include typography(0, normal, 14px, none, 20px);
     &.underline {    
         border-bottom: 1px solid var(--underline-color, $Gray200);
-        padding-bottom: 1px;    }
+    }
 } 
 .body1 {
     @include typography(0, normal, 18px, none, 28px);

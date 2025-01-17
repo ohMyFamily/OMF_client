@@ -12,6 +12,8 @@ export interface ResultCardProps {
   isHas?: boolean;
 }
 const ResultCard = ({ score, image, title, description, variant, isHas }: ResultCardProps) => {
+  // 점수가 80점인 경우(홍진효)
+
   return (
     <div
       className={classNames($.resultcard, {
@@ -33,7 +35,8 @@ const ResultCard = ({ score, image, title, description, variant, isHas }: Result
         })}
       >
         <Title2>{title}</Title2>
-        {variant === 'score' && <Body3>{description}</Body3>}
+        {variant === 'score' &&
+          (score === 80 ? <Title2>{description}</Title2> : <Body3>{description}</Body3>)}{' '}
       </div>
     </div>
   );

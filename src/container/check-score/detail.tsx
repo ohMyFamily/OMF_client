@@ -1,30 +1,18 @@
 import $ from './checkScoreDetail.module.scss';
 import classNames from 'classnames';
 import AppBar from '@/components/common/AppBar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Body2, Title2 } from '@/components/common/Typography';
-import GradingCard from '@/components/common/Card/GradingCard';
 import ResultCard from '@/components/common/Card/ResultCard';
 import AnimateCardSample from '@/components/domain/CheckScore/AnimateCardSample';
 import Button from '@/components/common/Button';
-import KakaoLogo from '@/assets/svg/KakaoLogo.svg';
-import { ResultCardProps } from '@/components/common/Card/ResultCard';
 import KakaoShareButton from '@/components/common/KakaoShareButton';
+import { useScoreDetail } from '@/apis/queries/score';
 
-interface CheckScoreDetailProps extends ResultCardProps {
-  nickname: string;
-  explanation: string;
-}
-
-export default function CheckScoreDetailLayout({
-  score,
-  nickname,
-  image,
-  title,
-  description,
-  explanation,
-}: CheckScoreDetailProps) {
+export default function CheckScoreDetailLayout() {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const data = useScoreDetail(Number(id));
 
   const onBack = () => {
     navigate(-1);
@@ -36,26 +24,33 @@ export default function CheckScoreDetailLayout({
 
   return (
     <div className={classNames($.Wrapper)}>
-      <AppBar leftRole="back" onClickLeftButton={onBack} />
+      <div className={classNames($.PaddingContainer)}>
+        <AppBar leftRole="back" onClickLeftButton={onBack} />
+      </div>
+
       <div className={classNames($.Container)}>
         <div className={classNames($.ItemContainer)}>
           <div className={classNames($.Title)}>
             <Title2>
-              {nickname}가
+              {data.name}가
               <br /> 채점한 내 점수는?
             </Title2>
           </div>
           <ResultCard
-            score={score}
-            image={image}
-            title={title}
-            description={description}
+            score={data.score}
+            image={data.icon}
+            title={data.title}
+            description={data.subtitle}
             variant="score"
           />
-          <Body2>{explanation}</Body2>
+          <Body2>{data.content}</Body2>
         </div>
+
         <div className={classNames($.AnimateCard)}>
-          <Title2>더 많은 카드를 수집해보세요!</Title2>
+          <div className={classNames($.PaddingContainer)}>
+            <Title2>더 많은 카드를 수집해보세요!</Title2>
+          </div>
+
           <AnimateCardSample />
         </div>
 

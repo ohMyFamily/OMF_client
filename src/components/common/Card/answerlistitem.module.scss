@@ -19,6 +19,7 @@
   img {
     @include size(60px, 60px);
     border-radius: 12px;
+    object-fit: cover;
   }
 }
 

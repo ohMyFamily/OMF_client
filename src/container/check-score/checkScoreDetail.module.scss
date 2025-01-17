@@ -2,14 +2,22 @@
 @use '@/styles/mixin.scss' as *;
 
 .Wrapper {
+  height: 100dvh;
+}
+
+.PaddingContainer {
   padding: 0 20px;
-  height: 100%;
 }
 
 .Container {
   height: calc(100% - 48px);
   padding-top: 24px;
   padding-bottom: 83px;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+      display: none;
+      
+  }
 }
 
 .ItemContainer {
@@ -20,6 +28,7 @@
   p {
     color: $Gray300;
     margin-top: 24px;
+    white-space: pre-wrap;
   }
 }
 
@@ -36,4 +45,5 @@
   @include center;
   flex-direction: column;
   gap: 12px;
+  padding: 0 20px;
 }

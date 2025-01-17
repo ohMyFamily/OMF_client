@@ -2,16 +2,20 @@ import AppBar from '@/components/common/AppBar';
 import GradingCard from '@/components/common/Card/GradingCard';
 import Call from '@/assets/svg/Tossface/Call.svg';
 import $ from './guide.module.scss';
-import { Body2 } from '@/components/common/Typography';
+import { Body3 } from '@/components/common/Typography';
 import Button from '@/components/common/Button';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useGetUserNames } from '@/apis/queries/user';
 
 type GuideLayoutProps = {
   handleStep: (step: string) => void;
-  nickname: string | null;
 };
 
-export default function GuideLayout({ handleStep, nickname }: GuideLayoutProps) {
+export default function GuideLayout({ handleStep }: GuideLayoutProps) {
+  const {quizid} = useParams();
+  const names = useGetUserNames(Number(quizid));
+
   const [sample, setSample] = useState<(boolean | null)[]>([null]);
   const onClickLeftButton = () => {
     handleStep('메인');
@@ -25,7 +29,7 @@ export default function GuideLayout({ handleStep, nickname }: GuideLayoutProps) 
     <div className={$.layout}>
       <AppBar leftRole="back" onClickLeftButton={onClickLeftButton} className={$.appBar} />
       <GradingCard
-        title={`아래는 ${nickname}이가
+        title={`아래는 ${names.kakao_nickname}이
          나에 대해 답한 내용입니다.`}
         cardImage={Call}
         cardNumber="연습문제"
@@ -36,13 +40,13 @@ export default function GuideLayout({ handleStep, nickname }: GuideLayoutProps) 
         index={0}
       />
       <div className={$.textWrapper}>
-        <Body2>
+        <Body3>
           채점할 준비가 되었다면
           <br />
           정답이에요 또는 틀렸어요 중 아무거나 눌러보세요.
           <br />
           아래 버튼이 활성화됩니다!
-        </Body2>
+        </Body3>
       </div>
       <div className={$.nextButton}>
         <Button variant="secondary" onClick={onClickStartCheck} disabled={sample[0] === null}>

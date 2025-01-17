@@ -1,11 +1,9 @@
-import classNames from 'classnames';
 import $ from './typography.module.scss';
 
 interface TitleProps {
   children: React.ReactNode;
-  emphasis?: boolean;
 }
 
-export default function Body1({ children, emphasis }: TitleProps) {
-  return <p className={classNames($.body1, emphasis && $.emphasis)}>{children}</p>;
+export default function Body1({ children }: TitleProps) {
+  return <p className={$.body1}>{children}</p>;
 }

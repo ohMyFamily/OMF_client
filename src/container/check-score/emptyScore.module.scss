@@ -1,0 +1,25 @@
+@use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
+
+.TextContainer {
+  @include center;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 99px;
+  margin-bottom: 48px;
+  gap: 16px;
+
+  h2 {
+    color: $Gray500;
+  }
+  p {
+    color: $Gray300;
+  }
+}
+
+.ButtonContainer {
+  @include center;
+  color: $Gray200;
+  margin-top: 56px;
+  margin-bottom: 120px;
+}

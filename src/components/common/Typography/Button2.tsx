@@ -6,7 +6,7 @@ interface TitleProps {
   underline?: boolean;
 }
 
-export default function Button2({ children, underline = false}: TitleProps) {
+export default function Button2({ children, underline = false }: TitleProps) {
   return (
     <span className={classNames($.button2, underline && $.underline)}>
       {children}

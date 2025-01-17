@@ -9,10 +9,6 @@ import Button from '@/components/common/Button';
 export default function EmptyScoreLayout() {
   const navigate = useNavigate();
 
-  const onClickLeftButton = () => {
-    navigate(-1);
-  };
-
   const HowToStart = () => {
     navigate('/guide');
   }
@@ -33,8 +29,8 @@ export default function EmptyScoreLayout() {
           <br />그 사람에 대해 얼마나 많이 알고 있는지 확인해보세요!
         </Body3>
       </div>
-      <div className={classNames($.ButtonContainer)}>
-        <Button2 underline={true} onClick={HowToStart}>어떻게 하는 거예요?</Button2>
+      <div className={classNames($.ButtonContainer)} onClick={HowToStart}>
+        <Button2 underline={true} >어떻게 하는 거예요?</Button2>
       </div>
       <Button variant='primary' onClick={startTest}>테스트 시작하기</Button>
     </>

@@ -10,7 +10,6 @@ import { useToast } from '@/hooks/useToast';
 interface TestCompletedProps {
   nickname: string;
   quizid: number;
-
 }
 
 function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
@@ -48,7 +47,7 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
       </div>
 
       <div className={classNames($.ButtonContainer)}>
-        <KakaoShareButton variant="grading" />
+        <KakaoShareButton variant="grading" quizid={quizid}/>
         <Button variant="secondary" onClick={handleCopy}>
           링크 복사
         </Button>

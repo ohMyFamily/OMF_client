@@ -29,7 +29,7 @@ function AnswerListItem({
       <img src={icon} alt={`${name}의 점수`} />
       <div className={classNames($.description)}>
         <span>
-          <Button1>{ischeck ? `${score}점!` : name}</Button1>
+          <Button1>{ischeck ? `${score}점!` : `${name}님이`}</Button1>
         </span>
         <div className={classNames($.message)}>
           <Body3>{ischeck ? `${name}님이 채점한 답안지` : `채점한 답안지가 도착했어요!`}</Body3>

@@ -5,11 +5,11 @@ import { useEffect } from 'react';
 
 interface KakaoShareButttonProps {
   variant: 'grading' | 'test';
-  childId?: number;
+  quizid?: number;
   name?: string;
 }
 
-export default function KakaoShareButton({ variant, childId, name }: KakaoShareButttonProps) {
+export default function KakaoShareButton({ variant, quizid, name }: KakaoShareButttonProps) {
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(KAKAO_JS_KEY);
@@ -31,7 +31,7 @@ export default function KakaoShareButton({ variant, childId, name }: KakaoShareB
         templateId: 114875,
         templateArgs: {
           THU: 'https://oh-my-family-bucket.s3.ap-northeast-2.amazonaws.com/parent-1.png',
-          quizid: 12,
+          quizid: quizid,
           name: name,
         },
       });

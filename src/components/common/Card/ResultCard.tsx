@@ -13,7 +13,6 @@ export interface ResultCardProps {
 }
 const ResultCard = ({ score, image, title, description, variant, isHas }: ResultCardProps) => {
   // 점수가 80점인 경우(홍진효)
-  const is80Score = score === 80;
 
   return (
     <div
@@ -35,17 +34,9 @@ const ResultCard = ({ score, image, title, description, variant, isHas }: Result
           [$.blur]: variant === 'animate' && !isHas,
         })}
       >
-        {is80Score ? (
-          <div className={classNames($.specialTitleContainer)}>
-            <Title2>{title}</Title2>
-            {variant === 'score' && <Title2>{description}</Title2>}
-          </div>
-        ) : (
-          <>
-            <Title2>{title}</Title2>
-            {variant === 'score' && <Body3>{description}</Body3>}
-          </>
-        )}
+        <Title2>{title}</Title2>
+        {variant === 'score' &&
+          (score === 80 ? <Title2>{description}</Title2> : <Body3>{description}</Body3>)}{' '}
       </div>
     </div>
   );

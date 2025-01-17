@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ChangeEvent, useEffect, useState, useRef, SetStateAction, Dispatch } from 'react';
-import $ from '@/components/common/textarea/textarea.module.scss';
+import $ from '@/components/common/Textarea/textarea.module.scss';
 import X from '@/assets/svg/X.svg?react';
 
 interface TextareaProps {

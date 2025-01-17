@@ -18,6 +18,7 @@ function Test() {
   const steps = ['선택', '애칭', '질문', '완료'];
   const [selectedType, setSelectedType] = useState<string>('');
   const [selectedImage, setSelectedImage] = useState<FormData | null>(null);
+  const [quizid, setQuizid] = useState<number>();
   const [name, setName] = useState<string>(''); //애칭
 
   const { FunnelComponent: Funnel, handleStep } = useFunnel(steps, {});
@@ -32,11 +33,16 @@ function Test() {
       </Funnel.Steps>
       <Funnel.Steps name="질문">
         <Suspense fallback={<Spinner />}>
-          <QuestionLayout handleStep={handleStep} name={name} />
+          <QuestionLayout
+            handleStep={handleStep}
+            name={name}
+            familyType={selectedType}
+            setQuizid={setQuizid}
+          />
         </Suspense>
       </Funnel.Steps>
       <Funnel.Steps name="완료">
-        <TestCompletedLayout nickname="낙현" />
+        <TestCompletedLayout nickname={name} quizid={quizid!} />{' '}
       </Funnel.Steps>
     </Funnel>
   );

@@ -3,8 +3,9 @@
 
 .Wrapper {
   padding: 0 20px;
-  height: 100%;
+  height: 100dvh;
 }
+
 
 .Container {
   display: flex;
@@ -14,7 +15,14 @@
   padding-top: 32px;
   padding-bottom: 89px;
   height: calc(100% - 48px);
+
+  img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
 }
+
 
 .ContentWrapper {
   @include center;
@@ -38,3 +46,16 @@
 .highlight {
   color: $main300;
 }
+
+//보너스 스테이지 관련 css
+.BonusStageWrapper{
+  padding: 0 20px;
+}
+
+.BonusStageContainer{
+  overflow: scroll;
+  height: calc(100dvh - 48px);
+  &::-webkit-scrollbar {
+      display: none;
+      
+  }}

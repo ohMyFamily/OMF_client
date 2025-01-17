@@ -1,19 +1,42 @@
 @use '@/colors.scss' as *;
+@use '@/styles/mixin.scss' as *;
 
 .appbar {
     padding: 12px 20px;
 }
 .Wrapper {
     display: flex;
-    padding: 0 20px;
-    flex-direction: column;
-    gap: 24px;
+    padding-top: 32px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-bottom: 120px; 
+    flex-direction: column;
+    overflow: scroll;
+    height: calc(100dvh - 48px);
+    &::-webkit-scrollbar {
+        display: none;
+        
+    }
+    gap: 24px;
+
     p {
         color: $Gray300;
     }
     .title {
         color: $main300;
+    }
+    
+}
+.Wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    h2 {
+        color: $Gray500;
     }
 }
 
@@ -25,12 +48,4 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    .number {
-        display: inline;
-        background-color: $main50;
-        color: $main300;
-        border-radius: 50%;
-        width: 26px;
-        text-align: center;
-    }  
 }

@@ -31,7 +31,7 @@ export default function KakaoShareButton({ variant, childId, name }: KakaoShareB
         templateId: 114875,
         templateArgs: {
           THU: 'https://oh-my-family-bucket.s3.ap-northeast-2.amazonaws.com/parent-1.png',
-          childId: childId,
+          quizid: 12,
           name: name,
         },
       });

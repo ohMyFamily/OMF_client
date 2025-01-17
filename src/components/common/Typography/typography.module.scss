@@ -36,12 +36,15 @@
         padding-bottom: 1px;    }
 } 
 .body1 {
+    @include typography(0, normal, 18px, none, 28px);
+}
+.body2 {
     @include typography(0, normal, 16px, none, 28px);
     &.emphasis {    
         @include typography(0, bold, 16px, none, 28px);
     }
 }
-.body2 {
+.body3 {
     @include typography(0, normal, 14px, none, 26px);
 }
 .caption1 {

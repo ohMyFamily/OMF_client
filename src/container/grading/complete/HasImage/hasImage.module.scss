@@ -2,7 +2,7 @@
 @use '@/styles/mixin.scss' as *;
 .Wrapper {
     @include center();
-    height: 100%;
+    height: 100dvh;
 }
 
 .layout { 

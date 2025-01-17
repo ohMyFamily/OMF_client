@@ -6,7 +6,7 @@ import KakaoShareButton from '@/components/common/KakaoShareButton';
 export default function ButtonLayout() {
   const navigate = useNavigate();
   const onClickTestButton = () => {
-    navigate('/splash');
+    navigate('/login');
   };
   return (
     <div className={$.buttonLayout}>

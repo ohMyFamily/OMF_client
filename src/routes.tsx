@@ -32,7 +32,10 @@ export const routes = [
       { path: 'kakao/callback', element: <Redirection /> },
       { path: 'main', element: <Main /> },
       { path: 'test', element: <Test /> },
-      { path: 'grading', element: <Grading /> },
+      {
+        path: 'grading/:quizid',
+        element: <Grading />,
+      },
       { path: 'splash', element: <Splash /> },
     ],
   },

@@ -53,7 +53,11 @@ export default function Textarea({ text, setText, maxLength, inputMode }: Textar
 
   useEffect(() => {
     const handleTextareaDivOutside = (event: MouseEvent | TouchEvent) => {
-      if (textareaWrapperRef.current && !textareaWrapperRef.current.contains(event.target as Node)) {
+      if (
+        textareaWrapperRef.current && 
+        !textareaWrapperRef.current.contains(event.target as Node) &&
+        !(event.target as HTMLElement).closest('button') // 탭한 곳이 버튼인 경우는 제외
+      ) {
         setIsTyping(false);
         textareaRef.current?.blur();
       }

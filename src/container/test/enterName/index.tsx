@@ -71,7 +71,7 @@ function EnterNameLayout({ person, handleStep, setName }: EnterNameLayoutProps) 
           />
         </div>
         <Button variant="secondary" onClick={handleNext} disabled={disabled}>
-          다음 문제
+          다음
         </Button>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import GradingSkeleton from '@/components/common/Skeleton/grading';
 import Spinner from '@/components/common/Spinner';
 import CheckLayout from '@/container/grading/check';
 import HasImage from '@/container/grading/complete/HasImage';
@@ -26,7 +27,7 @@ export default function Grading() {
         </Suspense>
       </Funnel.Steps>
       <Funnel.Steps name="채점">
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<GradingSkeleton />}>
           <CheckLayout
             handleStep={handleStep}
             setHasImage={setHasImage}

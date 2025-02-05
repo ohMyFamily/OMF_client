@@ -1,0 +1,7 @@
+@use '@/styles/mixin.scss' as *;
+
+.skeletonWrapper {
+  @include skeleton-gradient();
+  margin-top: 24px;
+  padding-bottom: 48px;
+}

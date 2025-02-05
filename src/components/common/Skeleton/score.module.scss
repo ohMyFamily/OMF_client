@@ -1,0 +1,12 @@
+@use '@/styles/mixin.scss' as *;
+
+.skeletonWrapper {
+  height: calc(100% - 48px);
+  @include skeleton-gradient();
+  padding-top: 22px;
+}
+
+.Wrapper {
+  @include center;
+  flex-direction: column;
+}

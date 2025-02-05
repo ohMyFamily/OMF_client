@@ -13,6 +13,8 @@ const IndexPage = () => {
     { route: '/test', name: '문제풀기', state: false },
     { route: '/check-score', name: '점수 확인', state: false },
     { route: '/grading?userId=1&nickname=낙현', name: '채점하기', state: false },
+    { route: '/gradingSkeleton', name: '채점 스켈레톤', state: false },
+    { route: '/scoreSkeleton', name: '점수 확인 스켈레톤', state: false },
   ];
 
   return (

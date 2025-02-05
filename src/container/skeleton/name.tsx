@@ -1,6 +1,6 @@
 import $ from './name.module.scss';
 import classNames from 'classnames';
-import Skeleton from './Skeleton';
+import Skeleton from '../../components/common/Skeleton';
 
 export default function NameSkeleton() {
   return (

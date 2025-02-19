@@ -26,6 +26,7 @@
     max-height: calc(100dvh - 573px); 
     resize: none;
     overflow-y: auto;
+    color: $Gray500;
 
     &::-webkit-scrollbar {
         width: 3px; 
@@ -67,5 +68,24 @@
 
     .label {
       margin-bottom: 8px;
+      color: $Gray300;
     }
+}
+
+.namesWrapper {
+    margin-top: 24px;
+    color: $Gray300;
+}
+
+.exampleButtonsWrapper {
+    margin-top: 8px;
+    display: flex;
+}
+
+.exampleButton {
+    padding: 4px 16px;
+    border-radius: 28px;
+    background-color: $main50;
+    color: $main300;
+    margin-right: 8px;
 }

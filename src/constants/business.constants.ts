@@ -47,3 +47,10 @@ export const scoreTable: ScoreInfo[] = [
   
 //전체 문제 개수
 export const TOTAL_QUESTION = 10;
+
+//애칭 예시
+export const nicknameExamples = {
+  mom: ['어머니', '엄마'],
+  dad: ['아버지', '아빠'],
+  others: ['할머니', '할아버지', '삼촌'],
+};

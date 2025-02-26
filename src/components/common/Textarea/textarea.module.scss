@@ -1,5 +1,10 @@
 @use '@/colors' as *;
 
+.textareaContainer {
+    width: 100%;
+    position: relative;
+}
+
 .textareaWrapper {
     width: 100%;
     display: flex;
@@ -52,6 +57,13 @@
     justify-content: center;
     text-align: center;
     display: flex;
+}
+
+.counterWrapper {
+    position: absolute;
+    bottom: 3px;
+    right: 10px;
+    color: $Gray100;
 }
 
 .fieldWrapper {

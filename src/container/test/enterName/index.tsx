@@ -57,6 +57,7 @@ function EnterNameLayout({ person, handleStep, setName }: EnterNameLayoutProps) 
             setText={setNameInput}
             maxLength={6}
             nameExamples={person}
+            showCounter={true}
             label={
               <div className={classNames($.NameWrapper)}>
                 이름, 호칭 등 <span className={classNames($.highlight)}>6자 이내(공백 포함)</span>로 적어주세요.

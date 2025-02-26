@@ -13,27 +13,27 @@ interface TextareaDateFieldProps {
 export default function TextareaDateField({ text, setText }: TextareaDateFieldProps) {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
-  const [date, setDate] = useState('');
+  const [day, setDay] = useState('');
 
   useEffect(() => {
     if (text) {
       // XXXX년 XX월 XX일에서 년, 월, 일 추출
       const yearMatch = text.match(/(\d+)년/);
       const monthMatch = text.match(/(\d+)월/);
-      const dateMatch = text.match(/(\d+)일/);
+      const dayMatch = text.match(/(\d+)일/);
       
       if (yearMatch && yearMatch[1]) setYear(yearMatch[1]);
       if (monthMatch && monthMatch[1]) setMonth(monthMatch[1]);
-      if (dateMatch && dateMatch[1]) setDate(dateMatch[1]);
+      if (dayMatch && dayMatch[1]) setDay(dayMatch[1]);
     }
   }, [text]);
 
   useEffect(() => {
-    if (year || month || date) {
-      const formattedDate = `${year}년 ${month}월 ${date}일`;
+    if (year || month || day) {
+      const formattedDate = `${year}년 ${month}월 ${day}일`;
       setText(formattedDate);
     }
-  }, [year, month, date, setText]);
+  }, [year, month, day, setText]);
 
   // year 숫자 4자리 입력하면, month로 자동 커서 이동
   const moveCursorToMonth = (textbox: HTMLTextAreaElement) => {
@@ -44,12 +44,12 @@ export default function TextareaDateField({ text, setText }: TextareaDateFieldPr
       }
     }
   };
-  // month 숫자 2자리 입력하면, date로 자동 커서 이동
-  const moveCursorToDate = (textbox: HTMLTextAreaElement) => {
+  // month 숫자 2자리 입력하면, day로 자동 커서 이동
+  const moveCursorToDay = (textbox: HTMLTextAreaElement) => {
     if (textbox.value.length === 2) {
-      const dateElement = document.getElementById("date");
-      if (dateElement) {
-        (dateElement.querySelector('textarea') as HTMLTextAreaElement)?.focus();
+      const dayElement = document.getElementById("day");
+      if (dayElement) {
+        (dayElement.querySelector('textarea') as HTMLTextAreaElement)?.focus();
       }
     }
   };
@@ -67,21 +67,21 @@ export default function TextareaDateField({ text, setText }: TextareaDateFieldPr
         />
         <Body1>년</Body1>
       </div>
-      <div className={classNames($.inputWrapper, $.monthDateField)} id='month'>
+      <div className={classNames($.inputWrapper, $.monthDayField)} id='month'>
         <Textarea
           text={month}
           setText={setMonth}
           inputMode="numeric"
           variant="date"
           maxLength={2}
-          onKeyUp={(e) => moveCursorToDate(e.target as HTMLTextAreaElement)}
+          onKeyUp={(e) => moveCursorToDay(e.target as HTMLTextAreaElement)}
         />
         <Body1>월</Body1>
       </div>
-      <div className={classNames($.inputWrapper, $.monthDateField)} id='date'>
+      <div className={classNames($.inputWrapper, $.monthDayField)} id='day'>
         <Textarea
-          text={date}
-          setText={setDate}
+          text={day}
+          setText={setDay}
           inputMode="numeric"
           variant="date"
           maxLength={2}

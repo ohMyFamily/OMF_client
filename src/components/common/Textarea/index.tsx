@@ -1,5 +1,13 @@
 import classNames from 'classnames';
-import { ChangeEvent, useEffect, useState, useRef, SetStateAction, Dispatch } from 'react';
+import {
+  ChangeEvent,
+  useEffect,
+  useState,
+  useRef,
+  SetStateAction,
+  Dispatch,
+  KeyboardEvent,
+} from 'react';
 import $ from '@/components/common/Textarea/textarea.module.scss';
 import X from '@/assets/svg/X.svg?react';
 
@@ -8,17 +16,24 @@ interface TextareaProps {
   setText: Dispatch<SetStateAction<string>>;
   maxLength?: number;
   inputMode?: 'text' | 'numeric';
+  variant?: 'date';
+  onKeyUp?: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
 }
 
-export default function Textarea({ text, setText, maxLength, inputMode }: TextareaProps) {
+export default function Textarea({
+  text,
+  setText,
+  maxLength,
+  inputMode,
+  variant,
+  onKeyUp,
+}: TextareaProps) {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   //textarea을 focus하기 위해 useRef 사용(handleClear 실행 이후에도 포커스가 유지되도록)
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   //div 밖 영역 감지를 위해
   const textareaWrapperRef = useRef<HTMLDivElement>(null);
-
-
-  // 장문 입력 시 textarea 높이를 자동으로 조절함 
+  // 장문 입력 시 textarea 높이를 자동으로 조절함
   const handleResizeHeight = () => {
     const textarea = textareaRef.current;
     if (!textarea) return;
@@ -73,17 +88,25 @@ export default function Textarea({ text, setText, maxLength, inputMode }: Textar
   }, []);
 
   return (
-    <div ref={textareaWrapperRef} className={classNames($.textareaWrapper)}>
+    <div
+      ref={textareaWrapperRef}
+      className={classNames($.textareaWrapper, {
+        [$.date]: variant === 'date',
+      })}
+    >
       <textarea
-        className={classNames($.textarea)}
+        className={classNames($.textarea, {
+          [$.date]: variant === 'date',
+        })}
         rows={1}
         ref={textareaRef}
         value={text}
         maxLength={maxLength}
         onChange={onChangeText}
         inputMode={inputMode}
+        onKeyUp={onKeyUp}
       />
-      {isTyping && (
+      {isTyping && !variant && (
         <div className={classNames($.textareaCloseWrapper)}>
           <X className={classNames($.textareaClose)} onClick={handleClear} />
         </div>

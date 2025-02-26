@@ -48,6 +48,8 @@ export const scoreTable: ScoreInfo[] = [
 //전체 문제 개수
 export const TOTAL_QUESTION = 10;
 
+export type PersonType = 'mom' | 'dad' | 'others';
+
 //애칭 예시
 export const nicknameExamples = {
   mom: ['어머니', '엄마'],

@@ -6,9 +6,10 @@ import Heart from '@/assets/svg/Tossface/Heart.svg';
 import { Title2 } from '@/components/common/Typography';
 import TextareaField from '@/components/common/Textarea/textareaField';
 import Button from '@/components/common/Button';
+import { PersonType } from '@/constants/business.constants';
 
 interface EnterNameLayoutProps {
-  person: 'mom' | 'dad' | 'others';
+  person: PersonType;
   setName: Dispatch<SetStateAction<string>>;
   handleStep: (step: string) => void;
 }

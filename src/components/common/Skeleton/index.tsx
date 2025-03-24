@@ -1,4 +1,5 @@
 import $ from './skeleton.module.scss';
+import classNames from 'classnames';
 
 interface SkeletonProps {
   width?: string;
@@ -17,7 +18,7 @@ export default function Skeleton({
 }: SkeletonProps) {
   return (
     <div
-      className={`${$.skeletonBase} ${className}`}
+      className={classNames($.skeletonBase, className)}
       style={{
         width: width,
         height: height,

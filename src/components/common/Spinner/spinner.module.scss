@@ -11,24 +11,45 @@
 }
 
 .container {
-    @include size(100%, 100%);
-    @include center(); 
-    position: relative;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-}
-
-.angel {
-    @include size(40px, 40px); 
-    position: absolute;
-}
-
-.spinner {
+    @include size(100%, 100dvh);
+    @include center();
+    position: fixed; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    p {
+        color: $Gray300;
+    }
+  }
+  
+  .spinner {
     @include size(60px, 60px);
-    border: 7px solid rgba(163, 151, 198, 0.2);
-    border-top: 7px solid $main300;
+    border: 6px solid transparent;
+    border-top: 6px solid $main300;
     border-radius: 50%;
-    animation: spin 2s linear infinite;
+    transform: rotate(-45deg);
+    animation: spin 1.5s linear infinite;
+    margin-bottom: 8px;
+}
+
+.spinner::before,
+.spinner::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background-color: $main300;
+    @include size(6px, 6px);
+}
+
+.spinner::before {
+    top: 0;
+    left: 0;
+    transform: translate(31.5%, 32%); 
+}
+
+.spinner::after {
+    top: 0;
+    right: 0;
+    transform: translate(-31.5%, 32%); 
 }

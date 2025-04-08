@@ -1,6 +1,6 @@
 import AppBar from '@/components/common/AppBar';
 import $ from './guide.module.scss';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Body2, Caption1, Title2, Title3 } from '@/components/common/Typography';
 import Guide1 from '@/assets/image/guide1.png';
 import Guide2 from '@/assets/image/guide2.png';
@@ -47,6 +47,9 @@ const guideArray = [
 
 export default function GuideLayout() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isFromEmptyScore = location.state?.from === 'emptyScore';
 
   const onClickLeftButton = () => {
     navigate(-1);
@@ -55,6 +58,11 @@ export default function GuideLayout() {
   const onClickKakaoLoginButton = () => {
     window.location.href = kakaoLoginLink;
   };
+
+  const startTest = () => {
+    navigate('/test');
+  };
+  
   return (
     <>
       <AppBar leftRole="back" onClickLeftButton={onClickLeftButton} className={$.appbar} />
@@ -86,9 +94,13 @@ export default function GuideLayout() {
             </div>
           );
         })}
-        <Button icon={KakaoLogo} variant="kakaoLogin" onClick={onClickKakaoLoginButton}>
-          로그인하고 테스트 시작하기
-        </Button>
+       {isFromEmptyScore ? (
+          <Button variant='primary' onClick={startTest}>테스트 시작하기</Button>
+        ) : (
+          <Button icon={KakaoLogo} variant="kakaoLogin" onClick={onClickKakaoLoginButton}>
+            로그인하고 테스트 시작하기
+          </Button>
+        )}
       </div>
     </>
   );

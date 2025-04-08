@@ -1,4 +1,5 @@
 @use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
 
 .textareaContainer {
     width: 100%;
@@ -15,6 +16,10 @@
     padding: 14px 16px;
     overflow: hidden;
     max-height: 100%; 
+
+    &.date {
+        padding: 8px;
+    }
 }
 
 .textarea {
@@ -32,6 +37,10 @@
     resize: none;
     overflow-y: auto;
     color: $Gray500;
+
+    &.date {
+        text-align: center;
+    }
 
     &::-webkit-scrollbar {
         width: 3px; 
@@ -81,6 +90,46 @@
     .label {
       margin-bottom: 8px;
       color: $Gray300;
+    }
+    p {
+        color: $Gray300;
+    }
+}
+
+.dateInputWrapper {
+    width: 100%;
+    padding: 16px;
+    justify-content: space-between;
+    gap: 16px;
+    text-align: start;
+    display: flex;
+    border: none;
+    border-radius: 16px;
+    background-color: White;
+    box-shadow: inset 0 0 1px 0 #aeecff, 12px 12px 28px 0 rgba(0, 0, 0, 0.05);
+
+    .label {
+        margin-bottom: 8px;
+    }
+
+    p {
+        color: $Gray300;
+    }
+}
+
+.inputWrapper {
+    display: flex;
+    @include center;
+    p {
+        margin-left: 8px;
+    }
+    
+    &.yearField {
+        flex: 1.4;
+    }
+
+    &.monthDayField {
+        flex: 1;
     }
 }
 

@@ -1,24 +1,7 @@
-@mixin blur {
-  filter: blur(5px);
-  transition: 'filter 0.3s ease';
-}
+@use '@/colors.scss' as *;
 
-@mixin center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@mixin block-padding {
-  width: calc(100% - 40px);
-}
-
-@mixin size($width, $height) {
-  width: $width;
-  height: $height;
-}
-
-@mixin skeleton-gradient {
+.skeletonBase {
+  background-color: $Gray75;
   position: relative;
   overflow: hidden;
 

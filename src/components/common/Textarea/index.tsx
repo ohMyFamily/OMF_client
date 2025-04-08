@@ -2,15 +2,17 @@ import classNames from 'classnames';
 import { ChangeEvent, useEffect, useState, useRef, SetStateAction, Dispatch } from 'react';
 import $ from '@/components/common/Textarea/textarea.module.scss';
 import X from '@/assets/svg/X.svg?react';
+import { Body3 } from '@/components/common/Typography';
 
 interface TextareaProps {
   text: string;
   setText: Dispatch<SetStateAction<string>>;
   maxLength?: number;
   inputMode?: 'text' | 'numeric';
+  showCounter?: boolean;
 }
 
-export default function Textarea({ text, setText, maxLength, inputMode }: TextareaProps) {
+export default function Textarea({ text, setText, maxLength, inputMode, showCounter }: TextareaProps) {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   //textarea을 focus하기 위해 useRef 사용(handleClear 실행 이후에도 포커스가 유지되도록)
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -73,19 +75,28 @@ export default function Textarea({ text, setText, maxLength, inputMode }: Textar
   }, []);
 
   return (
-    <div ref={textareaWrapperRef} className={classNames($.textareaWrapper)}>
-      <textarea
-        className={classNames($.textarea)}
-        rows={1}
-        ref={textareaRef}
-        value={text}
-        maxLength={maxLength}
-        onChange={onChangeText}
-        inputMode={inputMode}
-      />
-      {isTyping && (
-        <div className={classNames($.textareaCloseWrapper)}>
-          <X className={classNames($.textareaClose)} onClick={handleClear} />
+    <div className={classNames($.textareaContainer)}>
+      <div ref={textareaWrapperRef} className={classNames($.textareaWrapper)}>
+        <textarea
+          className={classNames($.textarea)}
+          rows={1}
+          ref={textareaRef}
+          value={text}
+          maxLength={maxLength}
+          onChange={onChangeText}
+          inputMode={inputMode}
+        />
+        {isTyping && !showCounter && (
+          <div className={classNames($.textareaCloseWrapper)}>
+            <X className={classNames($.textareaClose)} onClick={handleClear} />
+          </div>
+        )}
+      </div>
+      {showCounter && (
+        <div className={classNames($.counterWrapper)}>
+          <Body3>
+            {text.length}/{maxLength}
+          </Body3>
         </div>
       )}
     </div>

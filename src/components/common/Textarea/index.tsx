@@ -10,12 +10,14 @@ import {
 } from 'react';
 import $ from '@/components/common/Textarea/textarea.module.scss';
 import X from '@/assets/svg/X.svg?react';
+import { Body3 } from '@/components/common/Typography';
 
 interface TextareaProps {
   text: string;
   setText: Dispatch<SetStateAction<string>>;
   maxLength?: number;
   inputMode?: 'text' | 'numeric';
+  showCounter?: boolean;
   variant?: 'date';
   onKeyUp?: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
 }
@@ -25,6 +27,7 @@ export default function Textarea({
   setText,
   maxLength,
   inputMode,
+  showCounter,
   variant,
   onKeyUp,
 }: TextareaProps) {
@@ -69,7 +72,7 @@ export default function Textarea({
   useEffect(() => {
     const handleTextareaDivOutside = (event: MouseEvent | TouchEvent) => {
       if (
-        textareaWrapperRef.current && 
+        textareaWrapperRef.current &&
         !textareaWrapperRef.current.contains(event.target as Node) &&
         !(event.target as HTMLElement).closest('button') // 탭한 곳이 버튼인 경우는 제외
       ) {
@@ -88,27 +91,36 @@ export default function Textarea({
   }, []);
 
   return (
-    <div
-      ref={textareaWrapperRef}
-      className={classNames($.textareaWrapper, {
-        [$.date]: variant === 'date',
-      })}
-    >
-      <textarea
-        className={classNames($.textarea, {
+    <div className={classNames($.textareaContainer)}>
+      <div
+        ref={textareaWrapperRef}
+        className={classNames($.textareaWrapper, {
           [$.date]: variant === 'date',
         })}
-        rows={1}
-        ref={textareaRef}
-        value={text}
-        maxLength={maxLength}
-        onChange={onChangeText}
-        inputMode={inputMode}
-        onKeyUp={onKeyUp}
-      />
-      {isTyping && !variant && (
-        <div className={classNames($.textareaCloseWrapper)}>
-          <X className={classNames($.textareaClose)} onClick={handleClear} />
+      >
+        <textarea
+          className={classNames($.textarea, {
+            [$.date]: variant === 'date',
+          })}
+          rows={1}
+          ref={textareaRef}
+          value={text}
+          maxLength={maxLength}
+          onChange={onChangeText}
+          inputMode={inputMode}
+          onKeyUp={onKeyUp}
+        />
+        {isTyping && !showCounter && !variant && (
+          <div className={classNames($.textareaCloseWrapper)}>
+            <X className={classNames($.textareaClose)} onClick={handleClear} />
+          </div>
+        )}
+      </div>
+      {showCounter && (
+        <div className={classNames($.counterWrapper)}>
+          <Body3>
+            {text.length}/{maxLength}
+          </Body3>
         </div>
       )}
     </div>

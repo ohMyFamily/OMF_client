@@ -6,9 +6,10 @@ import Heart from '@/assets/svg/Tossface/Heart.svg';
 import { Title2 } from '@/components/common/Typography';
 import TextareaField from '@/components/common/Textarea/textareaField';
 import Button from '@/components/common/Button';
+import { PersonType } from '@/constants/business.constants';
 
 interface EnterNameLayoutProps {
-  person: string;
+  person: PersonType;
   setName: Dispatch<SetStateAction<string>>;
   handleStep: (step: string) => void;
 }
@@ -56,16 +57,11 @@ function EnterNameLayout({ person, handleStep, setName }: EnterNameLayoutProps) 
             text={nameInput}
             setText={setNameInput}
             maxLength={6}
+            nameExamples={person}
+            showCounter={true}
             label={
               <div className={classNames($.NameWrapper)}>
-                {person === 'mom' ? (
-                  <>어머니, 어마마마 등 </>
-                ) : person === 'dad' ? (
-                  <>아버지, 아바마마 등 </>
-                ) : (
-                  <>이름, 호칭 등 </>
-                )}
-                <span className={classNames($.highlight)}>6자 이내(공백 포함)</span>로 적어주세요.
+                이름, 호칭 등 <span className={classNames($.highlight)}>6자 이내(공백 포함)</span>로 적어주세요.
               </div>
             }
           />

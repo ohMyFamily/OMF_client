@@ -15,37 +15,37 @@
 }
 
 .headlin1 {
-    @include typography(0, bold, 48px, none, 56px);  
+    @include typography(0, 700, 48px, none, 56px);  
 }
 .title1 {
-    @include typography(0, bold, 32px, none, 46px); 
+    @include typography(0, 700, 32px, none, 46px); 
 }
 .title2 {   
-    @include typography(0, bold, 24px, none, 34px); 
+    @include typography(0, 700, 24px, none, 34px); 
 }
 .title3 {
-    @include typography(0, bold, 20px, none, 32px);
+    @include typography(0, 700, 20px, none, 32px);
 }   
 .button1 {
     @include typography(0, 600, 16px, none, 22px);
 }
 .button2 {
-    @include typography(0, normal, 14px, none, 20px);
+    @include typography(0, 400, 14px, none, 20px);
     &.underline {    
         border-bottom: 1px solid var(--underline-color, $Gray200);
     }
 } 
 .body1 {
-    @include typography(0, normal, 18px, none, 28px);
+    @include typography(0, 400, 18px, none, 28px);
 }
 .body2 {
-    @include typography(0, normal, 16px, none, 28px);
+    @include typography(0, 400, 16px, none, 28px);
     &.emphasis {    
-        @include typography(0, bold, 16px, none, 28px);
+        @include typography(0, 700, 16px, none, 28px);
     }
 }
 .body3 {
-    @include typography(0, normal, 14px, none, 26px);
+    @include typography(0, 400, 14px, none, 26px);
 }
 .caption1 {
     @include typography(0, 600, 12px, none, 22px);

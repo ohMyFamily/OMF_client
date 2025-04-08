@@ -1,0 +1,25 @@
+@use '@/styles/mixin.scss' as *;
+
+.layout {
+  padding: 0 20px;
+  height: 100dvh;
+}
+
+.Wrapper {
+  height: calc(100dvh - 48px);
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.skeletonWrapper {
+  height: calc(100% - 48px);
+  @include skeleton-gradient();
+  padding-top: 22px;
+}
+
+.Container {
+  @include center;
+  flex-direction: column;
+}

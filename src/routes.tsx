@@ -11,6 +11,9 @@ import Index from '@/pages/index';
 import Redirection from '@/pages/redirection';
 import Test from './pages/test';
 import EmptyScoreLayout from './container/check-score/emptyScore';
+import GradingSkeletonLayout from './container/skeleton/grading';
+import ScoreSkeletonLayout from './container/skeleton/score';
+import NameSkeleton from './container/skeleton/name';
 
 export const routes = [
   {
@@ -39,6 +42,8 @@ export const routes = [
         element: <Grading />,
       },
       { path: 'splash', element: <Splash /> },
+      { path: 'scoreSkeleton', element: <ScoreSkeletonLayout /> },
+      { path: 'gradingSkeleton', element: <GradingSkeletonLayout /> },
     ],
   },
 ];

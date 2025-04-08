@@ -1,6 +1,5 @@
 import $ from './emptyScore.module.scss';
 import classNames from 'classnames';
-import AppBar from '@/components/common/AppBar';
 import { Body3, Title2, Button2 } from '@/components/common/Typography';
 import { useNavigate } from 'react-router-dom';
 import blank from '@/assets/svg/Blank.svg';
@@ -10,7 +9,7 @@ export default function EmptyScoreLayout() {
   const navigate = useNavigate();
 
   const HowToStart = () => {
-    navigate('/guide');
+    navigate('/guide', { state: { from: 'emptyScore' } });
   }
 
   const startTest = () => {

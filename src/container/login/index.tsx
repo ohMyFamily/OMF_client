@@ -17,7 +17,7 @@ export default function LoginLayout() {
   };
 
   const handleTutorial = () => {
-    navigate('/guide');
+    navigate('/guide', { state: { from: 'login' } });
   };
 
   return (

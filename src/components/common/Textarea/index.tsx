@@ -34,6 +34,9 @@ export default function Textarea({
   onKeyUp,
 }: TextareaProps) {
   const [isTyping, setIsTyping] = useState<boolean>(false);
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [hasText, setHasText] = useState<boolean>(!!text);
+  
   //textarea을 focus하기 위해 useRef 사용(handleClear 실행 이후에도 포커스가 유지되도록)
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   //div 밖 영역 감지를 위해
@@ -64,11 +67,9 @@ export default function Textarea({
   };
 
   useEffect(() => {
-    if (text === '') {
-      setIsTyping(false);
-    } else {
-      setIsTyping(true);
-    }
+    const hasContent = text !== '';
+    setHasText(hasContent);
+    setIsTyping(hasContent);
   }, [text]);
 
   useEffect(() => {
@@ -78,7 +79,7 @@ export default function Textarea({
         !textareaWrapperRef.current.contains(event.target as Node) &&
         !(event.target as HTMLElement).closest('button') // 탭한 곳이 버튼인 경우는 제외
       ) {
-        setIsTyping(false);
+        setIsFocused(false);
         textareaRef.current?.blur();
       }
     };
@@ -91,13 +92,17 @@ export default function Textarea({
       document.removeEventListener('touchstart', handleTextareaDivOutside);
     };
   }, []);
-  //X 버튼 또는 저장 버튼이 UI에 표시되어야 하는지 여부를 결정
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
   const shouldShowButton = () => {
     //글자수 표시 거나 날짜입력모드인 경우
     if (showCounter || variant === 'date') return false;
-    //X버튼은 isTyping상태에 따라 표시됨!
+    //X버튼은 텍스트가 있고 포커스가 있는 경우만 표시
     if (buttonType === 'clear') {
-      return isTyping;
+      return hasText && isFocused;
     } else if (buttonType === 'save') {
       return true;
     }
@@ -118,12 +123,12 @@ export default function Textarea({
         <div 
           className={classNames(
             $.textareaSaveWrapper,
-            isTyping ? $.active : $.inactive,
-            !isTyping && $.disabled 
+            hasText ? $.active : $.inactive,
+            !hasText && $.disabled 
           )}
           onClick={handleSave} 
           style={{ 
-            cursor: isTyping ? 'pointer' : 'default' 
+            cursor: hasText ? 'pointer' : 'default' 
           }}
         >
           <Body2>저장</Body2>
@@ -158,6 +163,7 @@ export default function Textarea({
           onChange={onChangeText}
           inputMode={inputMode}
           onKeyUp={onKeyUp}
+          onFocus={handleFocus}
         />
         {renderButton()}
       </div>

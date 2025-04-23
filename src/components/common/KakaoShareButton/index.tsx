@@ -40,7 +40,7 @@ export default function KakaoShareButton({ variant, quizid, name }: KakaoShareBu
 
   return (
     <Button variant="kakaoLogin" icon={kakaoLogo} onClick={onClickShareButton}>
-      카카오톡으로 공유하기
+      답안지 링크 공유
     </Button>
   );
 }

@@ -1,4 +1,4 @@
-import { Body2, Title2 } from '@/components/common/Typography';
+import { Body2, Caption1, Title1, Title2, Title3 } from '@/components/common/Typography';
 import $ from './done.module.scss';
 import classNames from 'classnames';
 import KakaoShareButton from '@/components/common/KakaoShareButton';
@@ -6,6 +6,10 @@ import Button from '@/components/common/Button';
 import { useNavigate } from 'react-router-dom';
 import { AnimateClap } from '@/components/common/TossFace';
 import { useToast } from '@/hooks/useToast';
+import { useState, useEffect } from 'react';
+import BlueTitleText from '@/components/common/Item/BlueTitleText';
+import { useGetUserNames } from '@/apis/queries/user';
+import Textarea from '@/components/common/Textarea';
 
 interface TestCompletedProps {
   nickname: string;
@@ -15,11 +19,30 @@ interface TestCompletedProps {
 function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
   const navigate = useNavigate();
   const { addToasts } = useToast();
+  const [step, setStep] = useState(1);
+  const [nameInput, setNameInput] = useState('');
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const names = quizid ? useGetUserNames(quizid) : null;
+
+  useEffect(() => {
+    const timer1 = setTimeout(() => {
+      setStep(2);
+    }, 2500);
+
+    const timer2 = setTimeout(() => {
+      setStep(3);
+    }, 4000);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, []);
 
   //링크 복사
   const handleCopy = async () => {
-    const shareURL = `${window.location.origin}/grading/${quizid}`;    
+    const shareURL = `${window.location.origin}/grading/${quizid}`;
 
     try {
       await navigator.clipboard.writeText(shareURL);
@@ -29,36 +52,85 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
     }
   };
 
-  //처음으로 돌아가기
-  const handleReset = () => {
-    navigate('/main');
+  //다른 가족 선택하기
+  const handleRetry = () => {
+    navigate('/test');
   };
 
   return (
-    <div className={classNames($.Wrapper)}>
-      <div className={classNames($.Container)}>
-        <img src={AnimateClap} alt="박수 이미지" />
+    <>
+      {step === 1 && (
+        <div className={classNames($.Wrapper)}>
+          <div className={classNames($.Container)}>
+            <img src={AnimateClap} alt="박수 이미지" />
+            <Title2>문제를 다 풀었어요!</Title2>
+          </div>
+        </div>
+      )}
 
-        <Title2>문제를 다 풀었어요!</Title2>
-        <Body2>
-          답안지를 {nickname}에게 보내서
-          <br /> 채점을 받아볼까요?
-        </Body2>
-      </div>
+      {step === 2 && (
+        <div className={classNames($.Wrapper)}>
+          <div className={classNames($.Container)}>
+            <Title2>
+              답안지를 {names.nickname}에게 보내서
+              <br /> 채점을 받아볼까요?
+            </Title2>
+          </div>
+        </div>
+      )}
 
-      <div className={classNames($.ButtonContainer)}>
-        <KakaoShareButton variant="grading" quizid={quizid}/>
-        <Button variant="secondary" onClick={handleCopy}>
-          링크 복사
-        </Button>
-      </div>
+      {step === 3 && (
+        <>
+          <div className={classNames($.CompletedWrapper)}>
+            <div className={classNames($.exampleContainer)}>
+              <div className={classNames($.exampleWrapper)}>
+                <div className={classNames($.exampleText)}>
+                  <div className={classNames($.BlueTitleText)}>
+                    <BlueTitleText size="lg">
+                      <Caption1>가정의 달 이벤트</Caption1>
+                    </BlueTitleText>
+                  </div>
+                  <div className={classNames($.TitleText)}>
+                    <Title1>
+                      {/* {nameInput || names.kakao_nickname}이 직접 푼 */}
+                      {names.kakao_nickname}이 직접 푼
+                      <br />
+                      {names.nickname} 10문 10답
+                    </Title1>
+                  </div>
+                </div>
+                <div className={classNames($.exampleDescription)}>
+                  <div className={classNames($.nicknameText)}>
+                    <Title3>{names.nickname}가 처음 보실 화면이에요.</Title3>
+                  </div>
 
-      <Button variant="primary" onClick={handleReset}>
-        처음으로 돌아가기
-      </Button>
-    </div>
+                  <Body2>내 이름을 바꾸고 싶다면 아래에 입력해주세요.</Body2>
+                  <Textarea
+                    text={nameInput}
+                    setText={setNameInput}
+                    maxLength={6}
+                    inputMode="text"
+                    showCounter={true}
+                  />
+                </div>
+              </div>
+
+              <div className={classNames($.ButtonContainer)}>
+                <KakaoShareButton variant="grading" quizid={quizid} />
+                <Button variant="secondary" onClick={handleCopy}>
+                  답안지 링크 복사
+                </Button>
+              </div>
+            </div>
+
+            <Button variant="primary" onClick={handleRetry}>
+              다른 가족 문제 풀기
+            </Button>
+          </div>
+        </>
+      )}
+    </>
   );
 }
 
 export default TestCompletedLayout;
-

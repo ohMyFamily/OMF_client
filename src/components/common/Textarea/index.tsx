@@ -115,7 +115,17 @@ export default function Textarea({
       );
     } else if (buttonType === 'save') {
       return (
-        <div className={classNames($.textareaSaveWrapper, isTyping ? $.active : $.inactive)} onClick={handleSave} >
+        <div 
+          className={classNames(
+            $.textareaSaveWrapper,
+            isTyping ? $.active : $.inactive,
+            !isTyping && $.disabled 
+          )}
+          onClick={handleSave} 
+          style={{ 
+            cursor: isTyping ? 'pointer' : 'default' 
+          }}
+        >
           <Body2>저장</Body2>
         </div>
       );

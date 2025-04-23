@@ -1,7 +1,7 @@
-import Body3 from '../Typography/Body3';
 import Title2 from '../Typography/Title2';
 import classNames from 'classnames';
 import $ from './resultcard.module.scss';
+import { Body2 } from '../Typography';
 
 export interface ResultCardProps {
   score: number;
@@ -36,7 +36,7 @@ const ResultCard = ({ score, image, title, description, variant, isHas }: Result
       >
         <Title2>{title}</Title2>
         {variant === 'score' &&
-          (score === 80 ? <Title2>{description}</Title2> : <Body3>{description}</Body3>)}{' '}
+          (score === 80 ? <Title2>{description}</Title2> : <Body2>{description}</Body2>)}{' '}
       </div>
     </div>
   );

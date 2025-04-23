@@ -1,5 +1,6 @@
 @use '@/colors' as *;
 @use '@/styles/mixin.scss' as *;
+@use '@/components/common/Typography/typography.module.scss' as *;
 
 .textareaContainer {
   width: 100%;
@@ -25,10 +26,7 @@
 .textarea {
   width: 100%;
   font-family: 'Pretendard';
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 28px;
-  letter-spacing: 0%;
+  @include typography(0, 500, 16px, none, 28px);
   text-decoration: none;
   background-color: transparent;
   border: none;
@@ -36,7 +34,6 @@
   max-height: calc(100dvh - 573px);
   resize: none;
   overflow-y: auto;
-  color: $Gray500;
 
   &.date {
     text-align: center;

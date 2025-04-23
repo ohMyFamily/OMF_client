@@ -10,7 +10,7 @@ import {
 } from 'react';
 import $ from '@/components/common/Textarea/textarea.module.scss';
 import X from '@/assets/svg/X.svg?react';
-import { Body3 } from '@/components/common/Typography';
+import { Body2, Body3 } from '@/components/common/Typography';
 
 interface TextareaProps {
   text: string;
@@ -18,6 +18,7 @@ interface TextareaProps {
   maxLength?: number;
   inputMode?: 'text' | 'numeric';
   showCounter?: boolean;
+  buttonType?: 'clear' | 'save';
   variant?: 'date';
   onKeyUp?: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
 }
@@ -28,6 +29,7 @@ export default function Textarea({
   maxLength,
   inputMode,
   showCounter,
+  buttonType,
   variant,
   onKeyUp,
 }: TextareaProps) {
@@ -62,7 +64,7 @@ export default function Textarea({
   };
 
   useEffect(() => {
-    if (text == '') {
+    if (text === '') {
       setIsTyping(false);
     } else {
       setIsTyping(true);
@@ -89,6 +91,43 @@ export default function Textarea({
       document.removeEventListener('touchstart', handleTextareaDivOutside);
     };
   }, []);
+  //X 버튼 또는 저장 버튼이 UI에 표시되어야 하는지 여부를 결정
+  const shouldShowButton = () => {
+    //글자수 표시 거나 날짜입력모드인 경우
+    if (showCounter || variant === 'date') return false;
+    //X버튼은 isTyping상태에 따라 표시됨!
+    if (buttonType === 'clear') {
+      return isTyping;
+    } else if (buttonType === 'save') {
+      return true;
+    }
+    return false;
+  };
+
+  const renderButton = () => {
+    if (!shouldShowButton()) return null;
+
+    if (buttonType === 'clear') {
+      return (
+        <div className={classNames($.textareaCloseWrapper)}>
+          <X className={classNames($.textareaClose)} onClick={handleClear} />
+        </div>
+      );
+    } else if (buttonType === 'save') {
+      return (
+        <div className={classNames($.textareaSaveWrapper, isTyping ? $.active : $.inactive)} onClick={handleSave} >
+          <Body2>저장</Body2>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  // 저장 api 붙이기
+  const handleSave = () => {
+    console.log("저장 버튼 클릭함")
+  }
 
   return (
     <div className={classNames($.textareaContainer)}>
@@ -110,11 +149,7 @@ export default function Textarea({
           inputMode={inputMode}
           onKeyUp={onKeyUp}
         />
-        {isTyping && !showCounter && !variant && (
-          <div className={classNames($.textareaCloseWrapper)}>
-            <X className={classNames($.textareaClose)} onClick={handleClear} />
-          </div>
-        )}
+        {renderButton()}
       </div>
       {showCounter && (
         <div className={classNames($.counterWrapper)}>

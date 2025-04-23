@@ -193,6 +193,7 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
               setText={setAnswer}
               label={data[currentIndex].content}
               inputMode="numeric"
+              buttonType="clear"
             />
           )}
           {/* 일반텍스트형 (4-10번) */}
@@ -202,6 +203,7 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
               setText={setAnswer}
               label={data[currentIndex].content}
               inputMode="text"
+              buttonType="clear"
             />
           )}
         </div>

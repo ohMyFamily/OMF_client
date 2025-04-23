@@ -92,8 +92,7 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
                   </div>
                   <div className={classNames($.TitleText)}>
                     <Title1>
-                      {/* {nameInput || names.kakao_nickname}이 직접 푼 */}
-                      {names.kakao_nickname}이 직접 푼
+                      {nameInput || names.kakao_nickname}이/가 직접 푼
                       <br />
                       {names.nickname} 10문 10답
                     </Title1>
@@ -108,9 +107,8 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
                   <Textarea
                     text={nameInput}
                     setText={setNameInput}
-                    maxLength={6}
                     inputMode="text"
-                    showCounter={true}
+                    buttonType="save"
                   />
                 </div>
               </div>

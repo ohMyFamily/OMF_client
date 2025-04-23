@@ -1,7 +1,9 @@
-import Button from '../Button';
 import kakaoLogo from '@/assets/svg/KakaoLogo.svg';
 import { KAKAO_JS_KEY } from '@/constants/develop.constants';
 import { useEffect } from 'react';
+import { Button1 } from '../Typography';
+import classNames from 'classnames';
+import $ from './kakaoShareButton.module.scss';
 
 interface KakaoShareButttonProps {
   variant: 'grading' | 'test';
@@ -39,8 +41,9 @@ export default function KakaoShareButton({ variant, quizid, name }: KakaoShareBu
   };
 
   return (
-    <Button variant="kakaoLogin" icon={kakaoLogo} onClick={onClickShareButton}>
-      답안지 링크 공유
-    </Button>
+    <div className={classNames($.Container)} onClick={onClickShareButton}>
+      <img src={kakaoLogo} />
+      <Button1>답안지 링크 공유</Button1>
+    </div>
   );
 }

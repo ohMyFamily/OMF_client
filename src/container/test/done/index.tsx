@@ -80,52 +80,48 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
       )}
 
       {step === 3 && (
-        <>
-          <div className={classNames($.CompletedWrapper)}>
-            <div className={classNames($.exampleContainer)}>
-              <div className={classNames($.exampleWrapper)}>
-                <div className={classNames($.exampleText)}>
-                  <div className={classNames($.BlueTitleText)}>
-                    <BlueTitleText size="lg">
-                      <Caption1>가정의 달 이벤트</Caption1>
-                    </BlueTitleText>
-                  </div>
-                  <div className={classNames($.TitleText)}>
-                    <Title1>
-                      {nameInput || names.kakao_nickname}이/가 직접 푼
-                      <br />
-                      {names.nickname} 10문 10답
-                    </Title1>
-                  </div>
-                </div>
-                <div className={classNames($.exampleDescription)}>
-                  <div className={classNames($.nicknameText)}>
-                    <Title3>{names.nickname}가 처음 보실 화면이에요.</Title3>
-                  </div>
-
-                  <Body2>내 이름을 바꾸고 싶다면 아래에 입력해주세요.</Body2>
-                  <Textarea
-                    text={nameInput}
-                    setText={setNameInput}
-                    inputMode="text"
-                    buttonType="save"
-                  />
-                </div>
+        <div className={classNames($.Wrapper)}>
+          <div className={classNames($.exampleWrapper)}>
+            <div className={classNames($.exampleText)}>
+              <div className={classNames($.BlueTitleText)}>
+                <BlueTitleText size="lg">
+                  <Caption1>가정의 달 이벤트</Caption1>
+                </BlueTitleText>
               </div>
-
-              <div className={classNames($.ButtonContainer)}>
-                <KakaoShareButton variant="grading" quizid={quizid} />
-                <Button variant="secondary" onClick={handleCopy}>
-                  답안지 링크 복사
-                </Button>
+              <div className={classNames($.TitleText)}>
+                <Title1>
+                  {nameInput || names.kakao_nickname}의
+                  <br />
+                  {names.nickname} 10문 10답
+                </Title1>
               </div>
             </div>
+            <div className={classNames($.exampleDescription)}>
+              <div className={classNames($.nicknameText)}>
+                <Title3>{names.nickname}께서 처음 보실 화면이에요.</Title3>
+              </div>
 
-            <Button variant="primary" onClick={handleRetry}>
-              다른 가족 문제 풀기
+              <Body2>이름을 바꾸고 싶다면 아래에 적고 저장해주세요.</Body2>
+              <Textarea
+                text={nameInput}
+                setText={setNameInput}
+                inputMode="text"
+                buttonType="save"
+              />
+            </div>
+          </div>
+
+          <div className={classNames($.ButtonContainer)}>
+            <KakaoShareButton variant="grading" quizid={quizid} />
+            <Button variant="tertiary" onClick={handleCopy}>
+              링크 복사
             </Button>
           </div>
-        </>
+
+          <Button variant="primary" onClick={handleRetry}>
+            다른 가족 문제 풀기
+          </Button>
+        </div>
       )}
     </>
   );

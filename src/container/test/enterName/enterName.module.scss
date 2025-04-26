@@ -2,18 +2,18 @@
 @use '@/styles/mixin.scss' as *;
 
 .Wrapper {
-  padding: 0 20px;
+  padding: 0 20px; 
+  position: relative;
   height: 100dvh;
 }
 
 .Container {
-  height: calc(100% - 48px);
+  height: calc(100dvh - 48px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  padding-top: 32px;
-  padding-bottom: 89px;
+  padding-top: 32px; 
 }
 
 .ContentWrapper {
@@ -24,8 +24,13 @@
     margin-bottom: 44px;
     color: $Gray500;
   }
+  
 }
-
+.ButtonWrapper {
+  position: absolute;
+  bottom: 13px;
+  width:calc(100% - 36px);
+}
 .NameWrapper {
   color: $Gray300;
 

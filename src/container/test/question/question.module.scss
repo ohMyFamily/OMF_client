@@ -3,18 +3,17 @@
 
 .Wrapper {
   padding: 0 20px;
+  position: relative;
   height: 100dvh;
 }
 
-
 .Container {
+  height: calc(100dvh - 48px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  padding-top: 32px;
-  padding-bottom: 89px;
-  height: calc(100% - 48px);
+  padding-top: 32px;   
 
   img {
     width: 80px;
@@ -22,7 +21,6 @@
     object-fit: contain;
   }
 }
-
 
 .ContentWrapper {
   @include center;
@@ -47,15 +45,21 @@
   color: $main300;
 }
 
+.ButtonWrapper {
+  position: absolute;
+  bottom: 16px;
+  width:calc(100% - 36px);
+}
+
 //보너스 스테이지 관련 css
-.BonusStageWrapper{
+.BonusStageWrapper {
   padding: 0 20px;
 }
 
-.BonusStageContainer{
+.BonusStageContainer {
   overflow: scroll;
   height: calc(100dvh - 48px);
   &::-webkit-scrollbar {
-      display: none;
-      
-  }}
+    display: none;
+  }
+}

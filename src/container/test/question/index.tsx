@@ -74,17 +74,17 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
         const hasYear = answer.includes('년');
         const hasMonth = answer.includes('월');
         const hasDay = answer.includes('일');
-        
+
         // 실제 값이 있는지 확인
         const parts = answer.split(' ');
         const yearPart = parts[0] || '';
         const monthPart = parts[1] || '';
         const dayPart = parts[2] || '';
-        
+
         const yearEmpty = yearPart.replace('년', '').trim().length === 0;
         const monthEmpty = monthPart.replace('월', '').trim().length === 0;
         const dayEmpty = dayPart.replace('일', '').trim().length === 0;
-        
+
         // 모든 조건이 충족되어야 버튼 활성화
         return !hasYear || !hasMonth || !hasDay || yearEmpty || monthEmpty || dayEmpty;
       }
@@ -129,10 +129,10 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
       const imageResponse = await uploadImage(selectedImage);
       image = imageResponse.data;
     }
-      submitAnswer({
+    submitAnswer({
       name,
       answer: result,
-      image 
+      image,
     });
   };
 
@@ -167,9 +167,9 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
   }
 
   return (
-    <div className={classNames($.Wrapper)}>
+    <div className={classNames($.Wrapper)} ref={containerRef}>
       <AppBar leftRole="back" onClickLeftButton={handleBeforeQuestion} />
-      <div className={classNames($.Container)} ref={containerRef}>
+      <div className={classNames($.Container)}>
         <div className={classNames($.ContentWrapper)}>
           <img src={emoje[data[currentIndex].icon as keyof typeof emoje]} alt="아이콘" />
           <Title2>{data[currentIndex].title}</Title2>
@@ -186,11 +186,7 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
           )}
           {/* 날짜입력형 (2번) */}
           {data[currentIndex].type === 'date' && (
-            <TextareaDateField
-              text={answer}
-              setText={setAnswer}
-              inputMode="numeric"
-            />
+            <TextareaDateField text={answer} setText={setAnswer} inputMode="numeric" />
           )}
           {/* 숫자입력형 (3번) */}
           {data[currentIndex].type === 'number' && (
@@ -199,7 +195,6 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
               setText={setAnswer}
               label={data[currentIndex].content}
               inputMode="numeric"
-              buttonType="clear"
             />
           )}
           {/* 일반텍스트형 (4-10번) */}
@@ -209,16 +204,17 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
               setText={setAnswer}
               label={data[currentIndex].content}
               inputMode="text"
-              buttonType="clear"
             />
           )}
         </div>
         {(data[currentIndex].type === 'input' ||
           data[currentIndex].type === 'number' ||
           data[currentIndex].type === 'date') && (
-          <Button variant="secondary" onClick={handleNextQuestion} disabled={disabled}>
-            다음 문제 ({data[currentIndex].id}/10)
-          </Button>
+          <div className={$.ButtonWrapper}>
+            <Button variant="secondary" onClick={handleNextQuestion} disabled={disabled}>
+              다음 문제 ({data[currentIndex].id}/10)
+            </Button>
+          </div>
         )}
       </div>
     </div>

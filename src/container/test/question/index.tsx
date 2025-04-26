@@ -23,6 +23,7 @@ import { useSubmitAnswerMutation } from '@/apis/queries/answer';
 import { SubmitAnswerResponse } from '@/apis/api/test.types';
 import { uploadImage } from '@/apis/api/test';
 import TextareaDateField from '@/components/common/Textarea/textareaDateField';
+import useIOSKeyboard from '@/hooks/useIosKeyboard';
 
 interface QuestionLayoutProps {
   handleStep: (step: string) => void;
@@ -50,6 +51,11 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [result, setResult] = useState<(string | number)[]>([]);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const { containerRef } = useIOSKeyboard({
+    keyboardUpOffset: -200,
+    keyboardDownOffset: 13,
+    scrollToPosition: 200,
+  });
 
   const successSubmitAnswer = (response: SubmitAnswerResponse) => {
     const { quizid } = response.data;
@@ -163,7 +169,7 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
   return (
     <div className={classNames($.Wrapper)}>
       <AppBar leftRole="back" onClickLeftButton={handleBeforeQuestion} />
-      <div className={classNames($.Container)}>
+      <div className={classNames($.Container)} ref={containerRef}>
         <div className={classNames($.ContentWrapper)}>
           <img src={emoje[data[currentIndex].icon as keyof typeof emoje]} alt="아이콘" />
           <Title2>{data[currentIndex].title}</Title2>

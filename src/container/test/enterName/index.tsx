@@ -7,6 +7,7 @@ import { Title2 } from '@/components/common/Typography';
 import TextareaField from '@/components/common/Textarea/textareaField';
 import Button from '@/components/common/Button';
 import { PersonType } from '@/constants/business.constants';
+import useIOSKeyboard from '@/hooks/useIosKeyboard';
 
 interface EnterNameLayoutProps {
   person: PersonType;
@@ -16,6 +17,11 @@ interface EnterNameLayoutProps {
 
 function EnterNameLayout({ person, handleStep, setName }: EnterNameLayoutProps) {
   const [nameInput, setNameInput] = useState('');
+  const { containerRef } = useIOSKeyboard({
+    keyboardUpOffset: -200,
+    keyboardDownOffset: 13,
+    scrollToPosition: 200,
+  });
 
   const disabled = useMemo(() => {
     return nameInput.trim().length === 0;
@@ -27,7 +33,7 @@ function EnterNameLayout({ person, handleStep, setName }: EnterNameLayoutProps) 
   };
 
   return (
-    <div className={classNames($.Wrapper)}>
+    <div className={classNames($.Wrapper)} ref={containerRef}>
       <AppBar leftRole="back" onClickLeftButton={() => handleStep('선택')} />
       <div className={classNames($.Container)}>
         <div className={classNames($.ContentWrapper)}>
@@ -61,14 +67,17 @@ function EnterNameLayout({ person, handleStep, setName }: EnterNameLayoutProps) 
             showCounter={true}
             label={
               <div className={classNames($.NameWrapper)}>
-                이름, 호칭 등 <span className={classNames($.highlight)}>6자 이내(공백 포함)</span>로 적어주세요.
+                이름, 호칭 등 <span className={classNames($.highlight)}>6자 이내(공백 포함)</span>로
+                적어주세요.
               </div>
             }
           />
         </div>
-        <Button variant="secondary" onClick={handleNext} disabled={disabled}>
-          다음
-        </Button>
+        <div className={$.ButtonWrapper}>
+          <Button variant="secondary" onClick={handleNext} disabled={disabled}>
+            다음
+          </Button>
+        </div>
       </div>
     </div>
   );

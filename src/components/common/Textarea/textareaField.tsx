@@ -13,9 +13,10 @@ interface TextareaFieldProps {
   inputMode?: 'text' | 'numeric';
   nameExamples?: 'mom' | 'dad' | 'others';
   showCounter?: boolean;
+  buttonType?: 'clear' | 'save';
 }
 
-function TextareaField({ label, text, setText, maxLength, inputMode, nameExamples, showCounter}: TextareaFieldProps) {
+function TextareaField({ label, text, setText, maxLength, inputMode, nameExamples, showCounter, buttonType}: TextareaFieldProps) {
 
   const currentExamples = nameExamples ? nicknameExamples[nameExamples] : [];
 
@@ -33,6 +34,7 @@ function TextareaField({ label, text, setText, maxLength, inputMode, nameExample
           maxLength={maxLength} 
           inputMode={inputMode}
           showCounter={showCounter}
+          buttonType={buttonType}
         />
         {nameExamples && (
           <div className={classNames($.namesWrapper)}>

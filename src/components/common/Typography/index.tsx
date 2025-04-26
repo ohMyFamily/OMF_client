@@ -1,4 +1,4 @@
-import Body2 from './Body3';
+import Body2 from './Body2';
 import Body3 from './Body3';
 import Button1 from './Button1';
 import Button2 from './Button2';

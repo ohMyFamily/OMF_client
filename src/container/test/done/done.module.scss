@@ -1,27 +1,80 @@
 @use '@/styles/mixin.scss' as *;
+@use '@/colors' as *;
 
 .Wrapper {
+  height: 100dvh;
+  width: 100%;
   padding: 0 20px;
-  @include center;
+  display: flex;
   flex-direction: column;
 }
 
 .Container {
+  flex: 1;
+  @include center();
+  flex-direction: column;
   text-align: center;
+  color: $Gray500;
+
   img {
-    margin-top: 80px;
     margin-bottom: 16px;
   }
+}
 
-  h2 {
+.exampleWrapper {
+  background-color: $Gray000;
+  padding: 24px 18px;
+  margin-top: 48px;
+  margin-bottom: 32px;
+  width: 100%;
+  height: 378px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 4px 0 #ecfaff;
+}
+
+.exampleText {
+  background-color: $Bi-Bg-Blue;
+  border-radius: 12px;
+  height: 174px;
+  @include center();
+  flex-direction: column;
+
+  text-align: center;
+
+  .BlueTitleText {
     margin-bottom: 8px;
+  }
+  .TitleText {
+    color: $Gray400;
+  }
+}
+
+.exampleDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
+  text-align: left;
+  .nicknameText {
+    color: $Gray500;
+  }
+
+  p {
+    color: $Gray300;
   }
 }
 
 .ButtonContainer {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 48px 0;
+  gap: 8px;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.ButtonContainer > :first-child {
+  flex: 2.3;
+}
+
+.ButtonContainer > :last-child {
+  flex: 1;
 }

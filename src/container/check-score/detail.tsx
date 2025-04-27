@@ -43,14 +43,15 @@ export default function CheckScoreDetailLayout() {
             description={data.subtitle}
             variant="score"
           />
-          <Body2>{data.content}</Body2>
+          <div className={classNames($.contentDescription)}>
+            <Body2>{data.content}</Body2>
+          </div>
         </div>
 
         <div className={classNames($.AnimateCard)}>
           <div className={classNames($.PaddingContainer)}>
             <Title2>더 많은 카드를 수집해보세요!</Title2>
           </div>
-
           <AnimateCardSample />
         </div>
 

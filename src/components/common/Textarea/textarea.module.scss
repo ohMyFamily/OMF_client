@@ -1,103 +1,169 @@
 @use '@/colors' as *;
+@use '@/styles/mixin.scss' as *;
+@use '@/components/common/Typography/typography.module.scss' as *;
 
 .textareaContainer {
-    width: 100%;
-    position: relative;
+  width: 100%;
+  position: relative;
 }
 
 .textareaWrapper {
-    width: 100%;
-    display: flex;
-    gap: 8px;
-    background-color: $Gray50;
-    border: none;
-    border-radius: 8px;
-    padding: 14px 16px;
-    overflow: hidden;
-    max-height: 100%; 
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  background-color: $Gray50;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 16px;
+  overflow: hidden;
+  max-height: 100%;
+
+  &.date {
+    padding: 8px;
+  }
 }
 
 .textarea {
-    width: 100%;
-    font-family: 'Pretendard';
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 28px;
-    letter-spacing: 0%;
-    text-decoration: none;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    max-height: calc(100dvh - 573px); 
-    resize: none;
-    overflow-y: auto;
-    color: $Gray500;
+  width: 100%;
+  font-family: 'Pretendard';
+  @include typography(0, 500, 16px, none, 28px);
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  max-height: calc(100dvh - 573px);
+  resize: none;
+  overflow-y: auto;
+  color: $Gray500;
 
-    &::-webkit-scrollbar {
-        width: 3px; 
-    }
+  &.date {
+    text-align: center;
+  }
 
-    &::-webkit-scrollbar-thumb {
-        background: $Gray100; 
-        border-radius: 14px; 
-    }
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $Gray100;
+    border-radius: 14px;
+  }
 }
 
 .textareaClose {
-    width: 15px;
-    fill: $Gray200;
+  width: 15px;
+  fill: $Gray200;
 
-    &:active {
-      color: $Gray50;
-    }
+  &:active {
+    color: $Gray50;
+  }
 }
 
 .textareaCloseWrapper {
-    padding: 4.5px;
-    justify-content: center;
-    text-align: center;
-    display: flex;
+  padding: 4.5px;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+}
+
+.textareaSaveWrapper {
+  white-space: nowrap;
+  @include center();
+  &.active {
+    p {
+      color: $main300;
+    }
+  }
+
+  &.inactive {
+    p {
+      color: $Gray200;
+    }
+  }
+  &.disabled {
+    pointer-events: none; 
+}
 }
 
 .counterWrapper {
-    position: absolute;
-    bottom: 3px;
-    right: 10px;
-    color: $Gray100;
+  position: absolute;
+  bottom: 3px;
+  right: 10px;
+  color: $Gray100;
 }
 
 .fieldWrapper {
-    width: 100%;
-    padding: 24px 16px;
-    justify-content: center;
-    text-align: start;
-    display: flex;
-    flex-direction: column;
-    border: none;
-    border-radius: 16px;
-    background-color: White;
-    box-shadow: inset 0 0 1px 0 #aeecff, 12px 12px 28px 0 rgba(0, 0, 0, 0.05);
+  width: 100%;
+  padding: 24px 16px;
+  justify-content: center;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  border-radius: 16px;
+  background-color: White;
+  box-shadow: inset 0 0 1px 0 #aeecff, 12px 12px 28px 0 rgba(0, 0, 0, 0.05);
 
-    .label {
-      margin-bottom: 8px;
-      color: $Gray300;
-    }
+  .label {
+    margin-bottom: 8px;
+    color: $Gray300;
+  }
+  p {
+    color: $Gray300;
+  }
+}
+
+.dateInputWrapper {
+  width: 100%;
+  padding: 16px;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: start;
+  display: flex;
+  border: none;
+  border-radius: 16px;
+  background-color: White;
+  box-shadow: inset 0 0 1px 0 #aeecff, 12px 12px 28px 0 rgba(0, 0, 0, 0.05);
+
+  .label {
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: $Gray300;
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  @include center;
+  p {
+    margin-left: 8px;
+  }
+
+  &.yearField {
+    flex: 1.4;
+  }
+
+  &.monthDayField {
+    flex: 1;
+  }
 }
 
 .namesWrapper {
-    margin-top: 24px;
-    color: $Gray300;
+  margin-top: 24px;
+  color: $Gray300;
 }
 
 .exampleButtonsWrapper {
-    margin-top: 8px;
-    display: flex;
+  margin-top: 8px;
+  display: flex;
 }
 
 .exampleButton {
-    padding: 4px 16px;
-    border-radius: 28px;
-    background-color: $main50;
-    color: $main300;
-    margin-right: 8px;
+  padding: 4px 16px;
+  border-radius: 28px;
+  background-color: $main50;
+  color: $main300;
+  margin-right: 8px;
 }

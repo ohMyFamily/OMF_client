@@ -22,6 +22,8 @@ import {
 import { useSubmitAnswerMutation } from '@/apis/queries/answer';
 import { SubmitAnswerResponse } from '@/apis/api/test.types';
 import { uploadImage } from '@/apis/api/test';
+import TextareaDateField from '@/components/common/Textarea/textareaDateField';
+import useIOSKeyboard from '@/hooks/useIosKeyboard';
 
 interface QuestionLayoutProps {
   handleStep: (step: string) => void;
@@ -49,6 +51,11 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [result, setResult] = useState<(string | number)[]>([]);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const { containerRef } = useIOSKeyboard({
+    keyboardUpOffset: -200,
+    keyboardDownOffset: 13,
+    scrollToPosition: 200,
+  });
 
   const successSubmitAnswer = (response: SubmitAnswerResponse) => {
     const { quizid } = response.data;
@@ -61,8 +68,30 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
   const { mutate: submitAnswer } = useSubmitAnswerMutation(successSubmitAnswer, failSubmitAnswer);
 
   const disabled = useMemo(() => {
-    return answer.trim().length === 0;
-  }, [answer]);
+    if (data && data[currentIndex]) {
+      if (data[currentIndex].type === 'date') {
+        // 년,월,일이 모두 포함되어 있는지 확인
+        const hasYear = answer.includes('년');
+        const hasMonth = answer.includes('월');
+        const hasDay = answer.includes('일');
+
+        // 실제 값이 있는지 확인
+        const parts = answer.split(' ');
+        const yearPart = parts[0] || '';
+        const monthPart = parts[1] || '';
+        const dayPart = parts[2] || '';
+
+        const yearEmpty = yearPart.replace('년', '').trim().length === 0;
+        const monthEmpty = monthPart.replace('월', '').trim().length === 0;
+        const dayEmpty = dayPart.replace('일', '').trim().length === 0;
+
+        // 모든 조건이 충족되어야 버튼 활성화
+        return !hasYear || !hasMonth || !hasDay || yearEmpty || monthEmpty || dayEmpty;
+      }
+      return answer.trim().length === 0;
+    }
+    return true;
+  }, [answer, currentIndex, data]);
 
   // 인덱스가 바뀔 때 result[currentIndex] 체크해서 답변한 게 있으면 답변한 내용 보여주고, 없으면 ''
   useEffect(() => {
@@ -100,16 +129,20 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
       const imageResponse = await uploadImage(selectedImage);
       image = imageResponse.data;
     }
-      submitAnswer({
+    submitAnswer({
       name,
       answer: result,
-      image 
+      image,
     });
   };
 
   //답 입력 버튼
   const handleSelectAnswer = (answer: string | number) => {
-    setResult((prev: (string | number)[]) => [...prev, answer]);
+    setResult((prev: (string | number)[]) => {
+      const newResult = [...prev];
+      newResult[currentIndex] = answer;
+      return newResult;
+    });
     setCurrentIndex(currentIndex + 1);
   };
 
@@ -134,28 +167,13 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
   }
 
   return (
-    <div className={classNames($.Wrapper)}>
+    <div className={classNames($.Wrapper)} ref={containerRef}>
       <AppBar leftRole="back" onClickLeftButton={handleBeforeQuestion} />
       <div className={classNames($.Container)}>
         <div className={classNames($.ContentWrapper)}>
           <img src={emoje[data[currentIndex].icon as keyof typeof emoje]} alt="아이콘" />
           <Title2>{data[currentIndex].title}</Title2>
-          {(data[currentIndex].type === 'input' || data[currentIndex].type === 'date') && (
-            <TextareaField
-              text={answer}
-              setText={setAnswer}
-              label={data[currentIndex].content}
-              inputMode="text"
-            />
-          )}
-          {data[currentIndex].type === 'number' && (
-            <TextareaField
-              text={answer}
-              setText={setAnswer}
-              label={data[currentIndex].content}
-              inputMode="numeric"
-            />
-          )}
+          {/* radio 선택지형 (1번) */}
           {data[currentIndex].type === 'select' && (
             <div className={$.buttonLayout}>
               {typeof data[currentIndex].content !== 'string' &&
@@ -166,13 +184,37 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
                 ))}
             </div>
           )}
+          {/* 날짜입력형 (2번) */}
+          {data[currentIndex].type === 'date' && (
+            <TextareaDateField text={answer} setText={setAnswer} inputMode="numeric" />
+          )}
+          {/* 숫자입력형 (3번) */}
+          {data[currentIndex].type === 'number' && (
+            <TextareaField
+              text={answer}
+              setText={setAnswer}
+              label={data[currentIndex].content}
+              inputMode="numeric"
+            />
+          )}
+          {/* 일반텍스트형 (4-10번) */}
+          {data[currentIndex].type === 'input' && (
+            <TextareaField
+              text={answer}
+              setText={setAnswer}
+              label={data[currentIndex].content}
+              inputMode="text"
+            />
+          )}
         </div>
         {(data[currentIndex].type === 'input' ||
           data[currentIndex].type === 'number' ||
           data[currentIndex].type === 'date') && (
-          <Button variant="secondary" onClick={handleNextQuestion} disabled={disabled}>
-            다음 문제 ({data[currentIndex].id}/10)
-          </Button>
+          <div className={$.ButtonWrapper}>
+            <Button variant="secondary" onClick={handleNextQuestion} disabled={disabled}>
+              다음 문제 ({data[currentIndex].id}/10)
+            </Button>
+          </div>
         )}
       </div>
     </div>

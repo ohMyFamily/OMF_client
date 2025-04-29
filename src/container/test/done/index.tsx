@@ -11,6 +11,7 @@ import BlueTitleText from '@/components/common/Item/BlueTitleText';
 import { useGetUserNames } from '@/apis/queries/user';
 import Textarea from '@/components/common/Textarea';
 import { useChangeNameMutation } from '@/apis/queries/answer';
+import cutName from '@/utils/cutName';
 
 interface TestCompletedProps {
   nickname: string;
@@ -28,8 +29,8 @@ function TestCompletedLayout({ nickname, quizid, handleStep }: TestCompletedProp
   const names = quizid ? useGetUserNames(quizid) : null;
   
   useEffect(() => {
-    if (names && names.kakao_nickname) {
-      setDisplayName(names.kakao_nickname);
+    if (names && cutName(names.kakao_nickname)) {
+      setDisplayName(cutName(names.kakao_nickname));
     }
   }, [names]);
 
@@ -123,7 +124,7 @@ function TestCompletedLayout({ nickname, quizid, handleStep }: TestCompletedProp
               </div>
               <div className={classNames($.TitleText)}>
                 <Title1>
-                  {displayName || names.kakao_nickname}의
+                  {cutName(displayName || names.kakao_nickname)}의
                   <br />
                   {names.nickname} 10문 10답
                 </Title1>

@@ -43,7 +43,7 @@ export default function KakaoShareButton({ variant, quizid, name }: KakaoShareBu
   return (
     <div className={classNames($.Container)} onClick={onClickShareButton}>
       <img src={kakaoLogo} />
-      <Button1>답안지 링크 공유</Button1>
+      <Button1>{variant === 'test' ? '테스트 공유하기' : '답안지 링크 공유'}</Button1>
     </div>
   );
 }

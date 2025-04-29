@@ -7,6 +7,7 @@ import Button from '@/components/common/Button';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetUserNames } from '@/apis/queries/user';
+import cutName from '@/utils/cutName';
 
 type GuideLayoutProps = {
   handleStep: (step: string) => void;
@@ -29,7 +30,7 @@ export default function GuideLayout({ handleStep }: GuideLayoutProps) {
     <div className={$.layout}>
       <AppBar leftRole="back" onClickLeftButton={onClickLeftButton} className={$.appBar} />
       <GradingCard
-        title={`아래는 ${names.kakao_nickname}이
+        title={`아래는 ${cutName(names.kakao_nickname)}이
          나에 대해 답한 내용입니다.`}
         cardImage={Call}
         cardNumber="연습문제"

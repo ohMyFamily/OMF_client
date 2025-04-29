@@ -22,9 +22,14 @@ export interface QuestionResponseData {
 export interface SubmitAnswerPayload {
   name: string;
   answer: (string | number)[];
-  image?: string; 
+  image?: string;
 }
 
+// 답변 제출 타입
+export interface ChangeNamePayload {
+  name: string;
+  quizid: number;
+}
 
 // 자식 답변 호출 타입
 export interface AnswerResponseData {
@@ -35,13 +40,13 @@ export interface AnswerResponseData {
 export interface SubmitAnswerResponse {
   data: {
     quizid: number;
-  }
- }
+  };
+}
 
 export type GradingPayloadType = {
   result: {
     id: number;
     isCorrect: boolean;
-  }[],
+  }[];
   quizid: number;
-}
+};

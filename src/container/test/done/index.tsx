@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import BlueTitleText from '@/components/common/Item/BlueTitleText';
 import { useGetUserNames } from '@/apis/queries/user';
 import Textarea from '@/components/common/Textarea';
+import { useChangeNameMutation } from '@/apis/queries/answer';
 
 interface TestCompletedProps {
   nickname: string;
@@ -24,6 +25,33 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const names = quizid ? useGetUserNames(quizid) : null;
+  
+  useEffect(() => {
+    if (names && names.kakao_nickname) {
+      setDisplayName(names.kakao_nickname);
+    }
+  }, [names]);
+
+  const [displayName, setDisplayName] = useState('');
+
+  const changeNameMutation = useChangeNameMutation(
+    () => {
+      addToasts('입력하신 닉네임이 저장되었어요!', { bottom: '220px' });
+      setDisplayName(nameInput);
+    },
+    () => {
+      addToasts('닉네임 저장에 실패했습니다. 다시 시도해주세요.', { bottom: '220px' });
+    }
+  );
+
+  const handleSaveName = () => {
+    if (nameInput.trim()) {
+      changeNameMutation.mutate({
+        quizid: quizid,
+        name: nameInput.trim()
+      });
+    }
+  };
 
   useEffect(() => {
     const timer1 = setTimeout(() => {
@@ -90,7 +118,7 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
               </div>
               <div className={classNames($.TitleText)}>
                 <Title1>
-                  {nameInput || names.kakao_nickname}의
+                  {displayName || names.kakao_nickname}의
                   <br />
                   {names.nickname} 10문 10답
                 </Title1>
@@ -107,6 +135,8 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
                 setText={setNameInput}
                 inputMode="text"
                 buttonType="save"
+                onSave={handleSaveName}
+                isLoading={changeNameMutation.isPending}
               />
             </div>
           </div>

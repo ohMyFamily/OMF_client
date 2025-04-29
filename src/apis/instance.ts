@@ -39,8 +39,7 @@ instance.interceptors.response.use(
           refreshToken,
         });
 
-        setAuthToken(response.data.accessToken, response.data.refreshToken);
-
+        setAuthToken(response.data.data.accessToken, response.data.data.refreshToken);
         return instance(originalRequest);
       } catch (err) {
         handleLogout();

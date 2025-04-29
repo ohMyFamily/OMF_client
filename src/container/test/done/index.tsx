@@ -15,9 +15,10 @@ import { useChangeNameMutation } from '@/apis/queries/answer';
 interface TestCompletedProps {
   nickname: string;
   quizid: number;
+  handleStep?: (step: string) => void;
 }
 
-function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
+function TestCompletedLayout({ nickname, quizid, handleStep }: TestCompletedProps) {
   const navigate = useNavigate();
   const { addToasts } = useToast();
   const [step, setStep] = useState(1);
@@ -36,11 +37,11 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
 
   const changeNameMutation = useChangeNameMutation(
     () => {
-      addToasts('입력하신 닉네임이 저장되었어요!', { bottom: '220px' });
+      addToasts('입력하신 닉네임이 저장되었어요!', {top: '598px'});
       setDisplayName(nameInput);
     },
     () => {
-      addToasts('닉네임 저장에 실패했습니다. 다시 시도해주세요.', { bottom: '220px' });
+      addToasts('닉네임 저장에 실패했습니다. 다시 시도해주세요.', {top: '598px'});
     }
   );
 
@@ -74,7 +75,7 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
 
     try {
       await navigator.clipboard.writeText(shareURL);
-      addToasts('클립보드에 링크가 복사되었습니다.', { bottom: '220px'});
+      addToasts('클립보드에 링크가 복사되었습니다.', { top: '598px' });
     } catch (error) {
       console.error('클립보드 복사 실패:', error);
     }
@@ -82,7 +83,11 @@ function TestCompletedLayout({ nickname, quizid }: TestCompletedProps) {
 
   //다른 가족 선택하기
   const handleRetry = () => {
-    navigate('/test');
+    if (handleStep) {
+      handleStep('선택');
+    } else {
+      navigate('/test');
+    }
   };
 
   return (

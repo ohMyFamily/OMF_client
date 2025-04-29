@@ -49,7 +49,7 @@ function Test() {
         </Suspense>
       </Funnel.Steps>
       <Funnel.Steps name="완료">
-        <TestCompletedLayout nickname={name} quizid={quizid!} />
+        <TestCompletedLayout nickname={name} quizid={quizid!} handleStep={handleStep} />
       </Funnel.Steps>
     </Funnel>
   );

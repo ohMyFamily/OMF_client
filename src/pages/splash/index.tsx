@@ -13,11 +13,16 @@ export default function Splash() {
       if (data) {
         Storage.setItem('userId', data.memberId);
         Storage.setItem('nickname', data.nickname);
-        // navigate('/');
+      }
+      const accessToken = Storage.getItem('accessToken');
+      if (accessToken) {
+        navigate('/main');
+      } else {
+        navigate('/login');
       }
     }, 3000);
     return () => clearTimeout(timer);
-  }, [data]);
+  }, []);
 
   return <SplashLayout />;
 }

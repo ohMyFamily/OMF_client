@@ -4,6 +4,7 @@ import ButtonLayout from '@/components/domain/grading/buttonLayout';
 import ClapComplete from '@/components/domain/grading/clapComplete';
 import { useGetUserNames } from '@/apis/queries/user';
 import { useParams } from 'react-router-dom';
+import cutName from '@/utils/cutName';
 
 type CompleteLayoutProps = {
   handleStep: (step: string) => void;
@@ -19,7 +20,7 @@ export default function NoImage({ handleStep }: CompleteLayoutProps) {
         <ClapComplete />
         <div className={$.text}>
           <Body2>
-            채점 결과는 {names.kakao_nickname}님이 직접 확인할 수 있답니다.
+            채점 결과는 {cutName(names.kakao_nickname)}님이 직접 확인할 수 있답니다.
             <br /> 다른 사람이 생각하는 내가 궁금하다면?
           </Body2>
         </div>

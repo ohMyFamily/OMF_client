@@ -3,6 +3,18 @@
 .Wrapper {
     @include center();
     height: 100dvh;
+    overflow-y: auto;
+}
+
+.step1Wrapper {
+    height: 100dvh;
+    display: flex;
+    padding-top: 40px;
+    flex-direction: column;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    overflow-y: auto;
 }
 
 .layout { 
@@ -35,4 +47,7 @@
         border-radius: 12px;
     }
 }
- 
+
+.buttonWrapper {
+    margin-bottom: 120px;
+}

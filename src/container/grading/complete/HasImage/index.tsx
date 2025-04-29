@@ -7,6 +7,7 @@ import sample from '@/assets/image/splash1.png';
 import ButtonLayout from '@/components/domain/grading/buttonLayout';
 import { useParams } from 'react-router-dom';
 import { useGetUserNames } from '@/apis/queries/user';
+import cutName from '@/utils/cutName';
 
 type HasImageProps = {
   handleStep: (step: string) => void;
@@ -34,7 +35,7 @@ export default function HasImage({ handleStep, imageUrl }: HasImageProps) {
         {step === 1 && (
           <div className={$.step2}>
             <Title2>
-              {names.kakao_nickname}이 수줍게 <br /> 간직하고 있는 나의 사진입니다.
+              {cutName(names.kakao_nickname)}이 수줍게 <br /> 간직하고 있는 나의 사진입니다.
             </Title2>
             <div className={$.text}>
               <Body2>

@@ -21,6 +21,8 @@ interface TextareaProps {
   buttonType?: 'clear' | 'save';
   variant?: 'date';
   onKeyUp?: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
+  onSave?: () => void;
+  isLoading?: boolean;
 }
 
 export default function Textarea({
@@ -32,11 +34,13 @@ export default function Textarea({
   buttonType,
   variant,
   onKeyUp,
+  onSave,
+  isLoading = false,
 }: TextareaProps) {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [hasText, setHasText] = useState<boolean>(!!text);
-  
+
   //textarea을 focus하기 위해 useRef 사용(handleClear 실행 이후에도 포커스가 유지되도록)
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   //div 밖 영역 감지를 위해
@@ -120,15 +124,15 @@ export default function Textarea({
       );
     } else if (buttonType === 'save') {
       return (
-        <div 
+        <div
           className={classNames(
             $.textareaSaveWrapper,
             hasText ? $.active : $.inactive,
-            !hasText && $.disabled 
+            (!hasText || isLoading) && $.disabled
           )}
-          onClick={handleSave} 
-          style={{ 
-            cursor: hasText ? 'pointer' : 'default' 
+          onClick={handleSave}
+          style={{
+            cursor: hasText && !isLoading ? 'pointer' : 'default',
           }}
         >
           <Body2>저장</Body2>
@@ -139,10 +143,12 @@ export default function Textarea({
     return null;
   };
 
-  // 저장 api 붙이기
+  // 저장 함수 핸들러
   const handleSave = () => {
-    console.log("저장 버튼 클릭함")
-  }
+    if (hasText && onSave && !isLoading) {
+      onSave();
+    }
+  };
 
   return (
     <div className={classNames($.textareaContainer)}>

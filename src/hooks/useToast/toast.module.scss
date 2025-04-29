@@ -1,54 +1,56 @@
-@use '@/colors' as *; 
+@use '@/colors' as *;
 
 @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  @keyframes fadeOut {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      to {
-        opacity: 0;
-        transform: translateY(20px);
-      }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-
-.layout {  
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 8px 16px;
-    color: $Gray000; 
-    position: relative; 
-    
-    &.visible {
-        animation: fadeIn 0.3s ease-in-out forwards;
-    }
-    
-    &.hidden {
-        animation: fadeOut 0.3s ease-in-out forwards; 
-    }
 }
 
-.toast { 
-    z-index: 1000;
-    max-width: 430px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    position: fixed; 
-    bottom: 14px;  
-    pointer-events: none; 
-    left: 50%; 
-    transform: translateX(-50%);
-    width: calc(100% - 40px);
-    
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.layout {
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 8px 16px;
+  color: $Gray000;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+
+  &.visible {
+    animation: fadeIn 0.3s ease-in-out forwards;
+  }
+
+  &.hidden {
+    animation: fadeOut 0.3s ease-in-out forwards;
+  }
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+  width: calc(100% - 40px);
 }

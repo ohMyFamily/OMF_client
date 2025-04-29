@@ -22,7 +22,7 @@ export default function MainLayout() {
 
   const handleLogout = () => {
     Storage.clearItems();
-    addToasts('로그아웃 완료! 다음에 또 만나요~', { bottom: '150px'});
+    addToasts('로그아웃 완료! 다음에 또 만나요~', { top: '531px' });
     navigate('/login');
   }; 
 

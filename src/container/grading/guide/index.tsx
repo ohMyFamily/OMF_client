@@ -39,6 +39,8 @@ export default function GuideLayout({ handleStep }: GuideLayoutProps) {
         state={sample}
         setState={setSample}
         index={0}
+        canEdit={true}
+
       />
       <div className={$.textWrapper}>
         <Body3>

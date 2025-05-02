@@ -8,11 +8,12 @@ import CheckCircle from '@/assets/svg/CheckCircle.svg?react';
 interface ScoreButtonProps {
   state: boolean | null;
   setState: Dispatch<SetStateAction<boolean | null>>;
+  canEdit: boolean;
 }
 
-const ScoreButton = ({ state, setState }: ScoreButtonProps) => {
+const ScoreButton = ({ state, setState, canEdit}: ScoreButtonProps) => {
   const handleClick = (state: boolean) => {
-    setState(state);
+    if (canEdit) setState(state);
   };
 
   return (

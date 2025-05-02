@@ -126,6 +126,7 @@ export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: Che
                 setState={setAnswerList as Dispatch<SetStateAction<(boolean | null)[]>>}
                 index={index}
                 key={item.id}
+                canEdit={true}
               />
             );
           })}

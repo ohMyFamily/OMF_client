@@ -16,6 +16,7 @@ export interface QuestionResponseData {
   content: string | string[];
   icon: string;
   answer?: string;
+  isAnswer?: boolean;
 }
 
 // 답변 제출 타입

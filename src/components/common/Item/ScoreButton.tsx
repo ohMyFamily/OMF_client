@@ -9,11 +9,21 @@ interface ScoreButtonProps {
   state: boolean | null;
   setState: Dispatch<SetStateAction<boolean | null>>;
   canEdit: boolean;
+  mainRef: React.RefObject<HTMLDivElement>;
 }
 
-const ScoreButton = ({ state, setState, canEdit}: ScoreButtonProps) => {
+const ScoreButton = ({ state, setState, canEdit, mainRef }: ScoreButtonProps) => {
   const handleClick = (state: boolean) => {
-    if (canEdit) setState(state);
+    if (canEdit) {
+      setState(state);
+      
+      if (mainRef.current) {
+          mainRef.current?.scrollTo({
+            top: mainRef.current.scrollTop + 340,
+            behavior: 'smooth',
+          });
+      }
+    }
   };
 
   return (

@@ -12,6 +12,9 @@ import { useGetUserNames } from '@/apis/queries/user';
 import Textarea from '@/components/common/Textarea';
 import { useChangeNameMutation } from '@/apis/queries/answer';
 import cutName from '@/utils/cutName';
+import CryptoJS from 'crypto-js';
+
+const VITE_SECRET_KEY = import.meta.env.VITE_SECRET_KEY;
 
 interface TestCompletedProps {
   nickname: string;
@@ -70,15 +73,20 @@ function TestCompletedLayout({ nickname, quizid, handleStep }: TestCompletedProp
     };
   }, []);
 
-  //링크 복사
-  const handleCopy = async () => {
-    const shareURL = `${window.location.origin}/grading/${quizid}`;
-
-    try {
-      await navigator.clipboard.writeText(shareURL);
+//링크 복사
+const handleCopy = async () => {
+  try {
+    const path = `/grading/${quizid}`;
+    const encryptedPath = CryptoJS.AES.encrypt(path, VITE_SECRET_KEY).toString();
+    const encodedPath = encodeURIComponent(encryptedPath);
+    // 복사될 암호회된 링크
+    const secureShareURL = `${window.location.origin}/?encrypted=${encodedPath}`;
+    
+      await navigator.clipboard.writeText(secureShareURL);
       addToasts('클립보드에 링크가 복사되었습니다.', { top: '598px' });
     } catch (error) {
       console.error('클립보드 복사 실패:', error);
+      addToasts('링크 복사에 실패했습니다.', { top: '598px' });
     }
   };
 

@@ -2,11 +2,22 @@ import { useGetUserInfo } from '@/apis/queries/user';
 import SplashLayout from '@/container/splash';
 import { Storage } from '@/storage';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Splash() {
   const { data } = useGetUserInfo();
   const navigate = useNavigate();
+  const location = useLocation();
+
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const encryptedPath = query.get('encrypted');
+    
+    if (encryptedPath) {
+      navigate(`/encrypted?encrypted=${encodeURIComponent(encryptedPath)}`);
+    }
+  }, [navigate, location.search]);
 
   useEffect(() => {
     const timer = setTimeout(async () => {

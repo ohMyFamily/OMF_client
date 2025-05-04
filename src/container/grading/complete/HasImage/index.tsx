@@ -16,7 +16,7 @@ type HasImageProps = {
 
 export default function HasImage({ handleStep, imageUrl }: HasImageProps) {
   const { quizid } = useParams();
-  const names = useGetUserNames(Number(quizid));
+  const names = useGetUserNames(String(quizid));
 
   const [step, setStep] = useState<number>(0);
 

@@ -7,7 +7,7 @@ import $ from './kakaoShareButton.module.scss';
 
 interface KakaoShareButttonProps {
   variant: 'grading' | 'test';
-  quizid?: number;
+  quizid?: string;
   name?: string;
 }
 

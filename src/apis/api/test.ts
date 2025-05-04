@@ -50,7 +50,7 @@ export const changeName = async (payload: ChangeNamePayload) => {
 };
 
 // 답변 조회
-export const getAnswer = async (quizid: number): Promise<ApiResponseFormat<AnswerResponseData>> => {
+export const getAnswer = async (quizid: string): Promise<ApiResponseFormat<AnswerResponseData>> => {
   const { data } = await instance.get('api/answer', {
     params: { quizid },
   });

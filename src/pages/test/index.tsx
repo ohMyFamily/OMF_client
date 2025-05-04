@@ -19,7 +19,7 @@ function Test() {
   const steps = ['선택', '애칭', '질문', '완료'];
   const [selectedType, setSelectedType] = useState<PersonType>('mom');
   const [selectedImage, setSelectedImage] = useState<FormData | null>(null);
-  const [quizid, setQuizid] = useState<number>();
+  const [quizid, setQuizid] = useState<string>();
   const [name, setName] = useState<string>(''); //애칭
 
   const { FunnelComponent: Funnel, handleStep } = useFunnel(steps, {});

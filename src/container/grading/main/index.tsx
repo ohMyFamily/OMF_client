@@ -7,6 +7,8 @@ import BackgroundSVG from '@/components/common/Item/BackgroundSVG';
 import { useParams } from 'react-router-dom';
 import { useGetUserNames } from '@/apis/queries/user';
 import cutName from '@/utils/cutName';
+import { useQuizCheckStatus } from '@/apis/queries/score';
+import { useEffect } from 'react';
 
 type MainLayoutProps = {
   handleStep: (step: string) => void;
@@ -14,11 +16,17 @@ type MainLayoutProps = {
 
 export default function MainLayout({ handleStep }: MainLayoutProps) {
   const {quizid} = useParams();
-  const names = useGetUserNames(Number(quizid));
-
-  const onClickNextStep = () => {
-    handleStep('가이드');
+  const names = useGetUserNames(String(quizid));
+  const {data: quizCheckStatus} = useQuizCheckStatus(Number(quizid));
+ 
+  const onClickNextStep = () => { 
+    if (quizCheckStatus) {
+        handleStep('채점완료');
+      return ;
+    }
+    handleStep('가이드'); 
   };
+
   return (
     <div className={classNames($.Wrapper)}>
       <div className={classNames($.Container)}>

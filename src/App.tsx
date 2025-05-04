@@ -16,7 +16,13 @@ declare global {
 function App() {
   const { ToastComponent } = useToast();
   const elem = useRoutes(routes);
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: 0
+      }
+    }
+  });
 
   return (
     <div className={$.Wrapper}>

@@ -3,12 +3,12 @@ import $ from './answerlistitem.module.scss';
 import { Body3, Button1 } from '../Typography';
 
 interface AnswerListItemProps {
-  id: number;
+  id: string;
   name: string;
   score: number;
   icon?: string;
   ischeck: boolean;
-  handleClick: (id: number) => void;
+  handleClick: (id: string) => void;
 }
 
 function AnswerListItem({

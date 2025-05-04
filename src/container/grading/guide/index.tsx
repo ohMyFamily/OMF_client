@@ -15,7 +15,7 @@ type GuideLayoutProps = {
 
 export default function GuideLayout({ handleStep }: GuideLayoutProps) {
   const {quizid} = useParams();
-  const names = useGetUserNames(Number(quizid));
+  const names = useGetUserNames(String(quizid));
 
   const [sample, setSample] = useState<(boolean | null)[]>([null]);
   const onClickLeftButton = () => {
@@ -39,6 +39,8 @@ export default function GuideLayout({ handleStep }: GuideLayoutProps) {
         state={sample}
         setState={setSample}
         index={0}
+        canEdit={true}
+
       />
       <div className={$.textWrapper}>
         <Body3>

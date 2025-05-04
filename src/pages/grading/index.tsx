@@ -7,9 +7,10 @@ import GuideLayout from '@/container/grading/guide';
 import MainLayout from '@/container/grading/main';
 import { useFunnel } from '@/hooks/useFunnel';
 import { Suspense, useState } from 'react';
+import CheckedLayout from '@/container/grading/checked';
 
 export default function Grading() {
-  const step = ['메인', '가이드', '채점', '완료'];
+  const step = ['메인', '가이드', '채점', '채점완료', '완료'];
   const { FunnelComponent: Funnel, handleStep } = useFunnel(step, {});
   const [hasImage, setHasImage] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>('');
@@ -29,6 +30,15 @@ export default function Grading() {
       <Funnel.Steps name="채점">
         <Suspense fallback={<GradingSkeletonLayout />}>
           <CheckLayout
+            handleStep={handleStep}
+            setHasImage={setHasImage}
+            setImageUrl={setImageUrl}
+          />
+        </Suspense>
+      </Funnel.Steps>
+      <Funnel.Steps name="채점완료">
+        <Suspense fallback={<GradingSkeletonLayout />}>
+          <CheckedLayout
             handleStep={handleStep}
             setHasImage={setHasImage}
             setImageUrl={setImageUrl}

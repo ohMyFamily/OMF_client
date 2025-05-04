@@ -11,7 +11,7 @@ export const useKakaoLoginQuery = () => {
     mutationFn: kakaoLogin,
     onSuccess: (data) => {
         setAuthToken(data.data.accessToken, data.data.refreshToken);
-        navigate('/');
+        navigate('/main');
     },
     onError: () => navigate('/login')
     });
@@ -21,7 +21,8 @@ export const useGetUserInfo = () => {
     return useQuery({
         queryKey: ['userInfo'],
         queryFn: getUserInfo,
-        select: (response) => response.data
+        select: (response) => response.data,
+        enabled: false
     })
 }
 

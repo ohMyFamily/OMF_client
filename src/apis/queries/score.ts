@@ -1,6 +1,8 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { ScoreDetailType, ScoreType } from '../api/score.type';
-import { getScoreDetail, getScoreList } from '../api/score';
+import { getQuizCheckStatus, getQuizGradedAnswers, getScoreDetail, getScoreList } from '../api/score';
+import { AnswerResponseData, QuestionResponseData } from '../api/test.types';
+import { ApiResponseFormat } from '../api/api.types';
 
 // 채점 점수 리스트 조회
 export const useScoreList = () => {
@@ -27,4 +29,28 @@ export const useScoreDetail = (quizid: number) => {
   });
   
   return data;
+};
+
+
+// 퀴즈 채점 여부 조회
+export const useQuizCheckStatus = (quizid: number) => {
+  return useSuspenseQuery<boolean>({
+    queryKey: ['quizCheckStatus', quizid],
+    queryFn: async () => {
+      const response = await getQuizCheckStatus(quizid);
+      return response.data.data;
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+   
+};
+
+// 퀴즈 채점 내용 조회
+export const useQuizGradedAnswers = (quizid: number) => {
+  return useSuspenseQuery({
+    queryKey: ['quizGradedAnswers', quizid],
+    queryFn: () => getQuizGradedAnswers(quizid),
+    staleTime: 5 * 60 * 1000, 
+  });
+   
 };

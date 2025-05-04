@@ -17,7 +17,10 @@ interface GradingCardProps {
   state: (boolean | null)[];
   setState: Dispatch<SetStateAction<(boolean | null)[]>>;
   index: number;
+  canEdit: boolean;
+  mainRef: React.RefObject<HTMLDivElement>;
 }
+
 function GradingCard({
   cardNumber,
   title,
@@ -26,6 +29,8 @@ function GradingCard({
   state,
   setState,
   index,
+  canEdit,
+  mainRef
 }: GradingCardProps) {
   const [correctState, setCorrectState] = useState<boolean | null>(state[index]);
 
@@ -50,7 +55,12 @@ function GradingCard({
         <Body2>{answer}</Body2>
       </div>
       <div className={classNames($.ScoreButton)}>
-        <ScoreButton state={correctState} setState={setCorrectState} />
+        <ScoreButton 
+          state={correctState} 
+          setState={setCorrectState} 
+          canEdit={canEdit}
+          mainRef={mainRef}
+        />
       </div>
     </div>
   );

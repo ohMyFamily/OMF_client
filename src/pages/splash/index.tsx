@@ -5,24 +5,24 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Splash() {
-  const { data } = useGetUserInfo();
+  const { data, refetch } = useGetUserInfo();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(async () => {
-      if (data) {
-        Storage.setItem('userId', data.memberId);
-        Storage.setItem('nickname', data.nickname);
-      }
-      const accessToken = Storage.getItem('accessToken');
-      if (accessToken) {
-        navigate('/main');
-      } else {
-        navigate('/login');
-      }
+    const timer = setTimeout(() => {
+      refetch();
     }, 3000);
+
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      Storage.setItem('userId', data.memberId);
+      Storage.setItem('nickname', data.nickname);
+      navigate('/main');
+    }
+  }, [data]);
 
   return <SplashLayout />;
 }

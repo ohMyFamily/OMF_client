@@ -20,7 +20,7 @@ export const routes = [
     element: <Layout />,
     path: '/',
     children: [
-      { path: '', element: <Index /> },
+      { path: '', element: <Splash /> },
       { path: 'homepage', element: <HomePage /> },
       {
         path: 'check-score',

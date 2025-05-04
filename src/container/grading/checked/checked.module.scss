@@ -1,0 +1,36 @@
+@use '@/styles/mixin.scss' as *;
+@use '@/colors' as *;
+
+.layout {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+.container{
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    overflow-y: auto;
+    height: calc(100dvh - 48px);
+padding-bottom: 40px;
+}
+
+.textWrapper {
+    text-align: center;
+    h2{
+        color: $Gray500;
+        margin-top: 24px;
+    }
+    p{
+        color: $Gray300;
+        margin: 16px 0;
+    }
+}
+
+.AnswerList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

@@ -17,7 +17,6 @@ import Button from '@/components/common/Button';
 import { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from 'react';
 import {
   useGetChildAnswer,
-  useSubmitAnswerMutation,
   useSubmitGrading,
 } from '@/apis/queries/answer';
 import { useParams } from 'react-router-dom';
@@ -51,6 +50,7 @@ const emoje = {
 export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: CheckLayoutProps) {
   const [answerList, setAnswerList] = useState<(boolean | null)[]>(Array(10).fill(null));
   const {quizid} = useParams();
+  const mainRef = useRef<HTMLDivElement | null>(null);
 
   const { answers, imageUrl } = useGetChildAnswer(String(quizid));
   useEffect(() => {
@@ -60,8 +60,6 @@ export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: Che
       console.log(imageUrl);
     }
   }, [imageUrl, setHasImage, setImageUrl]);
-
-  const mainRef = useRef<HTMLDivElement | null>(null);
 
   const onSuccessSubmitGrade = () => {
     console.log('채점 성공');
@@ -81,7 +79,6 @@ export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: Che
     handleStep('가이드');
   };
 
-
   const onClickCompleteButton = () => {
     const apiResult = [...(answerList as boolean[])].map((item, index) => ({
       isCorrect: item,
@@ -99,17 +96,6 @@ export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: Che
     return array.some((item) => item === null);
   }, [answerList]);
 
-  useEffect(() => {
-    if (mainRef.current) {
-      mainRef.current.scrollTo({
-        top: mainRef.current.scrollTop + 340,
-        behavior: 'smooth',
-      });
-    }
-  }, [answerList]);
-
-
-
   return (
     <div className={$.layout}>
       <AppBar leftRole="back" onClickLeftButton={onClickLeftButton} />
@@ -126,6 +112,8 @@ export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: Che
                 setState={setAnswerList as Dispatch<SetStateAction<(boolean | null)[]>>}
                 index={index}
                 key={item.id}
+                canEdit={true}
+                mainRef={mainRef}
               />
             );
           })}

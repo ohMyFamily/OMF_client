@@ -47,7 +47,7 @@ const emoje = {
 
 export default function CheckedLayout({ handleStep }: CheckLayoutProps) {
   const { quizid } = useParams();
-  const { data: answers } = useQuizGradedAnswers(Number(quizid));
+  const { data: answers } = useQuizGradedAnswers(String(quizid));
   
   const onClickLeftButton = () => {
     handleStep('메인');

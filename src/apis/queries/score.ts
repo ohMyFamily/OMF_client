@@ -33,7 +33,7 @@ export const useScoreDetail = (quizid: string) => {
 
 
 // 퀴즈 채점 여부 조회
-export const useQuizCheckStatus = (quizid: number) => {
+export const useQuizCheckStatus = (quizid: string) => {
   return useSuspenseQuery<boolean>({
     queryKey: ['quizCheckStatus', quizid],
     queryFn: async () => {
@@ -46,7 +46,7 @@ export const useQuizCheckStatus = (quizid: number) => {
 };
 
 // 퀴즈 채점 내용 조회
-export const useQuizGradedAnswers = (quizid: number) => {
+export const useQuizGradedAnswers = (quizid: string) => {
   return useSuspenseQuery({
     queryKey: ['quizGradedAnswers', quizid],
     queryFn: () => getQuizGradedAnswers(quizid),

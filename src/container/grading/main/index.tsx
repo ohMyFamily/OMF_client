@@ -16,7 +16,7 @@ type MainLayoutProps = {
 
 export default function MainLayout({ handleStep }: MainLayoutProps) {
   const {quizid} = useParams();
-  const names = useGetUserNames(Number(quizid));
+  const names = useGetUserNames(String(quizid));
   const {data: quizCheckStatus} = useQuizCheckStatus(Number(quizid));
  
   const onClickNextStep = () => { 

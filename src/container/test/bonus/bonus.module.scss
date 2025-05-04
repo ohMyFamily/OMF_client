@@ -28,6 +28,15 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+
+  &.processing {
+    cursor: default;
+    pointer-events: none;
+
+    &:hover {
+      background-color: $Gray75;
+    }
+  }
 }
 
 .textWrapper {
@@ -36,6 +45,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ButtonContainer {

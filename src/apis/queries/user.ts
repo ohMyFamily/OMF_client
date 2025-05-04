@@ -26,7 +26,7 @@ export const useGetUserInfo = () => {
     })
 }
 
-export const useGetUserNames = (quizid: number) => {
+export const useGetUserNames = (quizid: string) => {
     const { data } = useSuspenseQuery({
       queryKey: ['userNames', quizid],
       queryFn: () => getUserNames(quizid),

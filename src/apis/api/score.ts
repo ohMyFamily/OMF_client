@@ -9,7 +9,7 @@ export const getScoreList = () => {
 };
 
 // 점수 상세 페이지 조회
-export const getScoreDetail = (quizid: number) => {
+export const getScoreDetail = (quizid: string) => {
   return instance.get<ApiResponseFormat<ScoreDetailResponse>>(`/api/search/detail?quizid=${quizid}`);
 };
 

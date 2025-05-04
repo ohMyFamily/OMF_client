@@ -1,6 +1,6 @@
 // 채점 점수 리스트 타입
 export interface ScoreType {
-  id: number;
+  id: string; //quizid
   ischeck: boolean;
   name: string;
   score: string;
@@ -13,7 +13,7 @@ export interface ScoresResponse {
 
 // 채점 결과 상세 정보 타입
 export interface ScoreDetailType {
-    id: number;
+    id: string; //quizid
     score: number;
     icon: string;
     title: string;

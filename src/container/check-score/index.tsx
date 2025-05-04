@@ -16,7 +16,7 @@ export default function CheckScoreLayout() {
     navigate(-1);
   };
 
-  const handleItemClick = (id: number) => {
+  const handleItemClick = (id: string) => {
     navigate(`/check-score/${id}`);
   };
 

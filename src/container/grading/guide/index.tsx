@@ -15,7 +15,7 @@ type GuideLayoutProps = {
 
 export default function GuideLayout({ handleStep }: GuideLayoutProps) {
   const {quizid} = useParams();
-  const names = useGetUserNames(Number(quizid));
+  const names = useGetUserNames(String(quizid));
 
   const [sample, setSample] = useState<(boolean | null)[]>([null]);
   const onClickLeftButton = () => {

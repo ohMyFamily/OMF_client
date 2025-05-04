@@ -12,7 +12,7 @@ type CompleteLayoutProps = {
 
 export default function NoImage({ handleStep }: CompleteLayoutProps) {
   const {quizid} = useParams();
-  const names = useGetUserNames(Number(quizid));
+  const names = useGetUserNames(String(quizid));
   
   return (
     <div className={$.Wrapper}>

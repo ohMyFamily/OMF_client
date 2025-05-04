@@ -16,7 +16,7 @@ export const useScoreList = () => {
 };
 
 // 채점 결과 상세 조회
-export const useScoreDetail = (quizid: number) => {
+export const useScoreDetail = (quizid: string) => {
   const { data } = useSuspenseQuery<ScoreDetailType>({
     queryKey: ['scoreDetail', quizid],
     queryFn: async () => {

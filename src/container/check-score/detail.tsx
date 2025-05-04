@@ -12,7 +12,7 @@ import { useScoreDetail } from '@/apis/queries/score';
 export default function CheckScoreDetailLayout() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const data = useScoreDetail(Number(id));
+  const data = useScoreDetail(String(id)); //id == quizid
 
   const onBack = () => {
     navigate(-1);

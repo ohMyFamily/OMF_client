@@ -29,7 +29,7 @@ interface QuestionLayoutProps {
   handleStep: (step: string) => void;
   name: string;
   familyType: string;
-  setQuizid: (quizid: number) => void;
+  setQuizid: (quizid: string) => void;
 }
 
 const emoje = {

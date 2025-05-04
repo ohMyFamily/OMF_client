@@ -15,7 +15,7 @@ import cutName from '@/utils/cutName';
 
 interface TestCompletedProps {
   nickname: string;
-  quizid: number;
+  quizid: string;
   handleStep?: (step: string) => void;
 }
 

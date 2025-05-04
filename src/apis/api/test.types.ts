@@ -28,7 +28,7 @@ export interface SubmitAnswerPayload {
 // 답변 제출 타입
 export interface ChangeNamePayload {
   name: string;
-  quizid: number;
+  quizid: string;
 }
 
 // 자식 답변 호출 타입
@@ -39,7 +39,7 @@ export interface AnswerResponseData {
 
 export interface SubmitAnswerResponse {
   data: {
-    quizid: number;
+    quizid: string;
   };
 }
 
@@ -48,5 +48,5 @@ export type GradingPayloadType = {
     id: number;
     isCorrect: boolean;
   }[];
-  quizid: number;
+  quizid: string;
 };

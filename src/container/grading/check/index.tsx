@@ -52,7 +52,7 @@ export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: Che
   const [answerList, setAnswerList] = useState<(boolean | null)[]>(Array(10).fill(null));
   const {quizid} = useParams();
 
-  const { answers, imageUrl } = useGetChildAnswer(Number(quizid));
+  const { answers, imageUrl } = useGetChildAnswer(String(quizid));
   useEffect(() => {
     setHasImage(!!imageUrl);
     if (imageUrl) {
@@ -90,7 +90,7 @@ export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: Che
     
     submitGrade({
       result: apiResult,
-      quizid: Number(quizid) 
+      quizid: String(quizid) 
     });
   };
 

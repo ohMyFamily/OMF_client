@@ -40,7 +40,7 @@ export const useChangeNameMutation = (onSuccess?: () => void, onError?: () => vo
 };
 
 //답변 조회
-export const useGetChildAnswer = (quizid: number) => {
+export const useGetChildAnswer = (quizid: string) => {
   const { data } = useSuspenseQuery({
     queryKey: ['answer', quizid],
     queryFn: () => getAnswer(quizid),

@@ -1,16 +1,10 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { changeName, getAnswer, submitAnswer, submitGrade, uploadImage } from '../api/test';
-import { SubmitAnswerResponse } from '../api/test.types';
 
 // 자식 답변 제출
-export const useSubmitAnswerMutation = (
-  onSuccess: (data: SubmitAnswerResponse) => void,
-  onError: () => void
-) => {
+export const useSubmitAnswerMutation = () => {
   return useMutation({
     mutationFn: submitAnswer,
-    onSuccess,
-    onError,
   });
 };
 

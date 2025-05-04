@@ -57,15 +57,7 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
     scrollToPosition: 200,
   });
 
-  const successSubmitAnswer = (response: SubmitAnswerResponse) => {
-    const { quizid } = response.data;
-    handleStep('완료');
-    setQuizid(quizid);
-  };
-
-  const failSubmitAnswer = () => {};
-
-  const { mutate: submitAnswer } = useSubmitAnswerMutation(successSubmitAnswer, failSubmitAnswer);
+  const { mutate: submitAnswer } = useSubmitAnswerMutation();
 
   const disabled = useMemo(() => {
     if (data && data[currentIndex]) {
@@ -129,11 +121,21 @@ function QuestionLayout({ handleStep, name, familyType, setQuizid }: QuestionLay
       const imageResponse = await uploadImage(selectedImage);
       image = imageResponse.data;
     }
-    submitAnswer({
-      name,
-      answer: result,
-      image,
-    });
+    submitAnswer(
+      {
+        name,
+        answer: result,
+        image,
+      },
+      {
+        onSuccess: (response) => { 
+          const { quizid } = response.data;
+          setQuizid(quizid);
+          handleStep('완료');
+        },
+        onError: () => console.log('에러 발생'),
+      }
+    );
   };
 
   //답 입력 버튼

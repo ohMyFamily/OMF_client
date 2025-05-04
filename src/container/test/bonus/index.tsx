@@ -6,7 +6,6 @@ import { Body2, Caption1, Title2 } from '@/components/common/Typography';
 import Button from '@/components/common/Button';
 import Spinner from '@/components/common/Spinner';
 import { QuestionLayoutType } from '@/pages/test';
-import { useUploadImageMutation } from '@/apis/queries/answer';
 import { useToast } from '@/hooks/useToast';
 import { compressImage, isHeicFile, convertHeicToJpeg } from '@/utils/imageUtils';
 
@@ -31,7 +30,6 @@ export const BonusStage = ({
   );
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { mutateAsync: uploadImage } = useUploadImageMutation();
   const { addToasts } = useToast();
 
   const handleImageClick = () => {
@@ -73,14 +71,7 @@ export const BonusStage = ({
 
   const handleComplete = async () => {
     try {
-      let image;
-      if (selectedImage) {
-        const response = await uploadImage(selectedImage);
-        image = response.data;
-      }
-      // image가 없으면 image는 undefined인 상태로 onSubmit 호출
-      onSubmit(image);
-      handleStep('완료');
+      onSubmit();
     } catch (error) {
       console.error('업로드 실패:', error);
     }

@@ -14,13 +14,13 @@ export const getScoreDetail = (quizid: string) => {
 };
 
 // 퀴즈 채점 여부 조회
-export const getQuizCheckStatus = (quizid: number) => {
+export const getQuizCheckStatus = (quizid: string) => {
   return instance.get<ApiResponseFormat<boolean>>(`/api/v1/quiz/check/${quizid}`);
 };
 
 
 // 채점한 답변 조회
-export const getQuizGradedAnswers = async (quizid: number) => {
+export const getQuizGradedAnswers = async (quizid: string) => {
   const { data } = await instance.get(`/api/v1/quiz/check/answer/${quizid}`);
   return data;
 };

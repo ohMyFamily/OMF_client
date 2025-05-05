@@ -10,15 +10,16 @@ interface ScoreButtonProps {
   setState: Dispatch<SetStateAction<boolean | null>>;
   canEdit: boolean;
   mainRef?: React.RefObject<HTMLDivElement>;
+  isLastQuestion?: boolean;
 }
 
-const ScoreButton = ({ state, setState, canEdit, mainRef }: ScoreButtonProps) => {
+const ScoreButton = ({ state, setState, canEdit, mainRef, isLastQuestion }: ScoreButtonProps) => {
   const handleClickAnswer = (nextState: boolean) => {
     if (!canEdit) return;
 
     setState(nextState);
 
-    if (mainRef?.current) {
+    if (!isLastQuestion && mainRef?.current) {
       mainRef.current.scrollBy({
         top: 340,
         behavior: 'smooth',

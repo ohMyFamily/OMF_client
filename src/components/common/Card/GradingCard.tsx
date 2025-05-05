@@ -18,7 +18,7 @@ interface GradingCardProps {
   setState: Dispatch<SetStateAction<(boolean | null)[]>>;
   index: number;
   canEdit: boolean;
-  mainRef: React.RefObject<HTMLDivElement>;
+  mainRef?: React.RefObject<HTMLDivElement>;
 }
 
 function GradingCard({

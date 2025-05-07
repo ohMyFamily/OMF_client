@@ -38,7 +38,7 @@ export const useFunnel = <T extends readonly string[], D extends Record<string, 
     return () => {
       window.removeEventListener('popstate', handlePopState);
     };
-  }, [currentStep]);
+  }, [steps]);
 
   //다른 단계로 이동하는 onClick함수
   const handleStep = useCallback(

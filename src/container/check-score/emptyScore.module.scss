@@ -1,12 +1,19 @@
 @use '@/colors' as *;
 @use '@/styles/mixin.scss' as *;
 
+.Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100dvh - 48px);
+  padding-bottom: 16px;
+  padding-top: 99px;
+}
+
 .TextContainer {
   @include center;
   text-align: center;
   flex-direction: column;
-  margin-top: 99px;
-  margin-bottom: 48px;
   gap: 16px;
 
   h2 {
@@ -21,5 +28,4 @@
   @include center;
   color: $Gray200;
   margin-top: 56px;
-  margin-bottom: 120px;
 }

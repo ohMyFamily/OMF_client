@@ -62,7 +62,7 @@ function TestCompletedLayout({ nickname, quizid, handleStep }: TestCompletedProp
 
     const timer2 = setTimeout(() => {
       setStep(3);
-    }, 4000);
+    }, 5000);
 
     return () => {
       clearTimeout(timer1);

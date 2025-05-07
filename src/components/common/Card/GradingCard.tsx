@@ -19,6 +19,7 @@ interface GradingCardProps {
   index: number;
   canEdit: boolean;
   mainRef?: React.RefObject<HTMLDivElement>;
+  isLastCard?: boolean;
 }
 
 function GradingCard({
@@ -30,7 +31,8 @@ function GradingCard({
   setState,
   index,
   canEdit,
-  mainRef
+  mainRef,
+  isLastCard
 }: GradingCardProps) {
   const [correctState, setCorrectState] = useState<boolean | null>(state[index]);
 
@@ -60,6 +62,7 @@ function GradingCard({
           setState={setCorrectState} 
           canEdit={canEdit}
           mainRef={mainRef}
+          isLastQuestion={isLastCard}
         />
       </div>
     </div>

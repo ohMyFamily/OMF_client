@@ -44,6 +44,8 @@ export const routes = [
       { path: 'splash', element: <Splash /> },
       { path: 'scoreSkeleton', element: <ScoreSkeletonLayout /> },
       { path: 'gradingSkeleton', element: <GradingSkeletonLayout /> },
+      { path: 'empty', element: <EmptyScoreLayout/>}
+    
     ],
   },
 ];

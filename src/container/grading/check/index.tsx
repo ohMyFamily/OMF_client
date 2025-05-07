@@ -15,10 +15,7 @@ import {
 } from '@/components/common/TossFace';
 import Button from '@/components/common/Button';
 import { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  useGetChildAnswer,
-  useSubmitGrading,
-} from '@/apis/queries/answer';
+import { useGetChildAnswer, useSubmitGrading } from '@/apis/queries/answer';
 import { useParams } from 'react-router-dom';
 
 type CheckLayoutProps = {
@@ -47,9 +44,9 @@ const emoje = {
   think: Think,
 };
 
-export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: CheckLayoutProps) {
+export default function CheckLayout({ handleStep, setHasImage, setImageUrl }: CheckLayoutProps) {
   const [answerList, setAnswerList] = useState<(boolean | null)[]>(Array(10).fill(null));
-  const {quizid} = useParams();
+  const { quizid } = useParams();
   const mainRef = useRef<HTMLDivElement | null>(null);
 
   const { answers, imageUrl } = useGetChildAnswer(String(quizid));
@@ -70,11 +67,8 @@ export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: Che
     console.log('채점 실패');
   };
 
-  const { mutate: submitGrade } = useSubmitGrading(
-    onSuccessSubmitGrade,
-    onErrorSubmitGrade
-  );
-  
+  const { mutate: submitGrade } = useSubmitGrading(onSuccessSubmitGrade, onErrorSubmitGrade);
+
   const onClickLeftButton = () => {
     handleStep('가이드');
   };
@@ -82,12 +76,12 @@ export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: Che
   const onClickCompleteButton = () => {
     const apiResult = [...(answerList as boolean[])].map((item, index) => ({
       isCorrect: item,
-      id: index + 1 
+      id: index + 1,
     }));
-    
+
     submitGrade({
       result: apiResult,
-      quizid: String(quizid) 
+      quizid: String(quizid),
     });
   };
 
@@ -101,7 +95,9 @@ export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: Che
       <AppBar leftRole="back" onClickLeftButton={onClickLeftButton} />
       <div className={$.main} ref={mainRef}>
         <div className={$.AnswerList}>
-        {answers.map((item, index) => {
+          {answers.map((item, index) => {
+            // 마지막 문제 스크롤 x
+            const isLastCard = index === answers.length - 1;
             return (
               <GradingCard
                 title={item.title}
@@ -114,6 +110,7 @@ export default function CheckLayout({ handleStep, setHasImage, setImageUrl}: Che
                 key={item.id}
                 canEdit={true}
                 mainRef={mainRef}
+                isLastCard={isLastCard}
               />
             );
           })}

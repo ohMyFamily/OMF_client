@@ -1,3 +1,4 @@
+// checkScoreDetail.module.scss
 @use '@/colors' as *;
 @use '@/styles/mixin.scss' as *;
 
@@ -14,10 +15,10 @@
   height: calc(100% - 48px);
   padding-top: 24px;
   padding-bottom: 83px;
-  overflow: scroll;
+  overflow-y: auto; 
+  overflow-x: hidden;  
   &::-webkit-scrollbar {
       display: none;
-      
   }
 }
 

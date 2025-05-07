@@ -1,7 +1,10 @@
-import MainIllust from '@/assets/svg/MainIllust.svg';
+import Main from '@/assets/image/main.png';
 import classNames from 'classnames';
 import $ from './backgroundSVG.module.scss';
 
-export default function BackgroundSVG() {
-  return <img src={MainIllust} className={classNames($.BackgroundSvg)} alt="메인 일러스트" />;
+interface BackgroundSvgProps {
+  className?: string;
+}
+export default function BackgroundSVG({ className }: BackgroundSvgProps) {
+  return <img src={Main} className={classNames($.BackgroundSvg, className)} alt="메인 일러스트" />;
 }

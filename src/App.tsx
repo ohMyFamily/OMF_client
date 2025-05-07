@@ -27,7 +27,6 @@ function App() {
 
   return (
     <>
-      <MetaHead />
       <div className={$.Wrapper}>
         <div className={$.ContentWrapper}>
           <QueryClientProvider client={queryClient}>

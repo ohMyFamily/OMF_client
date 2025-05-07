@@ -1,8 +1,10 @@
 .BackgroundSvg {
     position: absolute;
+    bottom: 8dvh;
     left: 50%;
-    bottom: 8dvh; 
-    transform: translateX(-42%);
-    width: auto;
-    z-index: 0; 
+    transform: translateX(-50%);
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+    z-index: 0;
 }

@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 export default function MetaHead() {
   return (
@@ -10,7 +10,7 @@ export default function MetaHead() {
       {/* Open Graph */}
       <meta property="og:title" content="효자인가, 효놈인가. 그것이 문제로다." />
       <meta property="og:description" content="Oh my family 진짜 문제임. 10문 10답!" />
-      <meta property="og:image" content="https://www.oh-my-family.com/miri.png" />
+      <meta property="og:image" content="/miri.png" />
       <meta property="og:url" content="https://www.oh-my-family.com" />
       <meta property="og:type" content="website" />
     </Helmet>

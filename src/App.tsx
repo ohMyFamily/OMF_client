@@ -5,6 +5,7 @@ import $ from './App.module.scss';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import '@/styles/font.scss';
+import MetaHead from './components/common/Helmet';
 
 declare global {
   interface Window {
@@ -19,21 +20,24 @@ function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        retry: 0
-      }
-    }
+        retry: 0,
+      },
+    },
   });
 
   return (
-    <div className={$.Wrapper}>
-      <div className={$.ContentWrapper}>
-        <QueryClientProvider client={queryClient}>
-          {elem}
-          <ReactQueryDevtools />
-        </QueryClientProvider>
-        <ToastComponent />
+    <>
+      <MetaHead />
+      <div className={$.Wrapper}>
+        <div className={$.ContentWrapper}>
+          <QueryClientProvider client={queryClient}>
+            {elem}
+            <ReactQueryDevtools />
+          </QueryClientProvider>
+          <ToastComponent />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
